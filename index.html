@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oika Data — Em breve</title>
+<meta name="description" content="Oika Data — dados prontos para decidir. Em breve.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #17101E;
+    --ink: #FFFFFF;
+    --ink-muted: rgba(255,255,255,0.62);
+    --accent-dark-bg: #B45CF0;
+    --primary: #7E0ACB;
+    --hairline: rgba(255,255,255,0.16);
+  }
+
+  *{ box-sizing: border-box; }
+
+  html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: "Space Grotesk", "Helvetica Neue", Arial, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6vh 1.5rem;
+  }
+
+  .stage{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 30rem;
+  }
+
+  .mark{
+    width: 64px;
+    height: auto;
+    margin-bottom: 2rem;
+    opacity: 0;
+    transform: scale(0.85);
+    animation: rise 1.1s cubic-bezier(0.16, 1, 0.3, 1) 0.15s forwards;
+  }
+
+  .wordmark{
+    font-weight: 700;
+    font-size: clamp(2.25rem, 6vw, 3.25rem);
+    letter-spacing: -0.03em;
+    margin: 0;
+    line-height: 1;
+  }
+
+  .wordmark .oika{ color: var(--ink); }
+  .wordmark .data{ color: var(--accent-dark-bg); }
+
+  .tagline{
+    margin: 0.9rem 0 0;
+    color: var(--ink-muted);
+    font-size: 1.0625rem;
+    font-weight: 400;
+    line-height: 1.5;
+  }
+
+  .rule{
+    width: 34px;
+    height: 1px;
+    background: var(--hairline);
+    margin: 2.4rem 0 2.2rem;
+  }
+
+  .status{
+    font-weight: 500;
+    font-size: 1.25rem;
+    color: var(--accent-dark-bg);
+    margin: 0 0 2.4rem;
+  }
+
+  .contact{
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--primary);
+    color: #FFFFFF;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9375rem;
+    padding: 0.7rem 1.4rem;
+    border-radius: 999px;
+    transition: filter 0.2s ease, transform 0.2s ease;
+  }
+
+  .contact:hover{
+    filter: brightness(1.12);
+    transform: translateY(-1px);
+  }
+
+  @keyframes rise{
+    to{ opacity: 1; transform: scale(1); }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .mark{ animation: none; opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+  <main class="stage">
+    <svg class="mark" viewBox="0 0 110 95" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Símbolo da Oika Data">
+      <path d="M26.4,5.3 Q31,0 38,0L73,0 Q80,0 84.6,5.3L89.4,10.7 Q94,16 87,16L24,16 Q17,16 21.6,10.7 Z" fill="#D3AEEE"/>
+      <path d="M4.5,32.6 Q7,25 15,25L96,25 Q104,25 106.1,32.7L106.9,35.3 Q109,43 101,43L9,43 Q1,43 3.5,35.4 Z" fill="#B371E1"/>
+      <path d="M3.4,59 Q3,51 11,51L82,51 Q90,51 89.6,59L89.4,61 Q89,69 81,69L12,69 Q4,69 3.6,61 Z" fill="#7E0ACB"/>
+      <path d="M20.7,84.5 Q18,78 25,78L66,78 Q73,78 71.8,84.9L71.2,88.1 Q70,95 63,95L32,95 Q25,95 22.3,88.5 Z" fill="#C895E9"/>
+    </svg>
+
+    <h1 class="wordmark"><span class="oika">oika</span><span class="data">data</span></h1>
+    <p class="tagline">Dados prontos para decidir — dashboards e um assistente de IA, sem time de dados próprio.</p>
+
+    <div class="rule"></div>
+
+    <p class="status">Em breve.</p>
+
+    <a class="contact" href="mailto:comercial@oikadata.com">Fale com a gente em comercial@oikadata.com</a>
+  </main>
+
+</body>
+</html>
