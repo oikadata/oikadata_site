@@ -93,17 +93,24 @@
     gap: 0.5rem;
     background: var(--primary);
     color: #FFFFFF;
+    border: none;
     text-decoration: none;
+    font-family: inherit;
     font-weight: 500;
     font-size: 0.9375rem;
     padding: 0.7rem 1.4rem;
     border-radius: 999px;
+    cursor: pointer;
     transition: filter 0.2s ease, transform 0.2s ease;
   }
 
   .contact:hover{
     filter: brightness(1.12);
     transform: translateY(-1px);
+  }
+
+  .contact.copied{
+    background: var(--accent-dark-bg);
   }
 
   @keyframes rise{
@@ -132,8 +139,46 @@
 
     <p class="status">Em breve.</p>
 
-    <a class="contact" href="mailto:comercial@oikadata.com">Fale com a gente em comercial@oikadata.com</a>
+    <button class="contact" type="button" id="copyEmailBtn" data-email="comercial@oikadata.com">
+      <span id="copyEmailLabel">Copiar comercial@oikadata.com</span>
+    </button>
   </main>
 
+  <script>
+    (function(){
+      var btn = document.getElementById('copyEmailBtn');
+      var label = document.getElementById('copyEmailLabel');
+      var email = btn.getAttribute('data-email');
+      var defaultText = label.textContent;
+      var resetTimer;
+
+      btn.addEventListener('click', function(){
+        function showCopied(){
+          label.textContent = 'E-mail copiado!';
+          btn.classList.add('copied');
+          clearTimeout(resetTimer);
+          resetTimer = setTimeout(function(){
+            label.textContent = defaultText;
+            btn.classList.remove('copied');
+          }, 2000);
+        }
+
+        if (navigator.clipboard && window.isSecureContext) {
+          navigator.clipboard.writeText(email).then(showCopied);
+        } else {
+          var temp = document.createElement('textarea');
+          temp.value = email;
+          temp.style.position = 'fixed';
+          temp.style.opacity = '0';
+          document.body.appendChild(temp);
+          temp.focus();
+          temp.select();
+          document.execCommand('copy');
+          document.body.removeChild(temp);
+          showCopied();
+        }
+      });
+    })();
+  </script>
 </body>
 </html>
