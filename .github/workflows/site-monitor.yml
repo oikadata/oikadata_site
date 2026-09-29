@@ -38,7 +38,7 @@ jobs:
     timeout-minutes: 10
     steps:
       - name: Restaurar estado da última execução
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@v5
         with:
           path: .monitor-state
           key: site-monitor-state-${{ github.run_id }}-${{ github.run_attempt }}
@@ -50,7 +50,13 @@ jobs:
           TEST_ALERT: ${{ inputs.test_alert || 'false' }}
           RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
         run: |
+          # O GitHub Actions roda o bash com "-e" (encerra no primeiro erro).
+          # Aqui os erros do curl/openssl são justamente o que queremos detectar,
+          # então desligamos esse comportamento e tratamos cada falha no script.
+          set +e
           set -uo pipefail
+
+          mkdir -p .monitor-state
 
           if [ -z "${DISCORD_WEBHOOK_URL:-}" ]; then
             echo "::error::Secret DISCORD_WEBHOOK_URL não configurado."
@@ -118,7 +124,6 @@ jobs:
           printf '%s\n' "${summary[@]}"
 
           # Estado da execução anterior (vem do cache).
-          mkdir -p .monitor-state
           prev_status=$(cat .monitor-state/status 2>/dev/null || echo "ok")
           last_alert=$(cat .monitor-state/last_alert 2>/dev/null || echo 0)
           now=$(date +%s)
@@ -166,11 +171,14 @@ jobs:
             fi
           fi
 
-          echo "$status" > .monitor-state/status
+          # O teste manual não altera o estado, para não interferir nos alertas reais.
+          if [ "$kind" != "test" ]; then
+            echo "$status" > .monitor-state/status
+          fi
 
       - name: Salvar estado para a próxima execução
         if: always()
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@v5
         with:
           path: .monitor-state
           key: site-monitor-state-${{ github.run_id }}-${{ github.run_attempt }}
