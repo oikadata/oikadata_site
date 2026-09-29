@@ -1,0 +1,176 @@
+# Monitoramento do site oikadata.com
+#
+# A cada ~15 minutos verifica se o site responde e se o certificado TLS é válido.
+# Envia alerta no Discord quando o site cai, um lembrete a cada REMINDER_HOURS
+# enquanto continuar fora, e um aviso quando voltar ao normal.
+#
+# Requisito: secret DISCORD_WEBHOOK_URL em
+# Settings → Secrets and variables → Actions → New repository secret.
+# NUNCA coloque a URL do webhook direto neste arquivo (o repositório é público).
+
+name: Monitor do site
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+    inputs:
+      test_alert:
+        description: "Enviar uma mensagem de teste para o Discord"
+        type: boolean
+        default: false
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-monitor
+  cancel-in-progress: false
+
+env:
+  URLS: "https://oikadata.com https://www.oikadata.com"
+  CERT_WARN_DAYS: "14"
+  REMINDER_HOURS: "2"
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Restaurar estado da última execução
+        uses: actions/cache/restore@v4
+        with:
+          path: .monitor-state
+          key: site-monitor-state-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: site-monitor-state-
+
+      - name: Verificar site e certificado
+        env:
+          DISCORD_WEBHOOK_URL: ${{ secrets.DISCORD_WEBHOOK_URL }}
+          TEST_ALERT: ${{ inputs.test_alert || 'false' }}
+          RUN_URL: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}
+        run: |
+          set -uo pipefail
+
+          if [ -z "${DISCORD_WEBHOOK_URL:-}" ]; then
+            echo "::error::Secret DISCORD_WEBHOOK_URL não configurado."
+            exit 1
+          fi
+
+          problems=()
+          summary=()
+
+          check_url() {
+            local url="$1"
+            local host="${url#https://}"
+            host="${host%%/*}"
+            local code rc err attempt ok=0
+
+            # 1) Resposta HTTP. O curl valida a cadeia e o nome do certificado,
+            #    então um erro como ERR_CERT_COMMON_NAME_INVALID aparece aqui
+            #    (curl exit 60). Três tentativas para evitar alarme falso.
+            for attempt in 1 2 3; do
+              code=$(curl -sS -o /dev/null -w '%{http_code}' --max-time 20 -L "$url" 2>/tmp/curl_err)
+              rc=$?
+              err=$(tr -d '\n' < /tmp/curl_err)
+              if [ "$rc" -eq 0 ] && [ "$code" -ge 200 ] && [ "$code" -lt 400 ]; then
+                ok=1
+                break
+              fi
+              [ "$attempt" -lt 3 ] && sleep 20
+            done
+
+            if [ "$ok" -eq 0 ]; then
+              if [ "$rc" -ne 0 ]; then
+                problems+=("$url: falha na conexão (curl $rc) $err")
+              else
+                problems+=("$url: respondeu HTTP $code")
+              fi
+              summary+=("❌ $url")
+              return
+            fi
+
+            # 2) Validade do certificado.
+            local enddate exp now days
+            enddate=$(echo | timeout 20 openssl s_client -connect "$host:443" -servername "$host" 2>/dev/null \
+              | openssl x509 -noout -enddate 2>/dev/null | cut -d= -f2)
+            if [ -z "$enddate" ]; then
+              problems+=("$url: não foi possível ler o certificado")
+              summary+=("⚠️ $url (HTTP $code, certificado ilegível)")
+              return
+            fi
+            exp=$(date -d "$enddate" +%s)
+            now=$(date +%s)
+            days=$(( (exp - now) / 86400 ))
+            if [ "$days" -lt "$CERT_WARN_DAYS" ]; then
+              problems+=("$url: certificado expira em $days dias ($enddate)")
+              summary+=("⚠️ $url (certificado expira em $days dias)")
+              return
+            fi
+
+            summary+=("✅ $url (HTTP $code, certificado válido por $days dias)")
+          }
+
+          for url in $URLS; do
+            check_url "$url"
+          done
+
+          printf '%s\n' "${summary[@]}"
+
+          # Estado da execução anterior (vem do cache).
+          mkdir -p .monitor-state
+          prev_status=$(cat .monitor-state/status 2>/dev/null || echo "ok")
+          last_alert=$(cat .monitor-state/last_alert 2>/dev/null || echo 0)
+          now=$(date +%s)
+
+          if [ "${#problems[@]}" -gt 0 ]; then status="fail"; else status="ok"; fi
+
+          kind="none"
+          if [ "$TEST_ALERT" = "true" ]; then
+            kind="test"
+          elif [ "$status" = "fail" ] && [ "$prev_status" = "ok" ]; then
+            kind="down"
+          elif [ "$status" = "fail" ] && [ $(( now - last_alert )) -ge $(( REMINDER_HOURS * 3600 )) ]; then
+            kind="still_down"
+          elif [ "$status" = "ok" ] && [ "$prev_status" = "fail" ]; then
+            kind="recovered"
+          fi
+
+          echo "Status anterior: $prev_status | Status atual: $status | Mensagem: $kind"
+
+          if [ "$kind" != "none" ]; then
+            case "$kind" in
+              down)       title="🔴 Site oikadata.com com problema";  color=15158332; body=$(printf '%s\n' "${problems[@]}") ;;
+              still_down) title="🟠 Site oikadata.com continua com problema"; color=15105570; body=$(printf '%s\n' "${problems[@]}") ;;
+              recovered)  title="🟢 Site oikadata.com normalizado";   color=3066993;  body=$(printf '%s\n' "${summary[@]}") ;;
+              test)       title="🔵 Teste do monitor do site";         color=3447003;  body=$(printf '%s\n' "${summary[@]}") ;;
+            esac
+
+            payload=$(jq -n \
+              --arg title "$title" \
+              --arg desc "$body" \
+              --arg url "$RUN_URL" \
+              --argjson color "$color" \
+              --arg ts "$(date -u +%Y-%m-%dT%H:%M:%SZ)" \
+              '{username: "Monitor oikadata.com",
+                embeds: [{title: $title, description: $desc, url: $url, color: $color, timestamp: $ts,
+                          footer: {text: "GitHub Actions · oikadata_site"}}]}')
+
+            if ! curl -sS --fail --max-time 20 -H "Content-Type: application/json" -d "$payload" "$DISCORD_WEBHOOK_URL" > /dev/null; then
+              echo "::error::Não foi possível enviar a mensagem para o Discord."
+              exit 1
+            fi
+            echo "Mensagem enviada para o Discord."
+            if [ "$kind" != "test" ]; then
+              echo "$now" > .monitor-state/last_alert
+            fi
+          fi
+
+          echo "$status" > .monitor-state/status
+
+      - name: Salvar estado para a próxima execução
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: .monitor-state
+          key: site-monitor-state-${{ github.run_id }}-${{ github.run_attempt }}
