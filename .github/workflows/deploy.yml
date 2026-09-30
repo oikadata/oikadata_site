@@ -1,0 +1,50 @@
+# Publica o site no GitHub Pages a cada push no main.
+# Roda `node build.mjs` e envia a pasta dist/ para o Pages.
+#
+# Requisito (uma vez): Settings → Pages → Build and deployment → Source: "GitHub Actions".
+# O domínio (oikadata.com) fica configurado em Settings → Pages → Custom domain.
+
+name: Deploy do site
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Gerar o site
+        run: |
+          node build.mjs
+          cp CNAME dist/CNAME
+
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

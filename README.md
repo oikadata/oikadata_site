@@ -17,7 +17,7 @@ dist/                resultado da build (não vai para o git)
 1. Altere o texto em `src/content/pt.mjs`.
 2. Rode `node build.mjs`.
 3. Veja o resultado localmente: `npx serve dist` ou `python3 -m http.server 4321 -d dist` e abra http://localhost:4321.
-4. Faça commit e push: o Cloudflare publica sozinho.
+4. Faça commit e push no `main`: o GitHub Actions gera e publica o site sozinho.
 
 ## Publicar a versão em inglês
 
@@ -27,19 +27,17 @@ dist/                resultado da build (não vai para o git)
 
 Para revisar o inglês localmente antes de publicar: `node build.mjs --all` e abra http://localhost:4321/en/.
 
-## Deploy no Cloudflare Pages
+## Deploy (GitHub Pages)
 
-Configuração do projeto (Workers & Pages → Create → Pages → Connect to Git):
+O site é publicado no GitHub Pages pelo workflow `.github/workflows/deploy.yml`: a cada push no `main`, ele roda `node build.mjs` e publica a pasta `dist/`.
 
-| Campo | Valor |
-|---|---|
-| Framework preset | None |
-| Build command | `node build.mjs` |
-| Build output directory | `dist` |
+- Em **Settings → Pages → Build and deployment**, a *Source* deve ser **GitHub Actions**.
+- O domínio `oikadata.com` vem do arquivo `CNAME` e fica em **Settings → Pages → Custom domain**. O DNS passa pelo Cloudflare.
+- O arquivo `public/_headers` só vale no Cloudflare Pages; o GitHub Pages o ignora.
 
-Depois, em **Custom domains**, adicione `oikadata.com` (e `www.oikadata.com`, se quiser redirecionar).
+## Monitoramento
 
-Para ter métricas de acesso sem cookies (sem banner de LGPD), ative **Web Analytics** no projeto do Pages.
+`.github/workflows/site-monitor.yml` verifica a cada ~15 minutos se `oikadata.com` responde e se o certificado é válido, e avisa no Discord (secret `DISCORD_WEBHOOK_URL`).
 
 ## Pendências (não preencher sem confirmação)
 
