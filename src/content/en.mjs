@@ -7,7 +7,7 @@ export default {
   meta: {
     title: 'Oika Data | The shortest path from your data to results',
     description:
-      'A hub for companies that want to get value from their data and enable AI. Data team, agents and platform in a single contract. First results within 30 days.',
+      'A hub of data and AI solutions for companies that want to decide better and grow. First results within 30 days.',
   },
   ui: {
     skip: 'Skip to content',
@@ -21,15 +21,12 @@ export default {
     whatsappMessage: 'Hi! I found Oika Data on your website and would like to understand how you can help with my company’s data.',
   },
   nav: [
-    { href: '#problema', label: 'The problem' },
-    { href: '#entrega', label: 'What we deliver' },
-    { href: '#como-entregamos', label: 'How we deliver' },
-    { href: '#como-comecamos', label: 'How we start' },
+    { href: '/en/', label: 'Solutions' },
   ],
   hero: {
     title: 'The shortest path from your data to results',
-    subtitle: 'A hub for companies that want to get value from their data and enable AI.',
-    support: 'Data team, agents and platform in a single contract. First results within 30 days.',
+    subtitle: 'A hub of data and AI solutions for companies that want to decide better and grow.',
+    support: 'First results within 30 days.',
     ctaPrimary: 'Book a call',
     ctaSecondary: 'See what we deliver',
   },
@@ -103,10 +100,12 @@ export default {
     title: 'Organized data that steers your business',
     productsTitle: 'What you get',
     products: [
+      { title: 'AI with context', text: 'Ask AI and get answers with your numbers and your business rules, not generic ones.' },
       { title: 'Modeled data', text: 'Your sources integrated and organized, with business rules written in code. One number for every department.' },
       { title: 'Dashboards', text: 'Dashboards that update themselves, with the metrics each department uses to decide.' },
       { title: 'Analyses', text: 'Answers to business questions, with what to do next.' },
-      { title: 'AI with context', text: 'Ask AI and get answers with your numbers and your business rules, not generic ones.' },
+      { title: 'Marketing segmentation', text: 'Customers grouped by behavior, value and potential, ready for campaigns and for your CRM.' },
+      { title: 'AI models', text: 'Predictive and recommendation models: who will stop buying, how much you will sell and what to offer each customer.' },
     ],
     teamTitle: 'Who makes it happen',
     team: [
@@ -149,7 +148,7 @@ export default {
     ctaText: 'Want to find out what the first use case would be at your company?',
   },
   cta: {
-    title: 'Shall we choose your first use case?',
+    title: 'Shall we start your first use case?',
     support: ['Value Sprint', '30 days', 'no lock-in'],
     howTitle: 'How it works',
     how: [

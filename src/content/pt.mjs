@@ -7,7 +7,7 @@ export default {
   meta: {
     title: 'Oika Data | O caminho mais curto entre seus dados e o resultado',
     description:
-      'Hub para empresas que querem extrair valor dos dados e habilitar IA. Time de dados, agentes e plataforma num contrato só. Primeiro resultado em até 30 dias.',
+      'Hub de soluções em dados e IA para empresas que querem decidir melhor e crescer. Primeiro resultado em até 30 dias.',
   },
   ui: {
     skip: 'Pular para o conteúdo',
@@ -21,15 +21,12 @@ export default {
     whatsappMessage: 'Olá! Vim pelo site da Oika Data e quero entender como vocês podem ajudar com os dados da minha empresa.',
   },
   nav: [
-    { href: '#problema', label: 'O problema' },
-    { href: '#entrega', label: 'O que entregamos' },
-    { href: '#como-entregamos', label: 'Como entregamos' },
-    { href: '#como-comecamos', label: 'Como começamos' },
+    { href: '/', label: 'Soluções' },
   ],
   hero: {
     title: 'O caminho mais curto entre seus dados e o resultado',
-    subtitle: 'Hub para empresas que querem extrair valor dos dados e habilitar IA.',
-    support: 'Time de dados, agentes e plataforma num contrato só. Primeiro resultado em até 30 dias.',
+    subtitle: 'Hub de soluções em dados e IA para empresas que querem decidir melhor e crescer.',
+    support: 'Primeiro resultado em até 30 dias.',
     ctaPrimary: 'Agendar uma conversa',
     ctaSecondary: 'Ver o que entregamos',
   },
@@ -103,10 +100,12 @@ export default {
     title: 'Dado organizado que direciona o seu negócio',
     productsTitle: 'O que chega para você',
     products: [
+      { title: 'IA com contexto', text: 'Pergunte à IA e receba respostas com os seus números e as suas regras de negócio, não no genérico.' },
       { title: 'Dados modelados', text: 'Suas fontes integradas e organizadas, com as regras de negócio escritas em código. Um número só para todas as áreas.' },
       { title: 'Dashboards', text: 'Painéis que se atualizam sozinhos, com os indicadores que cada área usa para decidir.' },
       { title: 'Análises', text: 'Respostas para as perguntas do negócio, com o que fazer a seguir.' },
-      { title: 'IA com contexto', text: 'Pergunte à IA e receba respostas com os seus números e as suas regras de negócio, não no genérico.' },
+      { title: 'Segmentações de marketing', text: 'Clientes agrupados por comportamento, valor e potencial, prontos para campanhas e para o CRM.' },
+      { title: 'Modelos de IA', text: 'Modelos preditivos e de recomendação: quem vai parar de comprar, quanto vai vender e o que oferecer a cada cliente.' },
     ],
     teamTitle: 'Quem faz acontecer',
     team: [
@@ -149,7 +148,7 @@ export default {
     ctaText: 'Quer descobrir qual seria o primeiro caso de uso na sua empresa?',
   },
   cta: {
-    title: 'Vamos escolher o seu primeiro caso de uso?',
+    title: 'Vamos iniciar o seu primeiro caso de uso?',
     support: ['Sprint de Valor', '30 dias', 'sem fidelidade'],
     howTitle: 'Como funciona',
     how: [

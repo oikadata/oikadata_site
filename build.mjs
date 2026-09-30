@@ -13,7 +13,7 @@ const LANGS = ['pt'];
 
 const SITE_URL = 'https://oikadata.com';
 const WHATSAPP = 'https://wa.me/5551984955083';
-const EMAIL = 'arthur@oikadata.com';
+const EMAIL = 'comercial@oikadata.com';
 const PHONE = '+55 51 98495-5083';
 const PHONE_HREF = 'tel:+5551984955083';
 // Página de agendamento do Google Agenda (conversa de 30 min).
@@ -140,7 +140,7 @@ function page(c) {
       <a class="topbar__brand" href="${c.path}" aria-label="Oika Data">${logo('light')}</a>
       <nav class="nav" id="nav" aria-label="${esc(c.ui.navLabel)}">
         <ul>
-          ${c.nav.map((i) => `<li><a href="${i.href}">${esc(i.label)}</a></li>`).join('\n          ')}
+          ${c.nav.map((i) => `<li><a href="${i.href}"${i.href === c.path ? ' aria-current="page"' : ''}>${esc(i.label)}</a></li>`).join('\n          ')}
         </ul>
       </nav>
       <div class="topbar__actions">
@@ -217,7 +217,7 @@ function page(c) {
       <div class="container">
         ${sectionHead(c.how.title, c.how.subtitle)}
         <h3 class="layer__title">${esc(c.how.productsTitle)}</h3>
-        <div class="cards cards--4">
+        <div class="cards cards--3">
           ${c.how.products
             .map(
               (p, i) => `<article class="card">
