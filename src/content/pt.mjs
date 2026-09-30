@@ -16,7 +16,8 @@ export default {
     close: 'Fechar',
     langSwitch: 'EN',
     langSwitchLabel: 'Read in English',
-    whatsappShort: 'WhatsApp',
+    schedule: 'Agendar uma conversa',
+    scheduleShort: 'Agendar',
     whatsappMessage: 'Olá! Vim pelo site da Oika Data e quero entender como vocês podem ajudar com os dados da minha empresa.',
   },
   nav: [
@@ -29,8 +30,9 @@ export default {
     title: 'O caminho mais curto entre seus dados e o resultado',
     subtitle: 'Hub para empresas que querem extrair valor dos dados e habilitar IA.',
     support: 'Time de dados, agentes e plataforma num contrato só. Primeiro resultado em até 30 dias.',
-    ctaPrimary: 'Falar no WhatsApp',
-    ctaSecondary: 'Agendar 30 min',
+    ctaPrimary: 'Agendar uma conversa',
+    ctaSecondary: 'Ver o que entregamos',
+    ctaNote: '30 minutos, sem compromisso. Você escolhe o horário.',
     proof: 'Experiência em fintech, mercado imobiliário e operações internacionais',
   },
   problem: {
@@ -153,6 +155,7 @@ export default {
       'Acesso aos sistemas',
       'As áreas envolvidas disponíveis para validar as regras de negócio',
     ],
+    ctaText: 'Quer descobrir qual seria o primeiro caso de uso na sua empresa?',
   },
   trust: {
     label: 'Confiança',
@@ -186,11 +189,13 @@ export default {
       'Integração e modelagem dos dados',
       'Entrega do resultado e plano para o trimestre',
     ],
-    button: 'Falar no WhatsApp',
-    whatsappMessage: 'Olá! Vim pelo site da Oika Data e quero conversar sobre o Sprint de Valor.',
-    scheduleButton: 'Agendar uma conversa',
+    button: 'Agendar uma conversa de 30 min',
+    alt: 'Prefere mensagem? Fale com a gente pelo',
+    whatsapp: 'WhatsApp',
+    or: 'ou escreva para',
   },
   footer: {
+    whatsapp: 'WhatsApp',
     slogan: 'onde os dados ganham sentido',
   },
 };

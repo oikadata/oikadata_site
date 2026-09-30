@@ -60,16 +60,15 @@ const CALENDAR_ICON = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" 
 // Atributos de evento do Umami: o nome do evento e onde o botão está na página.
 const track = (event, place) => `data-umami-event="${event}" data-umami-event-local="${place}"`;
 
-// A mensagem pré-preenchida muda por botão, para saber de onde veio cada conversa.
-const waButton = (label, message, place, extra = '') =>
-  `<a class="btn btn--primary ${extra}" href="${WHATSAPP}?text=${encodeURIComponent(message)}" target="_blank" rel="noopener" ${track('whatsapp', place)}>${WA_ICON}<span>${esc(label)}</span></a>`;
-
+// Agendamento é a ação principal do site; o WhatsApp fica como contato secundário, no fim.
 const scheduleButton = (label, place, extra = '') =>
-  `<a class="btn ${extra}" href="${SCHEDULE_URL}" target="_blank" rel="noopener" ${track('agenda', place)}>${CALENDAR_ICON}<span>${esc(label)}</span></a>`;
+  `<a class="btn btn--primary ${extra}" href="${SCHEDULE_URL}" target="_blank" rel="noopener" ${track('agenda', place)}>${CALENDAR_ICON}<span>${esc(label)}</span></a>`;
 
-const sectionHead = (n, label, title, subtitle) => `
+const waLink = (label, message, place) =>
+  `<a href="${WHATSAPP}?text=${encodeURIComponent(message)}" target="_blank" rel="noopener" ${track('whatsapp', place)}>${esc(label)}</a>`;
+
+const sectionHead = (title, subtitle) => `
       <header class="section__head">
-        <p class="label"><span class="label__n">${String(n).padStart(2, '0')}</span> ${esc(label)}</p>
         <h2 class="section__title">${esc(title)}</h2>
         ${subtitle ? `<p class="section__sub">${esc(subtitle)}</p>` : ''}
       </header>`;
@@ -103,7 +102,6 @@ function page(c) {
     areaServed: 'BR',
   };
 
-  let n = 0;
 
   return `<!doctype html>
 <html lang="${c.lang}">
@@ -145,7 +143,7 @@ function page(c) {
       </nav>
       <div class="topbar__actions">
         ${langLink}
-        ${waButton(c.ui.whatsappShort, c.ui.whatsappMessage, 'topo', 'btn--sm')}
+        ${scheduleButton(c.ui.scheduleShort, 'topo', 'btn--sm')}
         <button class="menu-toggle" type="button" aria-controls="nav" aria-expanded="false" data-open="${esc(c.ui.menu)}" data-close="${esc(c.ui.close)}">
           <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
           <span class="sr-only">${esc(c.ui.menu)}</span>
@@ -163,9 +161,10 @@ function page(c) {
           <p class="hero__sub">${esc(c.hero.subtitle)}</p>
           <p class="hero__support">${esc(c.hero.support)}</p>
           <div class="hero__ctas">
-            ${waButton(c.hero.ctaPrimary, c.ui.whatsappMessage, 'hero', 'btn--lg')}
-            ${scheduleButton(c.hero.ctaSecondary, 'hero', 'btn--ghost btn--lg')}
+            ${scheduleButton(c.hero.ctaPrimary, 'hero', 'btn--lg')}
+            <a class="btn btn--ghost btn--lg" href="#entrega"><span>${esc(c.hero.ctaSecondary)}</span>${ARROW}</a>
           </div>
+          <p class="hero__note">${esc(c.hero.ctaNote)}</p>
         </div>
         <div class="hero__art" aria-hidden="true">${symbol(SYMBOL_LIGHT, 'hero__symbol')}</div>
       </div>
@@ -175,8 +174,9 @@ function page(c) {
     </section>
 
     <section class="section" id="problema">
-      <div class="container">
-        ${sectionHead(++n, c.problem.label, c.problem.title)}
+      <div class="container split">
+        ${sectionHead(c.problem.title)}
+        <div class="split__body">
         <div class="problem">
           <ul class="sources" aria-label="${esc(c.problem.label)}">
             ${c.problem.sources.map((s) => `<li>${esc(s)}</li>`).join('\n            ')}
@@ -185,16 +185,14 @@ function page(c) {
             ${c.problem.symptoms.map((s) => `<li>${esc(s)}</li>`).join('\n            ')}
           </ul>
         </div>
-        <div class="callout">
-          <p class="label">${esc(c.problem.costLabel)}</p>
-          <p class="callout__text">${esc(c.problem.cost)}</p>
+        <p class="cost"><strong>${esc(c.problem.costLabel)}:</strong> ${esc(c.problem.cost)}</p>
         </div>
       </div>
     </section>
 
-    <section class="section section--white" id="por-que-agora">
+    <section class="section" id="por-que-agora">
       <div class="container">
-        ${sectionHead(++n, c.whyNow.label, c.whyNow.title)}
+        ${sectionHead(c.whyNow.title)}
         <div class="why">
           <div class="why__text">
             <p class="lead">${esc(c.whyNow.text)}</p>
@@ -225,7 +223,7 @@ function page(c) {
 
     <section class="section" id="entrega">
       <div class="container">
-        ${sectionHead(++n, c.delivery.label, c.delivery.title, c.delivery.subtitle)}
+        ${sectionHead(c.delivery.title, c.delivery.subtitle)}
         <div class="cards cards--3">
           ${c.delivery.pillars
             .map(
@@ -254,9 +252,9 @@ function page(c) {
       </div>
     </section>
 
-    <section class="section section--white" id="valor">
+    <section class="section" id="valor">
       <div class="container">
-        ${sectionHead(++n, c.value.label, c.value.title)}
+        ${sectionHead(c.value.title)}
         <div class="cards cards--3">
           ${c.value.groups
             .map(
@@ -274,7 +272,7 @@ function page(c) {
 
     <section class="section" id="como-comecamos">
       <div class="container">
-        ${sectionHead(++n, c.start.label, c.start.title)}
+        ${sectionHead(c.start.title)}
         <ol class="steps">
           ${c.start.steps
             .map(
@@ -293,13 +291,17 @@ function page(c) {
             ${c.start.needs.map((x) => `<li>${esc(x)}</li>`).join('\n            ')}
           </ul>
         </div>
+        <div class="inline-cta">
+          <p>${esc(c.start.ctaText)}</p>
+          ${scheduleButton(c.ui.schedule, 'como-comecamos')}
+        </div>
       </div>
     </section>
 
-    <section class="section section--white" id="confianca">
-      <div class="container">
-        ${sectionHead(++n, c.trust.label, c.trust.title)}
-        <div class="trust">
+    <section class="section" id="confianca">
+      <div class="container split">
+        ${sectionHead(c.trust.title)}
+        <div class="split__body trust">
           ${c.trust.items
             .map((t) => `<div class="trust__item"><h3>${esc(t.title)}</h3><p>${esc(t.text)}</p></div>`)
             .join('\n          ')}
@@ -308,9 +310,9 @@ function page(c) {
     </section>
 
     <section class="section" id="faq">
-      <div class="container">
-        ${sectionHead(++n, c.faq.label, c.faq.title)}
-        <div class="faq">
+      <div class="container split">
+        ${sectionHead(c.faq.title)}
+        <div class="split__body faq">
           ${c.faq.items
             .map(
               (f) => `<details class="faq__item">
@@ -328,10 +330,8 @@ function page(c) {
         <div class="cta__main">
           <h2 class="cta__title">${esc(c.cta.title)}</h2>
           <p class="cta__support">${c.cta.support.map(esc).join('<span aria-hidden="true"> · </span>')}</p>
-          <div class="cta__buttons">
-            ${waButton(c.cta.button, c.cta.whatsappMessage, 'contato', 'btn--lg')}
-            ${scheduleButton(c.cta.scheduleButton, 'contato', 'btn--ghost-dark btn--lg')}
-          </div>
+          ${scheduleButton(c.cta.button, 'contato', 'btn--lg')}
+          <p class="cta__alt">${esc(c.cta.alt)} ${waLink(c.cta.whatsapp, c.ui.whatsappMessage, 'contato')} ${esc(c.cta.or)} <a href="mailto:${EMAIL}" ${track('email', 'contato')}>${EMAIL}</a>.</p>
         </div>
         <div class="cta__how">
           <p class="label label--dark">${esc(c.cta.howTitle)}</p>
@@ -351,6 +351,7 @@ function page(c) {
         <p class="footer__slogan">${esc(c.footer.slogan)}</p>
       </div>
       <ul class="footer__contact">
+        <li>${waLink(c.footer.whatsapp, c.ui.whatsappMessage, 'rodape')}</li>
         <li><a href="mailto:${EMAIL}" ${track('email', 'rodape')}>${EMAIL}</a></li>
         <li><a href="${PHONE_HREF}" ${track('telefone', 'rodape')}>${PHONE}</a></li>
         <li><a href="${SITE_URL}">oikadata.com</a></li>

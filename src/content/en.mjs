@@ -16,7 +16,8 @@ export default {
     close: 'Close',
     langSwitch: 'PT',
     langSwitchLabel: 'Ler em português',
-    whatsappShort: 'WhatsApp',
+    schedule: 'Book a call',
+    scheduleShort: 'Book a call',
     whatsappMessage: 'Hi! I found Oika Data on your website and would like to understand how you can help with my company’s data.',
   },
   nav: [
@@ -29,8 +30,9 @@ export default {
     title: 'The shortest path from your data to results',
     subtitle: 'A hub for companies that want to get value from their data and enable AI.',
     support: 'Data team, agents and platform in a single contract. First results within 30 days.',
-    ctaPrimary: 'Talk on WhatsApp',
-    ctaSecondary: 'Book 30 min',
+    ctaPrimary: 'Book a call',
+    ctaSecondary: 'See what we deliver',
+    ctaNote: '30 minutes, no commitment. You pick the time.',
     proof: 'Experience in fintech, real estate and international operations',
   },
   problem: {
@@ -153,6 +155,7 @@ export default {
       'Access to the systems',
       'The departments involved available to validate business rules',
     ],
+    ctaText: 'Want to find out what the first use case would be at your company?',
   },
   trust: {
     label: 'Trust',
@@ -186,11 +189,13 @@ export default {
       'Data integration and modeling',
       'Delivery of the result and a plan for the quarter',
     ],
-    button: 'Talk on WhatsApp',
-    whatsappMessage: 'Hi! I found Oika Data on your website and would like to talk about the Value Sprint.',
-    scheduleButton: 'Book a call',
+    button: 'Book a 30-minute call',
+    alt: 'Prefer to message? Reach us on',
+    whatsapp: 'WhatsApp',
+    or: 'or write to',
   },
   footer: {
+    whatsapp: 'WhatsApp',
     slogan: 'where data makes sense',
   },
 };
