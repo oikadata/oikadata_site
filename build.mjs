@@ -217,11 +217,11 @@ function page(c) {
       <div class="container">
         ${sectionHead(c.how.title, c.how.subtitle)}
         <h3 class="layer__title">${esc(c.how.productsTitle)}</h3>
-        <div class="cards cards--3">
+        <div class="cards cards--4">
           ${c.how.products
             .map(
               (p, i) => `<article class="card">
-            <span class="card__band card__band--${i + 1}" aria-hidden="true"></span>
+            <span class="card__band card__band--${(i % 3) + 1}" aria-hidden="true"></span>
             <h4 class="card__title">${esc(p.title)}</h4>
             <p>${esc(p.text)}</p>
           </article>`

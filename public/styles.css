@@ -328,7 +328,11 @@ a:hover { color: var(--primary-light); }
 /* ---------- Cartões ---------- */
 
 .cards { display: grid; gap: 16px; }
-@media (min-width: 760px) { .cards--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; } }
+@media (min-width: 760px) {
+  .cards--3 { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; }
+  .cards--4 { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+}
+@media (min-width: 1040px) { .cards--4 { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
 .card {
   background: var(--white); border-radius: var(--radius); padding: 28px;

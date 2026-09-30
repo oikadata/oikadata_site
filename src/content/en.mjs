@@ -100,13 +100,13 @@ export default {
   },
   how: {
     label: 'How we deliver',
-    title: 'Organized data at the base, answers at the edge',
-    subtitle: 'From scratch or alongside the analyst you already have, without stitching together tools, consultants and freelancers.',
+    title: 'Organized data that steers your business',
     productsTitle: 'What you get',
     products: [
       { title: 'Modeled data', text: 'Your sources integrated and organized, with business rules written in code. One number for every department.' },
       { title: 'Dashboards', text: 'Dashboards that update themselves, with the metrics each department uses to decide.' },
-      { title: 'Analyses', text: 'Answers to business questions, with what to do next. By the team or directly with AI on top of the foundation.' },
+      { title: 'Analyses', text: 'Answers to business questions, with what to do next.' },
+      { title: 'AI with context', text: 'Ask AI and get answers with your numbers and your business rules, not generic ones.' },
     ],
     teamTitle: 'Who makes it happen',
     team: [
@@ -117,7 +117,7 @@ export default {
     numbers: [
       { value: '30 days', text: 'to have data integrated and the first use case live' },
       { value: '1 to 2', text: 'value deliveries per month, once the foundation is in place' },
-      { value: '0', text: 'hires: the team arrives ready' },
+      { value: '1', text: 'hire that covers it all: team, tools, platform and BI' },
     ],
   },
   start: {

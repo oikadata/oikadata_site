@@ -100,13 +100,13 @@ export default {
   },
   how: {
     label: 'Como entregamos',
-    title: 'Dado organizado na base, resposta na ponta',
-    subtitle: 'Do zero ou ao lado do analista que você já tem, sem juntar ferramenta, consultor e freelancer.',
+    title: 'Dado organizado que direciona o seu negócio',
     productsTitle: 'O que chega para você',
     products: [
       { title: 'Dados modelados', text: 'Suas fontes integradas e organizadas, com as regras de negócio escritas em código. Um número só para todas as áreas.' },
       { title: 'Dashboards', text: 'Painéis que se atualizam sozinhos, com os indicadores que cada área usa para decidir.' },
-      { title: 'Análises', text: 'Respostas para as perguntas do negócio, com o que fazer a seguir. Feitas pelo time ou direto com IA sobre a base pronta.' },
+      { title: 'Análises', text: 'Respostas para as perguntas do negócio, com o que fazer a seguir.' },
+      { title: 'IA com contexto', text: 'Pergunte à IA e receba respostas com os seus números e as suas regras de negócio, não no genérico.' },
     ],
     teamTitle: 'Quem faz acontecer',
     team: [
@@ -117,7 +117,7 @@ export default {
     numbers: [
       { value: '30 dias', text: 'para ter os dados integrados e o primeiro caso de uso no ar' },
       { value: '1 a 2', text: 'entregas de valor por mês, depois que a base está de pé' },
-      { value: '0', text: 'contratações: o time já chega pronto' },
+      { value: '1', text: 'contratação que resolve tudo: time, ferramentas, plataforma e BI' },
     ],
   },
   start: {
