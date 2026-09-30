@@ -8,7 +8,6 @@ const list = (items, cls = 'bands-list bands-list--compact') =>
 export default {
   id: 'planos',
   slug: { pt: 'planos', en: 'plans' },
-  draft: true,
   render: (p) => `
     <section class="page-hero">
       <div class="container">
