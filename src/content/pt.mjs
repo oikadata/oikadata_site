@@ -23,6 +23,7 @@ export default {
   nav: [
     { href: '#problema', label: 'O problema' },
     { href: '#entrega', label: 'O que entregamos' },
+    { href: '#como-entregamos', label: 'Como entregamos' },
     { href: '#como-comecamos', label: 'Como começamos' },
   ],
   hero: {
@@ -68,50 +69,55 @@ export default {
   },
   delivery: {
     label: 'O que entregamos',
-    title: 'Somos o hub de dados que falta na sua empresa',
+    title: 'Casos de uso que viram receita, economia e tempo',
+    subtitle: 'Cada entrega responde a uma pergunta do negócio e tem um resultado que dá para medir.',
+    groups: [
+      {
+        title: 'Mais receita',
+        cases: [
+          { name: 'Clientes em risco', question: 'Quem parou de comprar e quanto isso representa?', result: 'Receita recuperada antes de virar perda' },
+          { name: 'Conversão por canal e vendedor', question: 'De onde vêm os clientes que mais compram?', result: 'Investimento onde a conversão é maior' },
+          { name: 'Segmentação de marketing', question: 'Para quem oferecer o quê, e quando?', result: 'Campanhas com o público e o mix certos' },
+        ],
+      },
+      {
+        title: 'Menos custo',
+        cases: [
+          { name: 'Margem real', question: 'Quanto sobra por produto e por cliente, depois de todos os custos?', result: 'Preço e desconto com base no que sobra de verdade' },
+          { name: 'Estoque', question: 'O que está parado e o que vai faltar?', result: 'Menos capital parado e menos ruptura' },
+          { name: 'Custo de aquisição', question: 'Quanto custa cada lead em cada canal?', result: 'Verba cortada do que não se paga' },
+        ],
+      },
+      {
+        title: 'Mais eficiência',
+        cases: [
+          { name: 'Relatórios automáticos', question: 'Quanto tempo o time gasta montando planilha?', result: 'Relatórios que se atualizam sozinhos' },
+          { name: 'Fechamento do mês', question: 'Por que o fechamento leva dias?', result: 'Fechamento em horas, não em dias' },
+          { name: 'Um número único', question: 'Por que cada área traz um número diferente?', result: 'Uma definição só, usada por todas as áreas' },
+        ],
+      },
+    ],
+  },
+  how: {
+    label: 'Como entregamos',
+    title: 'Dado organizado na base, resposta na ponta',
     subtitle: 'Do zero ou ao lado do analista que você já tem, sem juntar ferramenta, consultor e freelancer.',
-    pillars: [
-      { title: 'Time + agentes', text: 'Gente sênior e agentes de IA trabalhando juntos, sem você precisar contratar.' },
+    productsTitle: 'O que chega para você',
+    products: [
+      { title: 'Dados modelados', text: 'Suas fontes integradas e organizadas, com as regras de negócio escritas em código. Um número só para todas as áreas.' },
+      { title: 'Dashboards', text: 'Painéis que se atualizam sozinhos, com os indicadores que cada área usa para decidir.' },
+      { title: 'Análises', text: 'Respostas para as perguntas do negócio, com o que fazer a seguir. Feitas pelo time ou direto com IA sobre a base pronta.' },
+    ],
+    teamTitle: 'Quem faz acontecer',
+    team: [
+      { title: 'Time sênior', text: 'Engenharia, modelagem, BI e estratégia, sem você precisar contratar.' },
+      { title: 'Agentes de IA', text: 'Trabalham junto com o time e aceleram cada entrega.' },
       { title: 'Plataforma de dados', text: 'Integração, organização e IA num lugar só, em plataformas referência de mercado.' },
-      { title: 'Casos de uso', text: 'Dashboards, análises e segmentações de marketing, entregues sobre dados em que dá para confiar.' },
     ],
     numbers: [
       { value: '30 dias', text: 'para ter os dados integrados e o primeiro caso de uso no ar' },
       { value: '1 a 2', text: 'entregas de valor por mês, depois que a base está de pé' },
       { value: '0', text: 'contratações: o time já chega pronto' },
-    ],
-  },
-  value: {
-    label: 'O valor',
-    title: 'Dado só importa quando vira receita, economia ou tempo',
-    groups: [
-      {
-        title: 'Mais receita',
-        items: [
-          'Clientes que pararam de comprar, antes de virarem perda',
-          'Conversão de leads por canal e por vendedor',
-          'Mix e oportunidades por cliente',
-          'Preço com base na margem real',
-        ],
-      },
-      {
-        title: 'Menos custo',
-        items: [
-          'Estoque parado e ruptura',
-          'Margem real por produto e por cliente',
-          'Custo por lead em cada canal',
-          'Ferramentas e licenças que não se pagam',
-        ],
-      },
-      {
-        title: 'Mais eficiência',
-        items: [
-          'Relatórios que se atualizam sozinhos',
-          'Fechamento do mês em horas, não em dias',
-          'Um número único para todas as áreas',
-          'Time decidindo, não montando planilha',
-        ],
-      },
     ],
   },
   start: {

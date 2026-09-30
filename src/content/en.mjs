@@ -23,6 +23,7 @@ export default {
   nav: [
     { href: '#problema', label: 'The problem' },
     { href: '#entrega', label: 'What we deliver' },
+    { href: '#como-entregamos', label: 'How we deliver' },
     { href: '#como-comecamos', label: 'How we start' },
   ],
   hero: {
@@ -68,50 +69,55 @@ export default {
   },
   delivery: {
     label: 'What we deliver',
-    title: 'We are the data hub your company is missing',
+    title: 'Use cases that turn into revenue, savings and time',
+    subtitle: 'Every delivery answers a business question and has a result you can measure.',
+    groups: [
+      {
+        title: 'More revenue',
+        cases: [
+          { name: 'Customers at risk', question: 'Who stopped buying, and how much is that worth?', result: 'Revenue recovered before it becomes a loss' },
+          { name: 'Conversion by channel and salesperson', question: 'Where do your best customers come from?', result: 'Investment where conversion is highest' },
+          { name: 'Marketing segmentation', question: 'What to offer to whom, and when?', result: 'Campaigns with the right audience and mix' },
+        ],
+      },
+      {
+        title: 'Lower cost',
+        cases: [
+          { name: 'Real margin', question: 'What’s left per product and per customer, after all costs?', result: 'Pricing and discounts based on what’s really left' },
+          { name: 'Inventory', question: 'What is idle and what is about to run out?', result: 'Less idle capital and fewer stockouts' },
+          { name: 'Acquisition cost', question: 'How much does each lead cost in each channel?', result: 'Budget cut from what doesn’t pay off' },
+        ],
+      },
+      {
+        title: 'More efficiency',
+        cases: [
+          { name: 'Automated reports', question: 'How much time does the team spend building spreadsheets?', result: 'Reports that update themselves' },
+          { name: 'Month-end close', question: 'Why does closing the month take days?', result: 'Close in hours, not days' },
+          { name: 'One number', question: 'Why does each department bring a different number?', result: 'One definition, used by every department' },
+        ],
+      },
+    ],
+  },
+  how: {
+    label: 'How we deliver',
+    title: 'Organized data at the base, answers at the edge',
     subtitle: 'From scratch or alongside the analyst you already have, without stitching together tools, consultants and freelancers.',
-    pillars: [
-      { title: 'Team + agents', text: 'Senior people and AI agents working together, without you having to hire.' },
+    productsTitle: 'What you get',
+    products: [
+      { title: 'Modeled data', text: 'Your sources integrated and organized, with business rules written in code. One number for every department.' },
+      { title: 'Dashboards', text: 'Dashboards that update themselves, with the metrics each department uses to decide.' },
+      { title: 'Analyses', text: 'Answers to business questions, with what to do next. By the team or directly with AI on top of the foundation.' },
+    ],
+    teamTitle: 'Who makes it happen',
+    team: [
+      { title: 'Senior team', text: 'Engineering, modeling, BI and strategy, without you having to hire.' },
+      { title: 'AI agents', text: 'Working alongside the team to speed up every delivery.' },
       { title: 'Data platform', text: 'Integration, organization and AI in one place, on market-leading platforms.' },
-      { title: 'Use cases', text: 'Dashboards, analyses and marketing segmentation, delivered on data you can trust.' },
     ],
     numbers: [
       { value: '30 days', text: 'to have data integrated and the first use case live' },
       { value: '1 to 2', text: 'value deliveries per month, once the foundation is in place' },
       { value: '0', text: 'hires: the team arrives ready' },
-    ],
-  },
-  value: {
-    label: 'The value',
-    title: 'Data only matters when it becomes revenue, savings or time',
-    groups: [
-      {
-        title: 'More revenue',
-        items: [
-          'Customers who stopped buying, before they become losses',
-          'Lead conversion by channel and by salesperson',
-          'Mix and opportunities per customer',
-          'Pricing based on real margin',
-        ],
-      },
-      {
-        title: 'Lower cost',
-        items: [
-          'Idle stock and stockouts',
-          'Real margin per product and per customer',
-          'Cost per lead in each channel',
-          'Tools and licenses that don’t pay off',
-        ],
-      },
-      {
-        title: 'More efficiency',
-        items: [
-          'Reports that update themselves',
-          'Month-end close in hours, not days',
-          'One number for every department',
-          'A team making decisions, not building spreadsheets',
-        ],
-      },
     ],
   },
   start: {

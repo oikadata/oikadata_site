@@ -55,6 +55,8 @@ const WA_ICON = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusa
 
 const ARROW = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m0 0-6-6m6 6 6-6"/></svg>`;
 
+const ARROW_RIGHT = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M5 12h14m0 0-6-6m6 6-6 6"/></svg>`;
+
 const CALENDAR_ICON = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8 3v4m8-4v4M4 10h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/></svg>`;
 
 // Atributos de evento do Umami: o nome do evento e onde o botão está na página.
@@ -185,21 +187,56 @@ function page(c) {
       </div>
     </section>
 
-    <section class="section" id="valor">
+    <section class="section" id="entrega">
       <div class="container">
-        ${sectionHead(c.value.title)}
-        <div class="cards cards--3">
-          ${c.value.groups
+        ${sectionHead(c.delivery.title, c.delivery.subtitle)}
+        <div class="usecases">
+          ${c.delivery.groups
             .map(
-              (g) => `<article class="value">
-            <h3 class="value__title">${esc(g.title)}</h3>
-            <ul class="bands-list bands-list--compact">
-              ${g.items.map((i) => `<li>${esc(i)}</li>`).join('\n              ')}
+              (g, i) => `<div class="usecases__group">
+            <h3 class="usecases__title"><span class="card__band card__band--${i + 1}" aria-hidden="true"></span>${esc(g.title)}</h3>
+            <ul class="usecases__list">
+              ${g.cases
+                .map(
+                  (u) => `<li class="usecase">
+                <strong class="usecase__name">${esc(u.name)}</strong>
+                <span class="usecase__question">${esc(u.question)}</span>
+                <span class="usecase__result">${ARROW_RIGHT}${esc(u.result)}</span>
+              </li>`
+                )
+                .join('\n              ')}
             </ul>
+          </div>`
+            )
+            .join('\n          ')}
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="como-entregamos">
+      <div class="container">
+        ${sectionHead(c.how.title, c.how.subtitle)}
+        <h3 class="layer__title">${esc(c.how.productsTitle)}</h3>
+        <div class="cards cards--3">
+          ${c.how.products
+            .map(
+              (p, i) => `<article class="card">
+            <span class="card__band card__band--${i + 1}" aria-hidden="true"></span>
+            <h4 class="card__title">${esc(p.title)}</h4>
+            <p>${esc(p.text)}</p>
           </article>`
             )
             .join('\n          ')}
         </div>
+        <h3 class="layer__title layer__title--base">${esc(c.how.teamTitle)}</h3>
+        <ul class="base">
+          ${c.how.team.map((t) => `<li><strong>${esc(t.title)}</strong><span>${esc(t.text)}</span></li>`).join('\n          ')}
+        </ul>
+        <dl class="numbers">
+          ${c.how.numbers
+            .map((x) => `<div class="numbers__item"><dt>${esc(x.value)}</dt><dd>${esc(x.text)}</dd></div>`)
+            .join('\n          ')}
+        </dl>
       </div>
     </section>
 
@@ -231,28 +268,6 @@ function page(c) {
             <p class="stat__note">${esc(c.whyNow.stat.note)} <a href="${c.whyNow.stat.href}" target="_blank" rel="noopener">${esc(c.whyNow.stat.linkLabel)}</a></p>
           </div>
         </div>
-      </div>
-    </section>
-
-    <section class="section" id="entrega">
-      <div class="container">
-        ${sectionHead(c.delivery.title, c.delivery.subtitle)}
-        <div class="cards cards--3">
-          ${c.delivery.pillars
-            .map(
-              (p, i) => `<article class="card">
-            <span class="card__band card__band--${i + 1}" aria-hidden="true"></span>
-            <h3 class="card__title">${esc(p.title)}</h3>
-            <p>${esc(p.text)}</p>
-          </article>`
-            )
-            .join('\n          ')}
-        </div>
-        <dl class="numbers">
-          ${c.delivery.numbers
-            .map((x) => `<div class="numbers__item"><dt>${esc(x.value)}</dt><dd>${esc(x.text)}</dd></div>`)
-            .join('\n          ')}
-        </dl>
       </div>
     </section>
 

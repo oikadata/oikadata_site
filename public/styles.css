@@ -72,7 +72,7 @@ body {
 }
 @media (min-width: 720px) { body { font-size: 18px; } }
 
-h1, h2, h3, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
+h1, h2, h3, h4, p, ul, ol, dl, dd, figure, blockquote { margin: 0; }
 ul, ol { padding: 0; list-style: none; }
 img, svg { display: block; }
 a { color: var(--primary); text-underline-offset: 3px; }
@@ -350,10 +350,29 @@ a:hover { color: var(--primary-light); }
 .numbers dd { color: var(--ink-2); font-size: 16px; line-height: 1.5; max-width: 30ch; }
 @media (min-width: 760px) { .numbers { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; } }
 
-/* ---------- Valor ---------- */
+/* ---------- O que entregamos: casos de uso ---------- */
 
-.value { background: var(--white); border-radius: var(--radius); padding: 28px; display: grid; gap: 20px; align-content: start; }
-.value__title { font-size: 24px; font-weight: 700; letter-spacing: -0.025em; }
+.usecases { display: grid; gap: 40px; }
+.usecases__group { display: grid; gap: 16px; align-content: start; }
+.usecases__title { display: grid; gap: 14px; font-size: 22px; font-weight: 700; letter-spacing: -0.025em; }
+.usecases__title .card__band { margin-bottom: 0; }
+.usecases__list { display: grid; gap: 12px; }
+.usecase { display: grid; gap: 6px; padding: 20px 22px; background: var(--white); border-radius: var(--radius); }
+.usecase__name { font-weight: 700; letter-spacing: -0.01em; line-height: 1.3; }
+.usecase__question { color: var(--ink-2); font-size: 16px; line-height: 1.5; }
+.usecase__result { display: flex; gap: 8px; align-items: baseline; margin-top: 4px; color: var(--primary); font-size: 16px; font-weight: 500; line-height: 1.45; }
+.usecase__result .icon { position: relative; top: 0.2em; width: 1em; height: 1em; }
+@media (min-width: 920px) { .usecases { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; } }
+
+/* ---------- Como entregamos ---------- */
+
+.layer__title { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); margin-bottom: 16px; }
+.layer__title--base { margin-top: 40px; }
+.base { display: grid; gap: 1px; background: rgba(23, 16, 30, 0.12); border-radius: var(--radius); overflow: hidden; }
+.base li { display: grid; gap: 4px; padding: 22px 24px; background: var(--ink); color: var(--on-dark); }
+.base strong { font-weight: 700; }
+.base span { color: var(--on-dark-2); font-size: 16px; line-height: 1.5; }
+@media (min-width: 760px) { .base { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
 
 /* ---------- Como começamos ---------- */
 
