@@ -4,5 +4,6 @@
 // e cta: false (sem a chamada final de agendamento).
 
 import home from './home.mjs';
+import planos from './planos.mjs';
 
-export default [home];
+export default [home, planos];
