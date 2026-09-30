@@ -24,7 +24,6 @@ export default {
     { href: '#problema', label: 'O problema' },
     { href: '#entrega', label: 'O que entregamos' },
     { href: '#como-comecamos', label: 'Como começamos' },
-    { href: '#faq', label: 'Perguntas' },
   ],
   hero: {
     title: 'O caminho mais curto entre seus dados e o resultado',
@@ -32,8 +31,6 @@ export default {
     support: 'Time de dados, agentes e plataforma num contrato só. Primeiro resultado em até 30 dias.',
     ctaPrimary: 'Agendar uma conversa',
     ctaSecondary: 'Ver o que entregamos',
-    ctaNote: '30 minutos, sem compromisso. Você escolhe o horário.',
-    proof: 'Experiência em fintech, mercado imobiliário e operações internacionais',
   },
   problem: {
     label: 'O problema',
@@ -46,8 +43,6 @@ export default {
       'Uma pergunta simples, como “qual a nossa margem por cliente?”, não tem resposta rápida.',
       'A IA que vocês já usam não tem o contexto do negócio e responde no genérico.',
     ],
-    costLabel: 'O custo',
-    cost: 'Decisões incorretas, receita que escapa, custo que ninguém vê, IA que não sai do piloto e ineficiência operacional.',
   },
   whyNow: {
     label: 'Por que agora',
@@ -78,23 +73,13 @@ export default {
     pillars: [
       { title: 'Time + agentes', text: 'Gente sênior e agentes de IA trabalhando juntos, sem você precisar contratar.' },
       { title: 'Plataforma de dados', text: 'Integração, organização e IA num lugar só, em plataformas referência de mercado.' },
-      { title: 'Um hub de dados', text: 'Um lugar só, do dado bruto à decisão, com um responsável só pelo resultado.' },
+      { title: 'Casos de uso', text: 'Dashboards, análises e segmentações de marketing, entregues sobre dados em que dá para confiar.' },
     ],
     numbers: [
       { value: '30 dias', text: 'para ter os dados integrados e o primeiro caso de uso no ar' },
       { value: '1 a 2', text: 'entregas de valor por mês, depois que a base está de pé' },
       { value: '0', text: 'contratações: o time já chega pronto' },
     ],
-    rolesTitle: 'Os papéis que sua empresa passa a ter',
-    roles: [
-      { title: 'Engenharia de dados', text: 'conecta as fontes e mantém tudo funcionando.' },
-      { title: 'Modelagem', text: 'organiza os dados e transforma regras de negócio em código.' },
-      { title: 'BI e análise', text: 'painéis e respostas para as perguntas do negócio.' },
-      { title: 'Estratégia', text: 'alguém sênior que prioriza com você o que gera mais valor.' },
-      { title: 'IA aplicada', text: 'casos de uso de IA sobre uma base confiável.' },
-    ],
-    closing:
-      'Uma pessoa contratada cobre, na melhor das hipóteses, um ou dois desses papéis. E aprende sozinha, enquanto o nosso time aprende em vários clientes ao mesmo tempo.',
   },
   value: {
     label: 'O valor',
@@ -156,29 +141,6 @@ export default {
       'As áreas envolvidas disponíveis para validar as regras de negócio',
     ],
     ctaText: 'Quer descobrir qual seria o primeiro caso de uso na sua empresa?',
-  },
-  trust: {
-    label: 'Confiança',
-    title: 'Seus dados, suas regras',
-    items: [
-      { title: 'Os dados são seus.', text: 'Ficam na conta de nuvem da sua empresa, não na nossa.' },
-      { title: 'Sem fidelidade para começar.', text: 'O Sprint de Valor não tem fidelidade. Depois, os planos são trimestrais.' },
-      { title: 'Quer montar um time interno?', text: 'Você leva o código e a documentação, com 3 meses de transição acompanhada.' },
-      { title: 'Segurança e LGPD.', text: 'Plataforma com certificação SOC 2 Type II e acesso por perfil. Contrato de tratamento de dados.' },
-      { title: 'Antes de liberar, medimos.', text: 'Montamos perguntas-teste do seu negócio e medimos o acerto da IA antes de liberar para cada área.' },
-    ],
-  },
-  faq: {
-    label: 'Perguntas frequentes',
-    title: 'O que costumam nos perguntar',
-    items: [
-      { q: 'Já temos Power BI. Precisamos trocar?', a: 'Não. Podemos usar e evoluir o que já existe, ou avaliar uma alternativa mais barata que entrega o mesmo valor.' },
-      { q: 'Já tenho um analista. Faz sentido?', a: 'Sim. Cuidamos da base e o analista foca em análise.' },
-      { q: 'Quanto tempo do meu time vocês precisam?', a: 'Depende do caso de uso. Em geral, um ponto focal que prioriza as iniciativas com a gente, e as áreas envolvidas para validar as regras de negócio.' },
-      { q: 'De quem são os dados?', a: 'Da sua empresa. Eles ficam na conta de nuvem da sua empresa, não na nossa.' },
-      { q: 'E se eu cancelar?', a: 'Você leva o código e a documentação e pode assinar as ferramentas direto, com 3 meses de transição acompanhada.' },
-      { q: 'E a LGPD?', a: 'Os dados ficam na nuvem da sua empresa, em plataforma SOC 2 Type II, com criptografia e acesso por perfil. Sua empresa é a controladora; a Oika atua como operadora, com contrato de tratamento de dados.' },
-    ],
   },
   cta: {
     title: 'Vamos escolher o seu primeiro caso de uso?',

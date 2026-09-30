@@ -24,7 +24,6 @@ export default {
     { href: '#problema', label: 'The problem' },
     { href: '#entrega', label: 'What we deliver' },
     { href: '#como-comecamos', label: 'How we start' },
-    { href: '#faq', label: 'FAQ' },
   ],
   hero: {
     title: 'The shortest path from your data to results',
@@ -32,8 +31,6 @@ export default {
     support: 'Data team, agents and platform in a single contract. First results within 30 days.',
     ctaPrimary: 'Book a call',
     ctaSecondary: 'See what we deliver',
-    ctaNote: '30 minutes, no commitment. You pick the time.',
-    proof: 'Experience in fintech, real estate and international operations',
   },
   problem: {
     label: 'The problem',
@@ -46,8 +43,6 @@ export default {
       'A simple question, like “what is our margin per customer?”, has no quick answer.',
       'The AI you already use lacks business context and gives generic answers.',
     ],
-    costLabel: 'The cost',
-    cost: 'Wrong decisions, revenue slipping away, costs no one sees, AI stuck in pilot and operational inefficiency.',
   },
   whyNow: {
     label: 'Why now',
@@ -78,23 +73,13 @@ export default {
     pillars: [
       { title: 'Team + agents', text: 'Senior people and AI agents working together, without you having to hire.' },
       { title: 'Data platform', text: 'Integration, organization and AI in one place, on market-leading platforms.' },
-      { title: 'A data hub', text: 'One place, from raw data to decision, with a single owner for the result.' },
+      { title: 'Use cases', text: 'Dashboards, analyses and marketing segmentation, delivered on data you can trust.' },
     ],
     numbers: [
       { value: '30 days', text: 'to have data integrated and the first use case live' },
       { value: '1 to 2', text: 'value deliveries per month, once the foundation is in place' },
       { value: '0', text: 'hires: the team arrives ready' },
     ],
-    rolesTitle: 'The roles your company gains',
-    roles: [
-      { title: 'Data engineering', text: 'connects the sources and keeps everything running.' },
-      { title: 'Modeling', text: 'organizes the data and turns business rules into code.' },
-      { title: 'BI and analysis', text: 'dashboards and answers to business questions.' },
-      { title: 'Strategy', text: 'someone senior who prioritizes with you what creates the most value.' },
-      { title: 'Applied AI', text: 'AI use cases on top of a reliable foundation.' },
-    ],
-    closing:
-      'One hire covers, at best, one or two of these roles. And learns alone, while our team learns across many clients at once.',
   },
   value: {
     label: 'The value',
@@ -156,29 +141,6 @@ export default {
       'The departments involved available to validate business rules',
     ],
     ctaText: 'Want to find out what the first use case would be at your company?',
-  },
-  trust: {
-    label: 'Trust',
-    title: 'Your data, your rules',
-    items: [
-      { title: 'The data is yours.', text: 'It stays in your company’s cloud account, not ours.' },
-      { title: 'No lock-in to start.', text: 'The Value Sprint has no lock-in. After that, plans are quarterly.' },
-      { title: 'Want to build an in-house team?', text: 'You take the code and documentation, with 3 months of guided transition.' },
-      { title: 'Security and data protection.', text: 'SOC 2 Type II certified platform and role-based access. Data processing agreement.' },
-      { title: 'We measure before we release.', text: 'We build test questions from your business and measure AI accuracy before releasing it to each department.' },
-    ],
-  },
-  faq: {
-    label: 'FAQ',
-    title: 'What people usually ask us',
-    items: [
-      { q: 'We already use Power BI. Do we need to switch?', a: 'No. We can use and improve what you already have, or evaluate a cheaper alternative that delivers the same value.' },
-      { q: 'I already have an analyst. Does this make sense?', a: 'Yes. We take care of the foundation and the analyst focuses on analysis.' },
-      { q: 'How much of my team’s time do you need?', a: 'It depends on the use case. Usually, a point of contact who prioritizes initiatives with us, and the departments involved to validate business rules.' },
-      { q: 'Who owns the data?', a: 'Your company. It stays in your company’s cloud account, not ours.' },
-      { q: 'What if I cancel?', a: 'You take the code and documentation and can subscribe to the tools directly, with 3 months of guided transition.' },
-      { q: 'What about data protection (LGPD)?', a: 'The data stays in your company’s cloud, on a SOC 2 Type II platform, with encryption and role-based access. Your company is the controller; Oika acts as processor, under a data processing agreement.' },
-    ],
   },
   cta: {
     title: 'Shall we choose your first use case?',

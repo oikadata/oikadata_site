@@ -164,12 +164,8 @@ function page(c) {
             ${scheduleButton(c.hero.ctaPrimary, 'hero', 'btn--lg')}
             <a class="btn btn--ghost btn--lg" href="#entrega"><span>${esc(c.hero.ctaSecondary)}</span>${ARROW}</a>
           </div>
-          <p class="hero__note">${esc(c.hero.ctaNote)}</p>
         </div>
         <div class="hero__art" aria-hidden="true">${symbol(SYMBOL_LIGHT, 'hero__symbol')}</div>
-      </div>
-      <div class="container">
-        <p class="proof">${esc(c.hero.proof)}</p>
       </div>
     </section>
 
@@ -185,7 +181,24 @@ function page(c) {
             ${c.problem.symptoms.map((s) => `<li>${esc(s)}</li>`).join('\n            ')}
           </ul>
         </div>
-        <p class="cost"><strong>${esc(c.problem.costLabel)}:</strong> ${esc(c.problem.cost)}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="valor">
+      <div class="container">
+        ${sectionHead(c.value.title)}
+        <div class="cards cards--3">
+          ${c.value.groups
+            .map(
+              (g) => `<article class="value">
+            <h3 class="value__title">${esc(g.title)}</h3>
+            <ul class="bands-list bands-list--compact">
+              ${g.items.map((i) => `<li>${esc(i)}</li>`).join('\n              ')}
+            </ul>
+          </article>`
+            )
+            .join('\n          ')}
         </div>
       </div>
     </section>
@@ -240,33 +253,6 @@ function page(c) {
             .map((x) => `<div class="numbers__item"><dt>${esc(x.value)}</dt><dd>${esc(x.text)}</dd></div>`)
             .join('\n          ')}
         </dl>
-        <div class="roles">
-          <h3 class="roles__title">${esc(c.delivery.rolesTitle)}</h3>
-          <ul class="roles__list">
-            ${c.delivery.roles
-              .map((r) => `<li><strong>${esc(r.title)}</strong><span>${esc(r.text)}</span></li>`)
-              .join('\n            ')}
-          </ul>
-          <p class="roles__closing">${esc(c.delivery.closing)}</p>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="valor">
-      <div class="container">
-        ${sectionHead(c.value.title)}
-        <div class="cards cards--3">
-          ${c.value.groups
-            .map(
-              (g) => `<article class="value">
-            <h3 class="value__title">${esc(g.title)}</h3>
-            <ul class="bands-list bands-list--compact">
-              ${g.items.map((i) => `<li>${esc(i)}</li>`).join('\n              ')}
-            </ul>
-          </article>`
-            )
-            .join('\n          ')}
-        </div>
       </div>
     </section>
 
@@ -294,33 +280,6 @@ function page(c) {
         <div class="inline-cta">
           <p>${esc(c.start.ctaText)}</p>
           ${scheduleButton(c.ui.schedule, 'como-comecamos')}
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="confianca">
-      <div class="container split">
-        ${sectionHead(c.trust.title)}
-        <div class="split__body trust">
-          ${c.trust.items
-            .map((t) => `<div class="trust__item"><h3>${esc(t.title)}</h3><p>${esc(t.text)}</p></div>`)
-            .join('\n          ')}
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="container split">
-        ${sectionHead(c.faq.title)}
-        <div class="split__body faq">
-          ${c.faq.items
-            .map(
-              (f) => `<details class="faq__item">
-            <summary>${esc(f.q)}</summary>
-            <p>${esc(f.a)}</p>
-          </details>`
-            )
-            .join('\n          ')}
         </div>
       </div>
     </section>
