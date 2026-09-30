@@ -32,8 +32,7 @@ export default {
   },
   problem: {
     label: 'O problema',
-    title: 'Sua empresa já tem os dados para decidir melhor. Eles só não conversam entre si',
-    sources: ['ERP', 'CRM', 'Planilhas', 'E-mail e WhatsApp', 'A cabeça das pessoas', 'Ferramentas de IA'],
+    title: 'Sua empresa já tem os dados para decidir melhor. Eles só não estão organizados para gerar valor',
     symptoms: [
       'Cada área traz um número diferente para a mesma coisa.',
       'O relatório do mês leva dias de planilha e chega quando a decisão já passou.',

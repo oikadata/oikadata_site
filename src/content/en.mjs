@@ -32,8 +32,7 @@ export default {
   },
   problem: {
     label: 'The problem',
-    title: 'Your company already has the data to make better decisions. It just doesn’t talk to itself',
-    sources: ['ERP', 'CRM', 'Spreadsheets', 'Email and WhatsApp', 'People’s heads', 'AI tools'],
+    title: 'Your company already has the data to make better decisions. It just isn’t organized to create value',
     symptoms: [
       'Every department brings a different number for the same thing.',
       'The monthly report takes days of spreadsheets and arrives after the decision was made.',

@@ -176,9 +176,6 @@ function page(c) {
         ${sectionHead(c.problem.title)}
         <div class="split__body">
         <div class="problem">
-          <ul class="sources" aria-label="${esc(c.problem.label)}">
-            ${c.problem.sources.map((s) => `<li>${esc(s)}</li>`).join('\n            ')}
-          </ul>
           <ul class="bands-list">
             ${c.problem.symptoms.map((s) => `<li>${esc(s)}</li>`).join('\n            ')}
           </ul>
