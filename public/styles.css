@@ -135,6 +135,8 @@ a:hover { color: var(--primary-light); }
 .btn--primary:active { transform: translateY(1px); }
 .btn--ghost { color: var(--ink); border-color: rgba(23, 16, 30, 0.2); background: transparent; }
 .btn--ghost:hover { color: var(--ink); background: var(--surface); border-color: var(--surface); }
+.btn--ghost-dark { color: var(--on-dark); border-color: rgba(247, 245, 249, 0.28); background: transparent; }
+.btn--ghost-dark:hover { color: var(--on-dark); background: var(--surface-dark); border-color: var(--surface-dark); }
 .btn--sm { padding: 10px 14px; font-size: 15px; }
 .btn--lg { padding: 17px 24px; font-size: 17px; }
 
@@ -201,7 +203,9 @@ a:hover { color: var(--primary-light); }
 }
 @media (max-width: 380px) {
   .topbar__actions .btn--sm span { display: none; }
-  .topbar__actions .btn--sm { padding: 10px; }
+  .topbar__actions .btn--ghost-dark { color: var(--on-dark); border-color: rgba(247, 245, 249, 0.28); background: transparent; }
+.btn--ghost-dark:hover { color: var(--on-dark); background: var(--surface-dark); border-color: var(--surface-dark); }
+.btn--sm { padding: 10px; }
 }
 
 /* ---------- Hero ---------- */
@@ -451,6 +455,11 @@ a:hover { color: var(--primary-light); }
 .cta__main { display: grid; gap: 20px; justify-items: start; }
 .cta__title { font-size: clamp(34px, 5vw, 60px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.04; text-wrap: balance; max-width: 16ch; }
 .cta__support { color: var(--on-dark-2); font-size: 16px; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+.cta__buttons { display: flex; flex-wrap: wrap; gap: 12px; }
+@media (max-width: 519px) {
+  .cta__main { justify-items: stretch; }
+  .cta__buttons .btn { width: 100%; }
+}
 .cta__how { display: grid; gap: 18px; align-content: start; }
 .cta__how ol { display: grid; gap: 12px; counter-reset: how; }
 .cta__how li {

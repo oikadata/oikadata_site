@@ -16,6 +16,11 @@ const WHATSAPP = 'https://wa.me/5551984955083';
 const EMAIL = 'arthur@oikadata.com';
 const PHONE = '+55 51 98495-5083';
 const PHONE_HREF = 'tel:+5551984955083';
+// Página de agendamento do Google Agenda (conversa de 30 min).
+const SCHEDULE_URL =
+  'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1wReDlH7REgMqcf81NIhnyqGiTiaosQn5eKUnTRKFS6sfwJwqc1BADtnez_FM-DS82tcpxsR5y';
+// Umami Cloud (analytics sem cookies). Cole aqui o Website ID; vazio = sem analytics.
+const UMAMI_WEBSITE_ID = '011eb189-d1ae-4ebd-9561-9499c22e3a82';
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const DIST = join(ROOT, 'dist');
@@ -50,8 +55,17 @@ const WA_ICON = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusa
 
 const ARROW = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M12 5v14m0 0-6-6m6 6 6-6"/></svg>`;
 
-const waButton = (label, extra = '') =>
-  `<a class="btn btn--primary ${extra}" href="${WHATSAPP}" target="_blank" rel="noopener">${WA_ICON}<span>${esc(label)}</span></a>`;
+const CALENDAR_ICON = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8 3v4m8-4v4M4 10h16M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Z"/></svg>`;
+
+// Atributos de evento do Umami: o nome do evento e onde o botão está na página.
+const track = (event, place) => `data-umami-event="${event}" data-umami-event-local="${place}"`;
+
+// A mensagem pré-preenchida muda por botão, para saber de onde veio cada conversa.
+const waButton = (label, message, place, extra = '') =>
+  `<a class="btn btn--primary ${extra}" href="${WHATSAPP}?text=${encodeURIComponent(message)}" target="_blank" rel="noopener" ${track('whatsapp', place)}>${WA_ICON}<span>${esc(label)}</span></a>`;
+
+const scheduleButton = (label, place, extra = '') =>
+  `<a class="btn ${extra}" href="${SCHEDULE_URL}" target="_blank" rel="noopener" ${track('agenda', place)}>${CALENDAR_ICON}<span>${esc(label)}</span></a>`;
 
 const sectionHead = (n, label, title, subtitle) => `
       <header class="section__head">
@@ -115,6 +129,7 @@ function page(c) {
   <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
   <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="/styles.css">
+  ${UMAMI_WEBSITE_ID ? `<script defer src="https://cloud.umami.is/script.js" data-website-id="${UMAMI_WEBSITE_ID}"></script>` : ''}
   <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
 <body>
@@ -130,7 +145,7 @@ function page(c) {
       </nav>
       <div class="topbar__actions">
         ${langLink}
-        ${waButton(c.ui.whatsappShort, 'btn--sm')}
+        ${waButton(c.ui.whatsappShort, c.ui.whatsappMessage, 'topo', 'btn--sm')}
         <button class="menu-toggle" type="button" aria-controls="nav" aria-expanded="false" data-open="${esc(c.ui.menu)}" data-close="${esc(c.ui.close)}">
           <span class="menu-toggle__bars" aria-hidden="true"><span></span><span></span><span></span></span>
           <span class="sr-only">${esc(c.ui.menu)}</span>
@@ -148,8 +163,8 @@ function page(c) {
           <p class="hero__sub">${esc(c.hero.subtitle)}</p>
           <p class="hero__support">${esc(c.hero.support)}</p>
           <div class="hero__ctas">
-            ${waButton(c.hero.ctaPrimary, 'btn--lg')}
-            <a class="btn btn--ghost btn--lg" href="#entrega"><span>${esc(c.hero.ctaSecondary)}</span>${ARROW}</a>
+            ${waButton(c.hero.ctaPrimary, c.ui.whatsappMessage, 'hero', 'btn--lg')}
+            ${scheduleButton(c.hero.ctaSecondary, 'hero', 'btn--ghost btn--lg')}
           </div>
         </div>
         <div class="hero__art" aria-hidden="true">${symbol(SYMBOL_LIGHT, 'hero__symbol')}</div>
@@ -313,7 +328,10 @@ function page(c) {
         <div class="cta__main">
           <h2 class="cta__title">${esc(c.cta.title)}</h2>
           <p class="cta__support">${c.cta.support.map(esc).join('<span aria-hidden="true"> · </span>')}</p>
-          ${waButton(c.cta.button, 'btn--lg')}
+          <div class="cta__buttons">
+            ${waButton(c.cta.button, c.cta.whatsappMessage, 'contato', 'btn--lg')}
+            ${scheduleButton(c.cta.scheduleButton, 'contato', 'btn--ghost-dark btn--lg')}
+          </div>
         </div>
         <div class="cta__how">
           <p class="label label--dark">${esc(c.cta.howTitle)}</p>
@@ -333,8 +351,8 @@ function page(c) {
         <p class="footer__slogan">${esc(c.footer.slogan)}</p>
       </div>
       <ul class="footer__contact">
-        <li><a href="mailto:${EMAIL}">${EMAIL}</a></li>
-        <li><a href="${PHONE_HREF}">${PHONE}</a></li>
+        <li><a href="mailto:${EMAIL}" ${track('email', 'rodape')}>${EMAIL}</a></li>
+        <li><a href="${PHONE_HREF}" ${track('telefone', 'rodape')}>${PHONE}</a></li>
         <li><a href="${SITE_URL}">oikadata.com</a></li>
       </ul>
       <p class="footer__year">© ${year} Oika Data</p>

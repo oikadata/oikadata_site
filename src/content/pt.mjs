@@ -17,6 +17,7 @@ export default {
     langSwitch: 'EN',
     langSwitchLabel: 'Read in English',
     whatsappShort: 'WhatsApp',
+    whatsappMessage: 'Olá! Vim pelo site da Oika Data e quero entender como vocês podem ajudar com os dados da minha empresa.',
   },
   nav: [
     { href: '#problema', label: 'O problema' },
@@ -29,7 +30,7 @@ export default {
     subtitle: 'Hub para empresas que querem extrair valor dos dados e habilitar IA.',
     support: 'Time de dados, agentes e plataforma num contrato só. Primeiro resultado em até 30 dias.',
     ctaPrimary: 'Falar no WhatsApp',
-    ctaSecondary: 'Ver o que entregamos',
+    ctaSecondary: 'Agendar 30 min',
     proof: 'Experiência em fintech, mercado imobiliário e operações internacionais',
   },
   problem: {
@@ -186,6 +187,8 @@ export default {
       'Entrega do resultado e plano para o trimestre',
     ],
     button: 'Falar no WhatsApp',
+    whatsappMessage: 'Olá! Vim pelo site da Oika Data e quero conversar sobre o Sprint de Valor.',
+    scheduleButton: 'Agendar uma conversa',
   },
   footer: {
     slogan: 'onde os dados ganham sentido',

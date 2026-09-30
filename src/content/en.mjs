@@ -17,6 +17,7 @@ export default {
     langSwitch: 'PT',
     langSwitchLabel: 'Ler em português',
     whatsappShort: 'WhatsApp',
+    whatsappMessage: 'Hi! I found Oika Data on your website and would like to understand how you can help with my company’s data.',
   },
   nav: [
     { href: '#problema', label: 'The problem' },
@@ -29,7 +30,7 @@ export default {
     subtitle: 'A hub for companies that want to get value from their data and enable AI.',
     support: 'Data team, agents and platform in a single contract. First results within 30 days.',
     ctaPrimary: 'Talk on WhatsApp',
-    ctaSecondary: 'See what we deliver',
+    ctaSecondary: 'Book 30 min',
     proof: 'Experience in fintech, real estate and international operations',
   },
   problem: {
@@ -186,6 +187,8 @@ export default {
       'Delivery of the result and a plan for the quarter',
     ],
     button: 'Talk on WhatsApp',
+    whatsappMessage: 'Hi! I found Oika Data on your website and would like to talk about the Value Sprint.',
+    scheduleButton: 'Book a call',
   },
   footer: {
     slogan: 'where data makes sense',

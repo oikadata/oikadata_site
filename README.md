@@ -35,6 +35,18 @@ O site é publicado no GitHub Pages pelo workflow `.github/workflows/deploy.yml`
 - O domínio `oikadata.com` vem do arquivo `CNAME` e fica em **Settings → Pages → Custom domain**. O DNS passa pelo Cloudflare.
 - O arquivo `public/_headers` só vale no Cloudflare Pages; o GitHub Pages o ignora.
 
+## Analytics
+
+O site usa o [Umami Cloud](https://cloud.umami.is), sem cookies. Para ligar, cole o Website ID em `UMAMI_WEBSITE_ID` no `build.mjs`; vazio, o script não entra na página.
+
+Eventos registrados (propriedade `local` indica onde o botão fica: `topo`, `hero`, `contato`, `rodape`):
+
+- `whatsapp`: clique em qualquer botão de WhatsApp
+- `agenda`: clique em "Agendar"
+- `email` e `telefone`: cliques no rodapé
+
+As mensagens pré-preenchidas do WhatsApp (`whatsappMessage` em `src/content/pt.mjs`) mudam conforme o botão: pela mensagem que chega dá para saber se a pessoa clicou no topo/hero ou no CTA final.
+
 ## Monitoramento
 
 `.github/workflows/site-monitor.yml` verifica a cada ~15 minutos se `oikadata.com` responde e se o certificado é válido, e avisa no Discord (secret `DISCORD_WEBHOOK_URL`).
