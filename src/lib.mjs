@@ -1,6 +1,13 @@
 // Peças compartilhadas entre as páginas: escape, ícones, logo, botões e cabeçalho de seção.
 
+import { createHash } from 'node:crypto';
+import { readFileSync } from 'node:fs';
 import { SCHEDULE_URL, WHATSAPP } from './site.mjs';
+
+// Endereço de um arquivo de public/ com a versão do conteúdo (?v=hash): quando o arquivo muda,
+// o endereço muda e o navegador não usa a cópia antiga do cache.
+export const asset = (path) =>
+  `${path}?v=${createHash('sha256').update(readFileSync(new URL(`../public${path}`, import.meta.url))).digest('hex').slice(0, 10)}`;
 
 export const esc = (s) =>
   String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');

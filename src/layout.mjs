@@ -2,7 +2,7 @@
 // O miolo de cada página vem de src/pages/.
 
 import { EMAIL, PHONE, PHONE_HREF, SITE_URL, UMAMI_WEBSITE_ID } from './site.mjs';
-import { esc, logo, scheduleButton, track, waLink } from './lib.mjs';
+import { asset, esc, logo, scheduleButton, track, waLink } from './lib.mjs';
 
 const year = new Date().getFullYear();
 
@@ -85,7 +85,7 @@ export function layout({ c, meta, path, alternates, langLink, nav, body, cta }) 
   <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
   <link rel="apple-touch-icon" href="/img/apple-touch-icon.png">
   <link rel="preload" href="/fonts/space-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="${asset('/styles.css')}">
   ${UMAMI_WEBSITE_ID ? `<script defer src="https://cloud.umami.is/script.js" data-website-id="${UMAMI_WEBSITE_ID}"></script>` : ''}
   <script type="application/ld+json">${JSON.stringify(jsonLd)}</script>
 </head>
@@ -131,7 +131,7 @@ ${body}${cta ? ctaSection(c) : ''}
     </div>
   </footer>
 
-  <script src="/main.js" defer></script>
+  <script src="${asset('/main.js')}" defer></script>
 </body>
 </html>
 `;

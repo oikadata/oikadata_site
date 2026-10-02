@@ -17,7 +17,7 @@ import en from './src/content/en.mjs';
 import PAGES from './src/pages/index.mjs';
 import { SITE_URL } from './src/site.mjs';
 import { layout } from './src/layout.mjs';
-import { logo } from './src/lib.mjs';
+import { asset, logo } from './src/lib.mjs';
 
 // Idiomas publicados. O português é o oficial; adicione 'en' quando a tradução for revisada.
 const LANGS = ['pt'];
@@ -52,7 +52,7 @@ function notFound(c) {
   <title>Página não encontrada | Oika Data</title>
   <meta name="robots" content="noindex">
   <link rel="icon" href="/img/favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="stylesheet" href="${asset('/styles.css')}">
 </head>
 <body class="notfound">
   <main class="container notfound__inner">
