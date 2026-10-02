@@ -76,7 +76,7 @@ O site é publicado no GitHub Pages pelo workflow `.github/workflows/deploy.yml`
 
 O site usa o [Umami Cloud](https://cloud.umami.is), sem cookies. Para ligar, cole o Website ID em `UMAMI_WEBSITE_ID` no `src/site.mjs`; vazio, o script não entra na página.
 
-Eventos registrados (propriedade `local` indica onde o link fica: `topo`, `hero`, `como-comecamos`, `contato`, `rodape`):
+Eventos registrados (propriedade `local` indica onde o link fica: `topo`, `hero`, `contato`, `rodape`, `planos-sprint`):
 
 - `agenda`: clique em qualquer botão de agendamento
 - `whatsapp`: clique nos links de WhatsApp (chamada final e rodapé)

@@ -53,96 +53,120 @@ export default {
         ctaSecondary: 'See what we deliver',
       },
       problem: {
-        label: 'The problem',
         title: 'Your company already has the data to make better decisions. It just isn’t organized to create value',
         symptoms: [
           'Every department brings a different number for the same thing.',
-          'The monthly report takes days of spreadsheets and arrives after the decision was made.',
+          'A simple question, like “what is our margin per customer?”, takes days of spreadsheets and the answer arrives after the decision.',
           'The business rule that matters is known by only one person.',
-          'A simple question, like “what is our margin per customer?”, has no quick answer.',
-          'The AI you already use lacks business context and gives generic answers.',
+          'The AI you already use doesn’t know your business and gives generic answers.',
         ],
-      },
-      whyNow: {
-        label: 'Why now',
-        title: 'A reliable source was always necessary. With AI, it can’t wait',
-        text: 'To make decisions, your company has always needed a number it can trust. AI didn’t change that: it just made not having one more expensive. The models are the same for everyone; the context is yours alone.',
-        quote: 'AI without context is a well-articulated guess.',
-        mapTitle: 'Your company’s map',
-        layers: [
-          { title: 'Integrated data', text: 'ERP, CRM, spreadsheets and portals' },
-          { title: 'Business rules', text: 'how your company calculates margin, targets and commissions' },
-          { title: 'Operator knowledge', text: 'what today exists only in people’s heads' },
-        ],
-        feedsLabel: 'All of it feeds',
-        feeds: ['Dashboards and reports', 'Analyses', 'AI agents'],
         stat: {
           from: '21%',
           to: '95%',
-          text: 'is the jump in accuracy of AI answers over data when context is structured.',
+          text: 'is the jump in accuracy of AI over data when it has the business context.',
           note: 'Figures from Anthropic’s data team, which now answers 95% of business questions with AI.',
           linkLabel: 'Read the study',
           href: 'https://claude.com/blog/how-anthropic-enables-self-service-data-analytics-with-claude',
         },
       },
-      delivery: {
-        label: 'What we deliver',
+      value: {
+        title: 'Your data working for your business',
+        subtitle: 'We integrate and organize your company’s data and deliver what each department needs to decide.',
+        pillars: [
+          {
+            tag: 'One environment',
+            title: 'Your whole company in one place',
+            text: 'Sales, finance, marketing and operations integrated in a single foundation, with your business rules. No more arguing about which number is right.',
+            visual: {
+              type: 'hub',
+              sources: ['Sales', 'Finance', 'Marketing', 'Operations'],
+              label: 'September revenue',
+              value: '$1.24M',
+              note: 'The same number for every department',
+            },
+          },
+          {
+            tag: 'AI with context',
+            title: 'A senior analyst, any time',
+            text: 'Ask in plain language and get the answer with your numbers and your rules, not generic ones. Plus what to do next.',
+            visual: {
+              type: 'chat',
+              question: 'Which customers lost the most margin this quarter?',
+              answer: 'Three customers explain 70% of the drop. The main reason was discounts above the sales policy.',
+              rows: [
+                { label: 'South Distribution', value: '−8.2 pp', size: 100 },
+                { label: 'Central Stores', value: '−5.1 pp', size: 62 },
+                { label: 'Village Market', value: '−3.4 pp', size: 41 },
+              ],
+              next: 'Next step: review the discounts on these three accounts.',
+            },
+          },
+          {
+            tag: 'Dashboards',
+            title: 'Every department’s metrics, always up to date',
+            text: 'Dashboards that update themselves, with the numbers each department uses to decide. No more building spreadsheets at month-end.',
+            visual: {
+              type: 'dashboard',
+              title: 'Sales',
+              updated: 'Updated today, 7 am',
+              kpis: [
+                { label: 'Revenue', value: '$1.24M', delta: '+12%' },
+                { label: 'Margin', value: '31.4%', delta: '+2.1 pp' },
+                { label: 'Avg. ticket', value: '$4,870', delta: '+5%' },
+              ],
+              bars: [42, 48, 45, 53, 50, 58, 61, 57, 66, 70, 68, 78],
+            },
+          },
+          {
+            tag: 'AI models and segmentation',
+            title: 'Know in advance who will buy, and who will stop',
+            text: 'Models that predict who will stop buying, how much you will sell and what to offer each customer. Segments ready for campaigns and for your CRM.',
+            visual: {
+              type: 'model',
+              title: 'Customers at risk',
+              columns: ['Customer', 'Segment', 'Churn risk'],
+              rows: [
+                { name: 'Central Stores', segment: 'High value', risk: 82, action: 'Call this week' },
+                { name: 'North Pharmacy', segment: 'Recurring', risk: 64, action: 'Repurchase offer' },
+                { name: 'Garden Shop', segment: 'New', risk: 23, action: 'Keep nurturing' },
+              ],
+            },
+          },
+        ],
+      },
+      cases: {
         title: 'Use cases that turn into revenue, savings and time',
         subtitle: 'Every delivery answers a business question and has a result you can measure.',
         groups: [
           {
             title: 'More revenue',
             cases: [
-              { name: 'Customers at risk', question: 'Who stopped buying, and how much is that worth?', result: 'Revenue recovered before it becomes a loss' },
-              { name: 'Conversion by channel and salesperson', question: 'Where do your best customers come from?', result: 'Investment where conversion is highest' },
-              { name: 'Marketing segmentation', question: 'What to offer to whom, and when?', result: 'Campaigns with the right audience and mix' },
+              { name: 'Customers at risk', result: 'Revenue recovered before it becomes a loss' },
+              { name: 'Conversion by channel and salesperson', result: 'Investment where conversion is highest' },
+              { name: 'Marketing segmentation', result: 'Campaigns with the right audience and mix' },
             ],
           },
           {
             title: 'Lower cost',
             cases: [
-              { name: 'Real margin', question: 'What’s left per product and per customer, after all costs?', result: 'Pricing and discounts based on what’s really left' },
-              { name: 'Inventory', question: 'What is idle and what is about to run out?', result: 'Less idle capital and fewer stockouts' },
-              { name: 'Acquisition cost', question: 'How much does each lead cost in each channel?', result: 'Budget cut from what doesn’t pay off' },
+              { name: 'Real margin', result: 'Pricing and discounts based on what’s really left' },
+              { name: 'Inventory', result: 'Less idle capital and fewer stockouts' },
+              { name: 'Acquisition cost', result: 'Budget cut from what doesn’t pay off' },
             ],
           },
           {
             title: 'More efficiency',
             cases: [
-              { name: 'Automated reports', question: 'How much time does the team spend building spreadsheets?', result: 'Reports that update themselves' },
-              { name: 'Month-end close', question: 'Why does closing the month take days?', result: 'Close in hours, not days' },
-              { name: 'One number', question: 'Why does each department bring a different number?', result: 'One definition, used by every department' },
+              { name: 'Automated reports', result: 'Reports that update themselves' },
+              { name: 'Month-end close', result: 'Close in hours, not days' },
+              { name: 'One number', result: 'One definition, used by every department' },
             ],
           },
         ],
       },
-      how: {
-        label: 'How we deliver',
-        title: 'Organized data that steers your business',
-        productsTitle: 'What you get',
-        products: [
-          { title: 'AI with context', text: 'Ask AI and get answers with your numbers and your business rules, not generic ones.' },
-          { title: 'Modeled data', text: 'Your sources integrated and organized, with business rules written in code. One number for every department.' },
-          { title: 'Dashboards', text: 'Dashboards that update themselves, with the metrics each department uses to decide.' },
-          { title: 'Analyses', text: 'Answers to business questions, with what to do next.' },
-          { title: 'Marketing segmentation', text: 'Customers grouped by behavior, value and potential, ready for campaigns and for your CRM.' },
-          { title: 'AI models', text: 'Predictive and recommendation models: who will stop buying, how much you will sell and what to offer each customer.' },
-        ],
-        teamTitle: 'Who makes it happen',
-        team: [
-          { title: 'Senior team', text: 'Engineering, modeling, BI and strategy, without you having to hire.' },
-          { title: 'AI agents', text: 'Working alongside the team to speed up every delivery.' },
-          { title: 'Data platform', text: 'Integration, organization and AI in one place, on market-leading platforms.' },
-        ],
-        numbers: [
-          { value: '30 days', text: 'to have data integrated and the first use case live' },
-          { value: '1 to 2', text: 'value deliveries per month, once the foundation is in place' },
-          { value: '1', text: 'hire that covers it all: team, tools, platform and BI' },
-        ],
-      },
-      start: {
-        label: 'How we start',
+      work: {
         title: 'In 30 days, integrated data and the first result on the table',
+        subtitle: 'One hire covers it all: team, AI agents and platform.',
         steps: [
           {
             when: 'Month 1',
@@ -152,7 +176,7 @@ export default {
           {
             when: 'Every quarter',
             name: 'Expansion',
-            text: 'You prioritize new initiatives: use cases, departments, integrations and AI on top of the ready foundation.',
+            text: 'You prioritize new initiatives on top of the ready foundation: use cases, departments, integrations and AI. 1 to 2 value deliveries per month.',
           },
           {
             when: 'Once the foundation matures',
@@ -160,13 +184,20 @@ export default {
             text: 'Everything running, context kept up to date and improvements to what already exists, at a lower fee.',
           },
         ],
+        teamTitle: 'Who makes it happen',
+        team: [
+          { title: 'Senior team', text: 'Engineering, modeling, BI and strategy, without you having to hire.' },
+          { title: 'AI agents', text: 'Working alongside the team to speed up every delivery.' },
+          { title: 'Data platform', text: 'Integration, organization and AI in one place, on market-leading platforms.' },
+        ],
         needsTitle: 'What we need from you',
         needs: [
           'A point of contact to prioritize initiatives with us',
           'Access to the systems',
           'The departments involved available to validate business rules',
         ],
-        ctaText: 'Want to find out what the first use case would be at your company?',
+        plansLink: 'See the plans',
+        plansHref: '/en/plans/',
       },
     },
     planos: {
