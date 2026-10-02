@@ -11,6 +11,8 @@ src/lib.mjs            peças compartilhadas: ícones, logo, botões, cabeçalho
 src/layout.mjs         moldura comum a todas as páginas: <head>, topo, chamada final e rodapé
 src/pages/index.mjs    lista de páginas do site
 src/pages/home.mjs     página inicial (Soluções)
+src/pages/planos.mjs   planos: ciclo de trabalho, tabela comparativa e add-ons
+src/pages/porque.mjs   por que a Oika: comparação com contratar e com consultoria
 src/content/pt.mjs     todo o texto em português (oficial)
 src/content/en.mjs     tradução para inglês (rascunho, ainda não publicada)
 public/                arquivos copiados como estão: CSS, JS, fontes, imagens, _headers
@@ -76,7 +78,7 @@ O site é publicado no GitHub Pages pelo workflow `.github/workflows/deploy.yml`
 
 O site usa o [Umami Cloud](https://cloud.umami.is), sem cookies. Para ligar, cole o Website ID em `UMAMI_WEBSITE_ID` no `src/site.mjs`; vazio, o script não entra na página.
 
-Eventos registrados (propriedade `local` indica onde o link fica: `topo`, `hero`, `contato`, `rodape`, `planos-sprint`):
+Eventos registrados (propriedade `local` indica onde o link fica: `topo`, `hero`, `contato`, `rodape`, `planos-ciclo`):
 
 - `agenda`: clique em qualquer botão de agendamento
 - `whatsapp`: clique nos links de WhatsApp (chamada final e rodapé)

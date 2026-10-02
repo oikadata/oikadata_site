@@ -18,6 +18,7 @@ export default {
   nav: [
     { page: 'home', label: 'Solutions' },
     { page: 'planos', label: 'Plans' },
+    { page: 'porque', label: 'Why Oika' },
   ],
   cta: {
     title: 'Shall we start your first use case?',
@@ -204,90 +205,128 @@ export default {
       meta: {
         title: 'Plans | Oika Data',
         description:
-          'Start with the Value Sprint: 30 days, one use case, no lock-in. Then quarterly plans with data team, agents and platform included.',
+          'Start with the Value Sprint: 30 days, one use case and no lock-in. Then accelerate with the Core or Omni plans and move to Sustain once the foundation matures.',
       },
       hero: {
-        title: 'Start small. Grow when it makes sense.',
-        subtitle: 'A Value Sprint to start, with no lock-in. Then quarterly plans with team, agents and platform included.',
-      },
-      sprint: {
-        tag: 'To start',
-        name: 'Value Sprint',
-        facts: ['30 days', '1 use case', 'no lock-in'],
-        text: 'Together we choose the highest-value use case, integrate the data and deliver the first result. If it makes sense, we continue on a quarterly plan.',
+        title: 'Accelerate as you need. The price adjusts',
+        subtitle: 'Start with a Value Sprint, no lock-in. Then alternate between expansion and sustain cycles, as your company needs.',
         cta: 'Book a call',
-        stepsTitle: 'How the 30 days go',
-        steps: [
-          { when: 'Week 1', text: 'A conversation to choose the use case' },
-          { when: 'Weeks 2 and 3', text: 'Data integration and modeling' },
-          { when: 'Week 4', text: 'Delivery of the result and a plan for the quarter' },
-        ],
+      },
+      cycle: {
+        sprint: {
+          when: 'Month 1',
+          name: 'Value Sprint',
+          text: 'We choose with you the highest-value use case, integrate the data and deliver the first result.',
+          price: 'No lock-in',
+        },
+        expand: {
+          when: 'Quarterly cycle',
+          name: 'Expansion',
+          text: 'New use cases, departments, integrations and AI on top of the ready foundation.',
+          price: 'Core or Omni plan',
+        },
+        sustain: {
+          when: 'Once the foundation matures',
+          name: 'Sustain',
+          text: 'Everything running, context kept up to date and improvements to what already exists.',
+          price: 'Lower fee',
+        },
+        toSustain: 'Mature foundation',
+        toExpand: 'New priorities',
+        center: 'You choose the pace every quarter',
       },
       plans: {
-        title: 'After the Sprint, two quarterly plans',
-        subtitle: 'Choose based on the team you already have. Both include the data platform.',
-        items: [
+        title: 'Compare the plans',
+        subtitle: 'Core and Omni are the expansion plans: choose based on the team you already have. Sustain keeps the foundation we built alive, whichever plan it came from.',
+        featureLabel: 'What’s included',
+        yes: 'Included',
+        no: 'Not included',
+        columns: [
           {
-            tag: 'Quarterly plan',
-            name: 'Context',
+            name: 'Core',
             scope: 'Analytics engineering',
             for: 'For companies that already have a BI analyst, or want to query data directly with AI.',
-            includes: [
-              'Integration of data sources',
-              'Modeling and business rules in code',
-              'Documentation and context for AI',
-            ],
-            pace: 'About 1 value delivery per month',
           },
           {
-            tag: 'Quarterly plan',
-            name: 'Decision',
+            name: 'Omni',
             scope: 'Analytics engineering + BI',
-            for: 'For companies with no one looking at data: the whole data team, end to end.',
-            includes: [
-              'Everything in Context',
-              'Dashboards for each department',
-              'Analyses for business questions',
-            ],
-            pace: '1 to 2 value deliveries per month',
+            for: 'For companies with nobody looking at data: the whole data team, end to end.',
             featured: true,
           },
+          {
+            name: 'Sustain',
+            scope: 'Maintenance',
+            for: 'For when the foundation is mature, your in-house team takes over, or during a 3-month transition.',
+          },
         ],
-        allTitle: 'In every plan:',
-        all: 'market-leading data platform, new integrations, monitoring and data quality.',
+        groups: [
+          {
+            title: 'Data foundation',
+            rows: [
+              { label: 'One environment with data from every department', values: [true, true, true] },
+              { label: 'Integration of new data sources', values: [true, true, 'Keeps existing ones'] },
+              { label: 'Business rules in code: one number for every department', values: [true, true, 'Updates what changes'] },
+              { label: 'Access control: each person sees only what they should', values: [true, true, true] },
+              { label: 'Data monitoring and quality', values: [true, true, true] },
+            ],
+          },
+          {
+            title: 'AI with context',
+            rows: [
+              { label: 'Ask AI and get answers with your numbers and your rules', values: [true, true, 'Context kept up to date'] },
+              { label: 'Accuracy measured with test questions', values: [true, true, true] },
+            ],
+          },
+          {
+            title: 'Everyday decisions',
+            rows: [
+              { label: 'Dashboards for each department', values: [false, true, 'Keeps existing ones'] },
+              { label: 'Analyses for business questions', values: [false, true, false] },
+              { label: 'AI models: who will stop buying, how much you will sell, what to offer', values: [false, true, 'Keeps existing ones'] },
+              { label: 'Marketing segments ready for campaigns and CRM', values: [false, true, 'Keeps existing ones'] },
+            ],
+          },
+          {
+            title: 'Pace',
+            rows: [
+              { label: 'New value deliveries', values: ['About 1 per month', '1 to 2 per month', 'Incremental improvements'] },
+              { label: 'Senior team, AI agents and data platform', values: [true, true, true] },
+            ],
+          },
+        ],
         special: 'Special terms for early customers and for real estate agencies, distributors and schools.',
       },
-      compare: {
-        title: 'Hiring takes months. With us, the first result arrives in 30 days',
-        subtitle: 'The Decision plan plays the role of a whole data team, with the platform included.',
-        columns: ['Hiring one person', 'Project-based consulting', 'Oika Data'],
-        rows: [
-          { label: 'First result', values: ['About 6 months to hire, set up the platform and deliver', 'In weeks, but it ends with the project', 'Within 30 days'] },
-          { label: 'Knowledge', values: ['One specialty', 'Broad, but temporary', 'Engineering, modeling, BI and AI, with experience across industries'] },
-          { label: 'Continuity', values: ['If the person leaves, the knowledge goes too', 'Delivers and leaves', 'Team and documentation: the knowledge stays in the company'] },
-          { label: 'Tools', values: ['Platform, licenses and AI paid separately', 'Usually separate', 'Platform included in the plan'] },
-          { label: 'Commitment', values: ['Fixed cost, hard to adjust', 'Fixed scope', 'Quarterly plan, after a Sprint with no lock-in'] },
-        ],
-        note: 'Time to hire: Ford/Datafolha 2026 (half of companies take 1 to 2 months to fill a tech role). Platform and first use case timelines are our estimates.',
-      },
-      sustain: {
-        title: 'Sustaining',
-        subtitle: 'A foundation in place is not a living foundation. When a rule changes and no one updates it, dashboards and AI keep answering, just wrong.',
-        items: [
-          { title: 'Everything running', text: 'Routines, integrations and fixes when something changes in the sources.' },
-          { title: 'Context up to date', text: 'New rules documented and reflected in models and agents.' },
-          { title: 'Accuracy measured', text: 'Test questions keep running, so accuracy doesn’t drop unnoticed.' },
-          { title: 'Incremental improvements', text: 'Adjustments to what exists: new cuts, performance and platform cost.' },
-        ],
-        when: 'For when the foundation is mature, when your in-house team takes over, or during the 3-month transition if you decide to go on your own. At a lower price than the plans.',
-      },
       addons: {
-        title: 'To go further',
+        title: 'Going further',
         subtitle: 'Add-ons available with any plan. Pricing on request.',
         items: [
-          { title: 'Strategic Management', text: 'A senior person who prioritizes with you what creates the most value, tracks results and brings data into leadership decisions.' },
-          { title: 'Data Culture', text: 'Training and support for your team to use data and AI day to day, in a format designed for your company.' },
+          { title: 'Strategic Management', text: 'A senior person who prioritizes with you what creates the most value, tracks results and brings data into board decisions.' },
+          { title: 'Data Culture', text: 'Training and support for your team to use data and AI every day, in a format designed for your company.' },
         ],
+      },
+    },
+    porque: {
+      meta: {
+        title: 'Why Oika | Oika Data',
+        description:
+          'Hiring takes months and consulting ends with the project. With Oika Data, the first result arrives in 30 days and the knowledge stays in your company.',
+      },
+      hero: {
+        title: 'Hiring takes months. With us, the first result arrives in 30 days',
+        subtitle: 'The Omni plan plays the role of an entire data team, with the platform included and no hiring needed.',
+      },
+      compare: {
+        columns: ['Hiring someone', 'Project-based consulting', 'Oika Data'],
+        rows: [
+          { label: 'First result', values: ['About 6 months to hire, set up the platform and deliver', 'Within weeks, but it ends with the project', 'Within 30 days'] },
+          { label: 'Expertise', values: ['One specialty', 'Broad, but temporary', 'Engineering, modeling, BI and AI, with experience across industries'] },
+          { label: 'Continuity', values: ['If the person leaves, the knowledge goes too', 'Delivers and leaves', 'Team and documentation: the knowledge stays in the company'] },
+          { label: 'Tools', values: ['Platform, licenses and AI paid separately', 'Usually separate', 'Platform included in the plan'] },
+          { label: 'Commitment', values: ['Fixed cost, hard to adjust', 'Closed scope', 'Quarterly plan, after a no-lock-in Sprint'] },
+        ],
+        note: 'Time to hire: Ford/Datafolha 2026 (half of companies take 1 to 2 months to fill a tech role). Platform and first use case timelines are our own estimates.',
+        plansLink: 'See the plans',
+        plansHref: '/en/plans/',
       },
     },
   },

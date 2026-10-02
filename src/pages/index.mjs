@@ -5,5 +5,6 @@
 
 import home from './home.mjs';
 import planos from './planos.mjs';
+import porque from './porque.mjs';
 
-export default [home, planos];
+export default [home, planos, porque];

@@ -1,9 +1,25 @@
 // Página de planos. Conteúdo em `pages.planos` de src/content/xx.mjs.
 
-import { esc, scheduleButton, sectionHead } from '../lib.mjs';
+import { ARROW_RIGHT, SYMBOL_LIGHT, esc, scheduleButton, sectionHead, symbol } from '../lib.mjs';
 
-const list = (items, cls = 'bands-list bands-list--compact') =>
-  `<ul class="${cls}">${items.map((i) => `<li>${esc(i)}</li>`).join('')}</ul>`;
+const CHECK = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>`;
+const CROSS = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="m7 7 10 10M17 7 7 17"/></svg>`;
+
+// Etapa do ciclo: Sprint, Expansão ou Sustentação.
+const stage = (s, cls) => `<div class="stage ${cls}">
+            <p class="stage__when">${esc(s.when)}</p>
+            <h3 class="stage__name">${esc(s.name)}</h3>
+            <p class="stage__text">${esc(s.text)}</p>
+            <p class="stage__price">${esc(s.price)}</p>
+          </div>`;
+
+// Célula da tabela: true (incluso), false (não incluso) ou um texto curto.
+const cell = (v, pl) =>
+  v === true
+    ? `<span class="tick tick--yes">${CHECK}<span class="sr-only">${esc(pl.yes)}</span></span>`
+    : v === false
+      ? `<span class="tick tick--no">${CROSS}<span class="sr-only">${esc(pl.no)}</span></span>`
+      : `<span class="tick__text">${esc(v)}</span>`;
 
 export default {
   id: 'planos',
@@ -16,78 +32,66 @@ export default {
       </div>
     </section>
 
-    <section class="section section--tight" id="sprint">
+    <section class="section section--tight" id="ciclo">
       <div class="container">
-        <div class="sprint">
-          <div class="sprint__main">
-            <p class="sprint__tag">${esc(p.sprint.tag)}</p>
-            <h2 class="sprint__name">${esc(p.sprint.name)}</h2>
-            <p class="sprint__facts">${p.sprint.facts.map(esc).join('<span aria-hidden="true"> · </span>')}</p>
-            <p class="sprint__text">${esc(p.sprint.text)}</p>
-            ${scheduleButton(p.sprint.cta, 'planos-sprint')}
-          </div>
-          <div class="sprint__steps">
-            <h3 class="layer__title">${esc(p.sprint.stepsTitle)}</h3>
-            <ol>
-              ${p.sprint.steps.map((s) => `<li><strong>${esc(s.when)}</strong><span>${esc(s.text)}</span></li>`).join('\n              ')}
-            </ol>
+        <div class="cycle">
+          ${stage(p.cycle.sprint, 'stage--sprint')}
+          <span class="cycle__enter" aria-hidden="true">${ARROW_RIGHT}</span>
+          <div class="loop">
+            <svg class="loop__arc loop__arc--left" viewBox="0 0 60 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M60 80 C 4 80, 4 20, 60 20"/></svg>
+            <svg class="loop__arc loop__arc--right" viewBox="0 0 60 100" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M0 20 C 56 20, 56 80, 0 80"/></svg>
+            <span class="loop__head loop__head--left" aria-hidden="true"></span>
+            <span class="loop__head loop__head--right" aria-hidden="true"></span>
+            ${stage(p.cycle.expand, 'stage--expand')}
+            <div class="loop__middle">
+              <span class="loop__turn loop__turn--up">↑ ${esc(p.cycle.toExpand)}</span>
+              <span class="loop__center">${symbol(SYMBOL_LIGHT, 'loop__symbol')}${esc(p.cycle.center)}</span>
+              <span class="loop__turn loop__turn--down">${esc(p.cycle.toSustain)} ↓</span>
+            </div>
+            ${stage(p.cycle.sustain, 'stage--sustain')}
           </div>
         </div>
+        <p class="cycle__cta">${scheduleButton(p.hero.cta, 'planos-ciclo')}</p>
       </div>
     </section>
 
     <section class="section" id="planos">
       <div class="container">
         ${sectionHead(p.plans.title, p.plans.subtitle)}
-        <div class="plans">
-          ${p.plans.items
-            .map(
-              (pl) => `<article class="plan${pl.featured ? ' plan--featured' : ''}">
-            <p class="plan__tag">${esc(pl.tag)}</p>
-            <h3 class="plan__name">${esc(pl.name)}</h3>
-            <p class="plan__scope">${esc(pl.scope)}</p>
-            <p class="plan__for">${esc(pl.for)}</p>
-            ${list(pl.includes)}
-            <p class="plan__pace">${esc(pl.pace)}</p>
-          </article>`
-            )
-            .join('\n          ')}
-        </div>
-        <p class="plans__all"><strong>${esc(p.plans.allTitle)}</strong> ${esc(p.plans.all)}</p>
-        <p class="plans__special">${esc(p.plans.special)}</p>
-      </div>
-    </section>
-
-    <section class="section" id="comparacao">
-      <div class="container">
-        ${sectionHead(p.compare.title, p.compare.subtitle)}
-        <table class="compare">
+        <table class="matrix">
           <thead>
-            <tr><td></td>${p.compare.columns.map((col, i) => `<th scope="col"${i === p.compare.columns.length - 1 ? ' class="compare__us"' : ''}>${esc(col)}</th>`).join('')}</tr>
+            <tr>
+              <td class="matrix__corner">${esc(p.plans.featureLabel)}</td>
+              ${p.plans.columns
+                .map(
+                  (col) => `<th scope="col"${col.featured ? ' class="is-featured"' : ''}>
+                <span class="matrix__name">${esc(col.name)}</span>
+                <span class="matrix__scope">${esc(col.scope)}</span>
+                <span class="matrix__for">${esc(col.for)}</span>
+              </th>`
+                )
+                .join('')}
+            </tr>
           </thead>
-          <tbody>
-            ${p.compare.rows
+          ${p.plans.groups
+            .map(
+              (g) => `<tbody>
+            <tr class="matrix__group"><th scope="rowgroup" colspan="4">${esc(g.title)}</th></tr>
+            ${g.rows
               .map(
                 (r) => `<tr><th scope="row">${esc(r.label)}</th>${r.values
-                  .map((v, i) => `<td data-label="${esc(p.compare.columns[i])}"${i === r.values.length - 1 ? ' class="compare__us"' : ''}>${esc(v)}</td>`)
+                  .map(
+                    (v, i) =>
+                      `<td data-label="${esc(p.plans.columns[i].name)}"${p.plans.columns[i].featured ? ' class="is-featured"' : ''}>${cell(v, p.plans)}</td>`
+                  )
                   .join('')}</tr>`
               )
               .join('\n            ')}
-          </tbody>
+          </tbody>`
+            )
+            .join('\n          ')}
         </table>
-        <p class="compare__note">${esc(p.compare.note)}</p>
-      </div>
-    </section>
-
-    <section class="section" id="sustentacao">
-      <div class="container split">
-        ${sectionHead(p.sustain.title, p.sustain.subtitle)}
-        <div class="split__body">
-          <div class="facts">
-            ${p.sustain.items.map((i) => `<div class="facts__item"><h3>${esc(i.title)}</h3><p>${esc(i.text)}</p></div>`).join('\n            ')}
-          </div>
-          <p class="facts__when">${esc(p.sustain.when)}</p>
-        </div>
+        <p class="plans__special">${esc(p.plans.special)}</p>
       </div>
     </section>
 
