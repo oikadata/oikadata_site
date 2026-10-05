@@ -69,7 +69,7 @@ export function layout({ c, meta, path, alternates, langLink, nav, body, cta }) 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>${esc(meta.title)}</title>
   <meta name="description" content="${esc(meta.description)}">
-  <link rel="canonical" href="${url}">
+  <link rel="canonical" href="${url}">${meta.noindex ? '\n  <meta name="robots" content="noindex">' : ''}
   ${alternateTags}
   <meta name="theme-color" content="#F7F5F9">
   <meta property="og:type" content="website">
@@ -127,7 +127,7 @@ ${body}${cta ? ctaSection(c) : ''}
         <li><a href="${PHONE_HREF}" ${track('telefone', 'rodape')}>${PHONE}</a></li>
         <li><a href="${SITE_URL}">oikadata.com</a></li>
       </ul>
-      <p class="footer__year">© ${year} Oika Data</p>
+      <p class="footer__year">© ${year} Oika Data${c.footer.privacy ? ` · <a href="${c.footer.privacy.href}">${esc(c.footer.privacy.label)}</a>` : ''}</p>
     </div>
   </footer>
 

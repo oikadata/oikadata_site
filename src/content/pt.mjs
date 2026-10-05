@@ -1,6 +1,9 @@
 // Conteúdo oficial do site (português). Fonte: Deck Comercial/site-conteudo.md.
 // Para editar um texto, altere aqui e rode `node build.mjs`.
 
+import privacidade from './pt-privacidade.mjs';
+import raioX from './pt-raio-x.mjs';
+
 export default {
   lang: 'pt-BR',
   path: '/',
@@ -19,6 +22,7 @@ export default {
     { page: 'home', label: 'Soluções' },
     { page: 'planos', label: 'Planos' },
     { page: 'porque', label: 'Por que a Oika' },
+    { page: 'raio-x', label: 'Raio-X de Dados' },
   ],
   cta: {
     title: 'Vamos iniciar o seu primeiro caso de uso?',
@@ -35,10 +39,13 @@ export default {
     or: 'ou escreva para',
   },
   footer: {
+    privacy: { label: 'Política de Privacidade', href: '/privacidade/' },
     whatsapp: 'WhatsApp',
     slogan: 'onde os dados ganham sentido',
   },
   pages: {
+    ...raioX,
+    ...privacidade,
     home: {
       meta: {
         ogTitle: 'O caminho mais curto entre seus dados e o resultado',

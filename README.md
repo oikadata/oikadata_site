@@ -58,6 +58,47 @@ Exemplo: uma página de planos em `/planos/`.
 
 A chamada final de agendamento e o rodapé entram sozinhos. Para uma página sem a chamada final, use `cta: false`. Páginas em rascunho não entram no menu, no sitemap nem no site publicado.
 
+## Raio-X de Dados (assessment online)
+
+Questionário do site, especificado em `oika-data-assessment-online.md`. Está em rascunho (`/raio-x/`, `/raio-x/resultado/` e `/privacidade/` só aparecem com `--all`).
+
+```
+supabase/functions/_shared/raio-x/questionario.mjs   perguntas, códigos e pontos (IDs estáveis)
+supabase/functions/_shared/raio-x/pontuacao.mjs      score, degrau, prontidão para IA e qualificação
+supabase/functions/_shared/raio-x/servico.mjs        validação, gravação e resultado (independe de onde roda)
+supabase/functions/raio-x/index.ts                   Edge Function: liga o serviço ao banco
+supabase/migrations/                                 tabela questionnaire_responses, RLS e limpeza de parciais
+src/content/pt-raio-x.mjs                            textos das perguntas e biblioteca do resultado
+public/raio-x.js, public/raio-x-resultado.js         questionário e página de resultado no navegador
+dev/raio-x-api.mjs                                   API local, em memória, para testar sem o Supabase
+tests/raio-x.test.mjs                                casos da seção 10.1 e regras do serviço
+```
+
+O score e a qualificação são calculados só no servidor. O navegador recebe os textos e os códigos das opções, nunca os pontos de corte da qualificação nem a categoria.
+
+**Testes:** `node --test tests/*.test.mjs` (também rodam no deploy, antes da build).
+
+**Testar localmente:**
+
+```
+node dev/raio-x-api.mjs
+RAIO_X_API=http://localhost:8787 node build.mjs --all
+python3 -m http.server 4321 -d dist
+```
+
+Abra http://localhost:4321/raio-x/. O terminal da API mostra cada autosave e a categoria de cada envio.
+
+**Colocar no ar (Supabase):**
+
+1. Crie o projeto no Supabase e instale a CLI (`brew install supabase/tap/supabase`).
+2. Na pasta `site/`: `supabase link --project-ref <ref do projeto>` e `supabase db push` (cria a tabela).
+3. `supabase functions deploy raio-x --no-verify-jwt`
+4. Opcional, aviso no Discord a cada envio: `supabase secrets set RAIO_X_DISCORD=<webhook>`. Para liberar outras origens além de oikadata.com: `supabase secrets set RAIO_X_ORIGENS=https://oikadata.com,http://localhost:4321`.
+5. Em `src/site.mjs`, preencha `RAIO_X_API` com `https://<ref>.supabase.co/functions/v1/raio-x`.
+6. Tire o `draft: true` de `raio-x`, `raio-x-resultado` e `privacidade` (depois da validação jurídica da política).
+
+**Ainda não feito (próxima etapa, n8n):** observações geradas por IA (hoje a página usa as pré-escritas da biblioteca), e-mail com o resultado, contato no HubSpot e fila de revisão. Captcha invisível também fica para depois; hoje a proteção é honeypot, validação no servidor e limite de 10 envios por IP por hora.
+
 ## Publicar a versão em inglês
 
 1. Revise `src/content/en.mjs`.

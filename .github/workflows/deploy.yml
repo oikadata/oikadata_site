@@ -30,6 +30,9 @@ jobs:
         with:
           node-version: 22
 
+      - name: Testes
+        run: node --test tests/*.test.mjs
+
       - name: Gerar o site
         run: |
           node build.mjs

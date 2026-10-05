@@ -10,3 +10,7 @@ export const SCHEDULE_URL =
   'https://calendar.google.com/calendar/appointments/schedules/AcZssZ1wReDlH7REgMqcf81NIhnyqGiTiaosQn5eKUnTRKFS6sfwJwqc1BADtnez_FM-DS82tcpxsR5y';
 // Umami Cloud (analytics sem cookies). Cole aqui o Website ID; vazio = sem analytics.
 export const UMAMI_WEBSITE_ID = '011eb189-d1ae-4ebd-9561-9499c22e3a82';
+
+// Endereço da Edge Function do Raio-X (https://<projeto>.supabase.co/functions/v1/raio-x).
+// Para testar localmente: RAIO_X_API=http://localhost:8787 node build.mjs --all
+export const RAIO_X_API = process.env.RAIO_X_API || 'https://fnzfapjsiiakfgqexbhv.supabase.co/functions/v1/raio-x';

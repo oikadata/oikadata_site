@@ -28,6 +28,8 @@ const ALL = { pt, en };
 const drafts = process.argv.includes('--all');
 const langs = drafts ? Object.keys(ALL) : LANGS;
 const pages = PAGES.filter((pg) => drafts || !pg.draft);
+// Idiomas em que a página existe: todos os gerados, ou só os de `langs: ['pt']`.
+const langsOf = (pg) => langs.filter((l) => !pg.langs || pg.langs.includes(l));
 
 // Caminho de uma página num idioma: /, /planos/, /en/, /en/plans/...
 // O slug pode ser um texto (igual em todos os idiomas) ou { pt: 'planos', en: 'plans' }.
@@ -40,7 +42,7 @@ const pathOf = (pg, l) => {
 const navFor = (l, current) =>
   ALL[l].nav
     .map((item) => ({ item, pg: pages.find((pg) => pg.id === item.page) }))
-    .filter(({ pg }) => pg)
+    .filter(({ pg }) => pg && langsOf(pg).includes(l))
     .map(({ item, pg }) => ({ href: pathOf(pg, l), label: item.label, current: pg === current }));
 
 function notFound(c) {
@@ -74,16 +76,17 @@ cpSync(join(ROOT, 'public'), DIST, { recursive: true });
 
 const urls = [];
 for (const pg of pages) {
-  const alternates = langs.map((l) => ({ lang: ALL[l].lang, path: pathOf(pg, l) }));
-  for (const l of langs) {
+  const pgLangs = langsOf(pg);
+  const alternates = pgLangs.map((l) => ({ lang: ALL[l].lang, path: pathOf(pg, l) }));
+  for (const l of pgLangs) {
     const c = ALL[l];
     const p = c.pages[pg.id];
     if (!p) throw new Error(`Falta o conteúdo de "${pg.id}" em src/content/${l}.mjs (pages.${pg.id})`);
-    const other = langs.find((x) => x !== l);
+    const other = pgLangs.find((x) => x !== l);
     const path = pathOf(pg, l);
     const html = layout({
       c,
-      meta: p.meta,
+      meta: { ...p.meta, noindex: pg.noindex },
       path,
       alternates,
       langLink: other ? { lang: ALL[other].lang, path: pathOf(pg, other) } : null,
@@ -94,7 +97,7 @@ for (const pg of pages) {
     const dir = join(DIST, path);
     mkdirSync(dir, { recursive: true });
     writeFileSync(join(dir, 'index.html'), html);
-    urls.push(SITE_URL + path);
+    if (!pg.noindex) urls.push(SITE_URL + path);
   }
 }
 writeFileSync(join(DIST, '404.html'), notFound(pt));
