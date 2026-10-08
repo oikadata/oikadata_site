@@ -11,7 +11,7 @@ export default {
   langs: ['pt'],
   cta: false,
   noindex: true,
-  render: (p) => `
+  render: (p, c) => `
     <section class="rx-result" id="rx-result" aria-live="polite">
       <div class="container">
         <p class="rx-result__status" data-rx-status>${esc(p.ui.loading)}</p>
@@ -30,6 +30,12 @@ export default {
       aiManualNote: p.aiManualNote,
       observations: p.observations,
       cta: p.cta,
+      areaLabels: p.areaLabels,
+      questionAreas: c.pages['raio-x'].questions.q8_perguntas.areas,
+      useCases: p.useCases,
+      defaultAreas: p.defaultAreas,
+      roadmap: p.roadmap,
+      help: p.help,
     })}
     <script type="module" src="${asset('/raio-x-resultado.js')}"></script>
 `,

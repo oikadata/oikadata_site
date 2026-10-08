@@ -13,10 +13,12 @@ import { CTA_POR_CATEGORIA, calcular, categoria, prioridade } from './pontuacao.
 export const VALIDADE_TOKEN_DIAS = 180;
 export const CONSENTIMENTO_VERSAO = 'v1-2026-10';
 
-const EMAILS_GRATUITOS = new Set([
+// Só e-mails corporativos concluem o Raio-X (decisão de 2026-10-08; a spec v0.4 aceitava e marcava).
+export const EMAILS_GRATUITOS = new Set([
   'gmail.com', 'googlemail.com', 'hotmail.com', 'hotmail.com.br', 'outlook.com', 'outlook.com.br', 'live.com',
   'msn.com', 'yahoo.com', 'yahoo.com.br', 'icloud.com', 'me.com', 'uol.com.br', 'bol.com.br', 'terra.com.br',
-  'ig.com.br', 'protonmail.com', 'proton.me', 'aol.com', 'gmx.com', 'zoho.com',
+  'ig.com.br', 'protonmail.com', 'proton.me', 'aol.com', 'gmx.com', 'zoho.com', 'yandex.com', 'mail.com',
+  'live.com.br', 'r7.com', 'globo.com', 'globomail.com', 'pm.me', 'tutanota.com', 'hey.com',
 ]);
 
 const SESSION_RE = /^[A-Za-z0-9_-]{16,64}$/;
@@ -92,6 +94,7 @@ export function limparContato(entrada) {
   for (const k of CONTATO.obrigatorios) if (!c[k]) throw new ErroValidacao(`falta ${k}`);
   c.email = c.email.toLowerCase();
   if (!EMAIL_RE.test(c.email)) throw new ErroValidacao('e-mail inválido');
+  if (emailGenerico(c.email)) throw new ErroValidacao('use um e-mail corporativo');
   if (c.cnpj) {
     if (!cnpjValido(c.cnpj)) throw new ErroValidacao('CNPJ inválido');
     c.cnpj = c.cnpj.replace(/\D/g, '');
@@ -123,6 +126,7 @@ export function resultadoPublico(row) {
     scores: {
       integracao: s.integracao,
       confiabilidade: s.confiabilidade,
+      cultura: s.cultura,
       analitica: s.analitica,
       geral: s.geral,
       nivel: s.nivel,
@@ -205,6 +209,7 @@ export function criarServico({ store, agora = () => new Date(), gerarToken, limi
       scores_json: {
         integracao: scores.integracao,
         confiabilidade: scores.confiabilidade,
+        cultura: scores.cultura,
         analitica: scores.analitica,
         geral: scores.geral,
         nivel: scores.nivel,

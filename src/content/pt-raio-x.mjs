@@ -2,8 +2,21 @@
 // Fonte: oika-data-assessment-online.md (v0.4). Códigos das opções: supabase/functions/_shared/raio-x/questionario.mjs.
 // A biblioteca de textos do resultado (seção 7.4) precisa da aprovação do fundador (P-A3).
 
+// Áreas do negócio usadas na pergunta 10 (Q8) e nos casos de uso do resultado.
+const AREAS = {
+  comercial: 'Comercial',
+  marketing: 'Marketing e mídia',
+  clientes: 'Clientes e atendimento',
+  financeiro: 'Financeiro',
+  produtos: 'Produtos e mix',
+  operacoes: 'Operações',
+  logistica: 'Logística e estoque',
+  digital: 'Digital',
+};
+
 export default {
   'raio-x': {
+    areaLabels: AREAS,
     meta: {
       title: 'Raio-X de Dados | Oika Data',
       description:
@@ -13,7 +26,7 @@ export default {
       title: 'Raio-X de Dados',
       promise:
         'Descubra em 3 minutos quanto sua empresa usa os próprios dados para decidir, e onde está o maior espaço de ganho. Resultado na hora.',
-      facts: ['11 perguntas', 'cerca de 3 minutos', 'sem custo'],
+      facts: ['12 perguntas', 'cerca de 3 minutos', 'sem custo'],
       start: 'Começar o Raio-X',
       resume: 'Continuar de onde parei',
       restart: 'Começar de novo',
@@ -24,6 +37,7 @@ export default {
         'Em que degrau das análises vocês estão: o que aconteceu, por que aconteceu, o que vai acontecer',
         'Se a sua base está pronta para a IA responder com contexto',
         'Três observações sobre o seu caso, com uma primeira pergunta para investigar',
+        'Casos de uso sugeridos para as áreas que vocês mais querem enxergar, e um roteiro de por onde começar',
       ],
     },
     after: {
@@ -48,10 +62,11 @@ export default {
       errorSend: 'Não conseguimos enviar agora. Confira sua conexão e tente de novo em instantes.',
       errorRequired: 'Preencha este campo.',
       errorEmail: 'Confira o e-mail.',
+      errorEmailGeneric: 'Use o seu e-mail corporativo. Não aceitamos e-mails pessoais, como Gmail ou Hotmail.',
       errorCnpj: 'Confira o CNPJ ou deixe em branco.',
       errorConsent: 'Para gerar o diagnóstico, precisamos do seu consentimento.',
       unavailable: 'O Raio-X está em manutenção. Tente de novo mais tarde ou fale com a gente.',
-      keyboardHint: 'Dica: use as teclas 1 a 9 para escolher e Enter para continuar.',
+      keyboardHint: 'Dica: use as teclas numéricas para escolher e Enter para continuar.',
     },
     questions: {
       q1_modelo: {
@@ -112,6 +127,16 @@ export default {
         title: 'Quando duas áreas trazem o mesmo número (ex.: faturamento do mês), eles batem?',
         options: { quase_nunca: 'Quase nunca', as_vezes: 'Às vezes', quase_sempre: 'Quase sempre', sempre: 'Sempre: existe uma fonte oficial' },
       },
+      q12_cultura: {
+        title: 'A empresa tem reuniões recorrentes para analisar os números com as áreas?',
+        help: 'Pense em rotinas como reunião de resultados, de vendas ou de indicadores.',
+        options: {
+          nao: 'Não: os números aparecem quando alguém pede',
+          irregular: 'Às vezes, sem rotina definida',
+          mensal: 'Sim, uma vez por mês',
+          semanal: 'Sim, toda semana ou com mais frequência',
+        },
+      },
       q7_analitica: {
         title: 'Com segurança e sem montar tudo do zero, vocês conseguem responder…',
         rows: {
@@ -133,13 +158,29 @@ export default {
       q8_perguntas: {
         title: 'Quais destas perguntas vocês gostariam de responder e hoje não conseguem com segurança?',
         options: {
+          desempenho: 'Qual o desempenho real de cada vendedor, equipe ou região?',
+          previsao: 'Quanto vamos vender (ou faturar) nos próximos meses?',
+          mkt_retorno: 'Quais canais e campanhas de mídia trazem clientes com melhor retorno?',
+          perda: 'Quais clientes estão em risco de parar de comprar, e por quê?',
           resultado_variou: 'Por que o resultado ou a margem variou de um período para outro?',
           cliente_lucro: 'Quais clientes realmente dão lucro?',
           produto_retorno: 'Quais produtos ou serviços dão mais retorno?',
-          desempenho: 'Qual o desempenho real de cada vendedor, canal ou unidade?',
-          previsao: 'Quanto vamos vender (ou faturar) nos próximos meses?',
-          perda: 'Onde estamos perdendo clientes ou vendas?',
-          custos: 'Onde estão os custos que dá para reduzir?',
+          custos: 'Onde estão os custos e desperdícios da operação que dá para reduzir?',
+          estoque_entrega: 'Onde temos estoque parado, ruptura ou atraso nas entregas?',
+          digital_funil: 'Em que ponto do site, app ou e-commerce os clientes desistem de comprar?',
+        },
+        // Área de cada pergunta: aparece como etiqueta na opção e escolhe os casos de uso do resultado.
+        areas: {
+          desempenho: 'comercial',
+          previsao: 'comercial',
+          mkt_retorno: 'marketing',
+          perda: 'clientes',
+          resultado_variou: 'financeiro',
+          cliente_lucro: 'financeiro',
+          produto_retorno: 'produtos',
+          custos: 'operacoes',
+          estoque_entrega: 'logistica',
+          digital_funil: 'digital',
         },
         open: { label: 'Outra pergunta que tira seu sono?', placeholder: 'Opcional' },
       },
@@ -153,7 +194,7 @@ export default {
       help: 'Seu resultado aparece logo depois.',
       fields: {
         nome: { label: 'Nome', autocomplete: 'name' },
-        email: { label: 'E-mail corporativo', autocomplete: 'email', type: 'email' },
+        email: { label: 'E-mail corporativo', autocomplete: 'email', type: 'email', help: 'Use o e-mail da empresa. Não aceitamos e-mails pessoais.' },
         empresa: { label: 'Empresa', autocomplete: 'organization' },
         cnpj: { label: 'CNPJ', help: 'Opcional. Ajuda a enriquecer seu diagnóstico.', inputmode: 'numeric' },
         whatsapp: { label: 'WhatsApp', autocomplete: 'tel', type: 'tel' },
@@ -181,7 +222,7 @@ export default {
       scoreLabel: 'Score de maturidade',
       ladderTitle: 'A escada das análises',
       ladderYouAreHere: 'Vocês estão aqui',
-      dimensionsTitle: 'As três dimensões',
+      dimensionsTitle: 'As quatro dimensões',
       aiTitle: 'Prontidão para IA',
       aiAxisBase: 'Base de dados',
       aiAxisUse: 'Uso de IA',
@@ -192,6 +233,12 @@ export default {
       observationsTitle: 'Observações sobre o seu caso',
       observationsWhy: 'Por que importa',
       observationsQuestion: 'Primeira pergunta para investigar',
+      useCasesTitle: 'Casos de uso sugeridos para vocês',
+      useCasesSub: 'A partir das perguntas que vocês querem responder.',
+      useCasesSubDefault: 'Por onde empresas como a sua costumam começar.',
+      roadmapTitle: 'Por onde começar',
+      roadmapCycle: 'Depois, novos casos de uso a cada ciclo de 2 a 4 semanas.',
+      helpTitle: 'Como a Oika ajuda no seu caso',
       startTitle: 'Por onde empresas no seu estágio costumam começar',
       saveLink: 'Guarde o link desta página para ver o resultado depois.',
       copyLink: 'Copiar link',
@@ -270,6 +317,16 @@ export default {
           'Os números batem às vezes. Uma definição oficial para os principais indicadores resolveria boa parte das discussões.',
           'Os números quase sempre batem. Falta formalizar as regras para que isso não dependa de quem monta o relatório.',
           'Existe uma fonte oficial. Vocês podem confiar no número e discutir o que fazer com ele.',
+        ],
+      },
+      cultura: {
+        name: 'Cultura de dados',
+        question: 'Existe rotina para analisar os números?',
+        bands: [
+          'Os números aparecem quando alguém pede. Sem uma rotina, as decisões dependem de quem lembra de olhar.',
+          'A análise acontece de vez em quando. Uma reunião fixa, com os mesmos indicadores, muda o ritmo das decisões.',
+          'Existe uma rotina mensal. O próximo passo é ter números atualizados para acompanhar a semana, não só o mês.',
+          'Os números fazem parte da rotina das áreas. O ganho está em levar análises mais profundas para essas reuniões.',
         ],
       },
       analitica: {
@@ -369,6 +426,24 @@ export default {
           why: 'Recuperar um cliente em risco custa bem menos do que conquistar um novo.',
           question: 'Quais clientes compravam todo mês e reduziram a frequência nos últimos 90 dias?',
         },
+        mkt_retorno: {
+          title: 'Saber qual mídia traz cliente bom',
+          text: 'Custo por clique e por lead aparecem na ferramenta de mídia. O que quase nunca aparece é quanto cada canal trouxe em vendas e margem, porque isso está no CRM e no financeiro.',
+          why: 'Sem ligar mídia a venda, o orçamento vai para o canal mais barato, não para o mais rentável.',
+          question: 'Qual canal traz o cliente que mais compra depois da primeira venda?',
+        },
+        estoque_entrega: {
+          title: 'Equilibrar estoque e entrega',
+          text: 'Estoque parado e ruptura costumam conviver na mesma empresa: sobra o que não gira e falta o que vende. Juntar vendas, compras e estoque mostra onde está cada um.',
+          why: 'Estoque parado é caixa parado; ruptura é venda perdida.',
+          question: 'Quais itens ficaram sem estoque no último mês enquanto outros passaram de 90 dias parados?',
+        },
+        digital_funil: {
+          title: 'Entender onde o cliente desiste',
+          text: 'O site e o app registram cada passo do cliente, mas esses dados raramente se cruzam com as vendas. Ligar as duas pontas mostra em que etapa e para qual público a compra trava.',
+          why: 'Pequenas melhorias no funil viram receita sem aumentar o investimento em mídia.',
+          question: 'Em que etapa do site ou app vocês perdem mais clientes entre a visita e a compra?',
+        },
         custos: {
           title: 'Encontrar custos que dá para reduzir',
           text: 'Custos que dá para reduzir costumam estar espalhados: frete, devoluções, descontos fora da política, estoque parado. Juntos, eles aparecem.',
@@ -403,6 +478,12 @@ export default {
           why: 'Uma boa decisão depende de um número em que todos confiam.',
           question: 'Qual indicador mais gera discussão entre as áreas hoje?',
         },
+        cultura: {
+          title: 'Criar a rotina de olhar os números',
+          text: 'Sem uma reunião fixa para analisar os números, cada área decide no seu ritmo e os problemas aparecem tarde. Uma rotina curta, com poucos indicadores, já muda a qualidade das decisões.',
+          why: 'Dado que ninguém olha na hora certa não muda nenhuma decisão.',
+          question: 'Quais cinco indicadores a diretoria deveria olhar toda semana?',
+        },
         analitica: {
           title: 'Sair da montagem de relatórios',
           text: 'Boa parte do tempo ainda vai para montar números, e pouco sobra para analisar. Automatizar o básico libera o time para entender causas e antecipar resultados.',
@@ -411,20 +492,97 @@ export default {
         },
       },
     },
-    // Próximo passo conforme a qualificação (o respondente nunca vê a categoria).
+    areaLabels: AREAS,
+    // Casos de uso por área, sugeridos conforme as perguntas marcadas na pergunta 10 (Q8).
+    // Sem perguntas marcadas, o resultado sugere as áreas de `defaultAreas`.
+    useCases: {
+      comercial: [
+        'Dashboard de performance comercial, por vendedor, equipe e região',
+        'Visões segmentadas da carteira: clientes por perfil, frequência e potencial',
+        'Projeção de vendas para os próximos meses',
+        'Recomendação de produtos para a equipe comercial: o que oferecer a cada cliente',
+      ],
+      marketing: [
+        'Retorno de mídia por canal e campanha, até a venda e a margem',
+        'Funil do lead ao cliente, ligando marketing e comercial',
+        'Segmentação de público para campanhas',
+        'Custo de aquisição comparado ao valor de cada cliente ao longo do tempo',
+      ],
+      clientes: [
+        'Alerta de clientes em risco de parar de comprar',
+        'Análise dos motivos de perda e de reclamação',
+        'Visão única de cada cliente: compras, atendimento e financeiro',
+        'Régua de reativação para clientes inativos',
+      ],
+      financeiro: [
+        'Margem real por cliente, produto e canal',
+        'Análise da variação do resultado: preço, volume e mix',
+        'DRE gerencial e fechamento do mês automatizados',
+        'Projeção de caixa',
+      ],
+      produtos: [
+        'Rentabilidade e giro por produto ou serviço',
+        'Curva ABC e revisão de mix',
+        'Preço com base na margem real',
+        'Produtos que costumam ser comprados juntos',
+      ],
+      operacoes: [
+        'Custos por processo e centro de custo',
+        'Indicadores operacionais: produtividade, prazos e retrabalho',
+        'Alertas de desvio de custo em relação à meta',
+      ],
+      logistica: [
+        'Giro e cobertura de estoque, com alerta de itens parados',
+        'Alerta de ruptura antes de faltar produto',
+        'Desempenho das entregas: prazo e custo por rota',
+        'Previsão de demanda para planejar as compras',
+      ],
+      digital: [
+        'Funil do site, app ou e-commerce: onde o cliente desiste',
+        'Comportamento de navegação ligado às vendas',
+        'Testes de oferta e de página com resultado medido',
+      ],
+    },
+    defaultAreas: ['comercial', 'financeiro'],
+    // Roteiro visual de ciclos curtos. {caso} vira o primeiro caso de uso sugerido.
+    roadmap: [
+      { when: 'Semanas 1 e 2', title: 'Integração', text: 'Conectamos as fontes de dados (ERP, CRM, planilhas) numa base única, na nuvem da sua empresa.' },
+      { when: 'Semanas 2 e 3', title: 'Modelagem', text: 'Organizamos os dados e escrevemos as regras de negócio com as áreas: um número só para todos.' },
+      { when: 'Semana 4', title: 'Primeiro caso de uso', text: '{caso}, no ar e em uso.' },
+      { when: 'A cada ciclo', title: 'Expansão', text: 'Um novo caso de uso a cada 2 a 4 semanas, sobre a mesma base, incluindo IA com contexto.' },
+    ],
+    // Como a Oika ajuda: uma frase por ponto fraco do diagnóstico (as duas dimensões mais fracas
+    // e a prontidão para IA quando ela pede ação), mais o fecho.
+    help: {
+      intro: 'A Oika é o time de dados que falta na sua empresa: gente sênior, agentes de IA e plataforma, num contrato só. Para o seu diagnóstico, isso quer dizer:',
+      dimensions: {
+        integracao: 'Juntar os dados de ERP, CRM e planilhas numa base única, atualizada sozinha.',
+        confiabilidade: 'Definir com as áreas as regras de negócio e um número oficial para os principais indicadores.',
+        cultura: 'Montar a rotina de análise: os painéis certos para a reunião de cada área, com números da semana.',
+        analitica: 'Ir do que aconteceu para o porquê e para o que vai acontecer, com análises de causa e previsões.',
+      },
+      ai: {
+        ia_a_frente: 'Dar à IA que vocês já usam uma base confiável, para que ela responda com os números certos.',
+        base_pronta: 'Conectar a IA à base que vocês já têm, para responder perguntas do negócio em minutos.',
+      },
+      closing: 'Começamos pelo Sprint de Valor: 30 dias, um caso de uso, sem fidelidade.',
+    },
+    // Chamada final. Agendar é a ação principal para todos; o texto muda conforme a qualificação
+    // (o respondente nunca vê a categoria).
     cta: {
+      button: 'Agendar conversa de 30 min',
       agendar: {
-        title: 'Quer a leitura completa?',
-        text: 'Agende uma conversa com um especialista. O assessment completo tem duas conversas, uma sobre gestão e outra sobre operação, e uma apresentação com as oportunidades priorizadas e um plano para 30, 60 e 90 dias. Sem custo para a sua empresa.',
-        button: 'Agendar uma conversa',
+        title: 'Vamos olhar este diagnóstico juntos?',
+        text: 'Em 30 minutos, um especialista revisa o seu Raio-X com você e mostra por onde começar. Se fizer sentido, seguimos para o assessment completo: duas conversas e uma apresentação com oportunidades priorizadas e um plano para 30, 60 e 90 dias. Sem custo.',
       },
       contato: {
-        title: 'Próximo passo',
-        text: 'Um especialista da Oika vai olhar o seu diagnóstico e entrar em contato em até 1 dia útil.',
+        title: 'Vamos olhar este diagnóstico juntos?',
+        text: 'Um especialista da Oika vai analisar o seu Raio-X e entrar em contato em até 1 dia útil. Se preferir, já escolha um horário.',
       },
       explorar: {
-        title: 'Continue explorando',
-        text: 'Veja como transformamos dados em resultado e quais caminhos fazem sentido para empresas no seu estágio.',
+        title: 'Quer conversar sobre o seu diagnóstico?',
+        text: 'Em 30 minutos, mostramos como empresas no seu estágio costumam começar e o que faria sentido para vocês.',
+        linksTitle: 'Ou continue explorando:',
         links: [
           { label: 'O que entregamos', href: '/#entrega' },
           { label: 'Planos', href: '/planos/' },

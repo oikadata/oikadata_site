@@ -5,7 +5,8 @@
 // código ou ponto gera nova VERSAO. Os textos ficam no site (src/content/pt.mjs).
 // Este arquivo é usado pelo servidor (Edge Function), pelos testes e pelo build do site.
 
-export const VERSAO = 'v2';
+// v2: especificação v0.4. v3: pergunta de cultura de dados (q12) e Q8 com uma pergunta-chave por área.
+export const VERSAO = 'v3';
 
 // Ordem de exibição (seção 3.1). O ID de Q10 e Q11 não segue a ordem de propósito.
 export const QUESTOES = [
@@ -16,9 +17,10 @@ export const QUESTOES = [
   { id: 'q10_time_dados', tipo: 'unica', parte: 1, opcoes: ['nao', 'uma_pessoa', 'time'] },
   { id: 'q5_integracao', tipo: 'unica', parte: 2, opcoes: ['nao', 'manual', 'parcial', 'sim'] },
   { id: 'q6_consistencia', tipo: 'unica', parte: 2, opcoes: ['quase_nunca', 'as_vezes', 'quase_sempre', 'sempre'] },
+  { id: 'q12_cultura', tipo: 'unica', parte: 2, opcoes: ['nao', 'irregular', 'mensal', 'semanal'] },
   { id: 'q7_analitica', tipo: 'escada', parte: 2, linhas: ['q7a_descritivo', 'q7b_diagnostico', 'q7c_preditivo'], opcoes: ['nao', 'em_parte', 'sim'] },
   { id: 'q11_ia', tipo: 'unica', parte: 2, opcoes: ['nao', 'individual', 'dados_manual', 'conectada'] },
-  { id: 'q8_perguntas', tipo: 'multipla', parte: 2, max: 3, opcoes: ['resultado_variou', 'cliente_lucro', 'produto_retorno', 'desempenho', 'previsao', 'perda', 'custos'], aberta: { id: 'q8_outra' } },
+  { id: 'q8_perguntas', tipo: 'multipla', parte: 2, max: 3, opcoes: ['desempenho', 'previsao', 'mkt_retorno', 'perda', 'resultado_variou', 'cliente_lucro', 'produto_retorno', 'custos', 'estoque_entrega', 'digital_funil'], aberta: { id: 'q8_outra' } },
   { id: 'q9_momento', tipo: 'unica', parte: 3, opcoes: ['explorando', '6_meses', 'urgente'] },
 ];
 
@@ -26,6 +28,7 @@ export const QUESTOES = [
 export const PONTOS = {
   q5_integracao: { nao: 0, manual: 1, parcial: 2, sim: 3 },
   q6_consistencia: { quase_nunca: 0, as_vezes: 1, quase_sempre: 2, sempre: 3 },
+  q12_cultura: { nao: 0, irregular: 1, mensal: 2, semanal: 3 },
   q7_analitica: { nao: 0, em_parte: 1, sim: 2 },
   q11_ia: { nao: 0, individual: 1, dados_manual: 2, conectada: 3 },
 };

@@ -15,6 +15,7 @@ const base = {
   q10_time_dados: 'nao',
   q5_integracao: 'parcial',
   q6_consistencia: 'as_vezes',
+  q12_cultura: 'mensal',
   q7a_descritivo: 'sim',
   q7b_diagnostico: 'em_parte',
   q7c_preditivo: 'nao',
@@ -95,19 +96,25 @@ test('escada: sim, não, sim é inconsistente e fica no descritivo', () => {
 
 // ---------- Score geral (10.1) ----------
 
-test('score geral: Q5=2, Q6=1, Q7=(2,1,0)', () => {
-  const s = calcular(r({ q5_integracao: 'parcial', q6_consistencia: 'as_vezes', ...escada('sim', 'em_parte', 'nao') }));
+// Caso da spec (Q5=2, Q6=1, Q7=(2,1,0)), agora com a cultura de dados (v3) como quarta dimensão.
+test('score geral: Q5=2, Q6=1, Q12=2, Q7=(2,1,0)', () => {
+  const s = calcular(r({ q5_integracao: 'parcial', q6_consistencia: 'as_vezes', q12_cultura: 'mensal', ...escada('sim', 'em_parte', 'nao') }));
   assert.deepEqual(
-    { integracao: s.integracao, confiabilidade: s.confiabilidade, analitica: s.analitica, geral: s.geral, nivel: s.nivel },
-    { integracao: 67, confiabilidade: 33, analitica: 50, geral: 50, nivel: 2 }
+    { integracao: s.integracao, confiabilidade: s.confiabilidade, cultura: s.cultura, analitica: s.analitica, geral: s.geral, nivel: s.nivel },
+    { integracao: 67, confiabilidade: 33, cultura: 67, analitica: 50, geral: 54, nivel: 3 }
   );
 });
 
+test('cultura de dados: pontos por frequência das reuniões', () => {
+  const c = (v) => calcular(r({ q12_cultura: v })).cultura;
+  assert.deepEqual([c('nao'), c('irregular'), c('mensal'), c('semanal')], [0, 33, 67, 100]);
+});
+
 test('níveis: limites das faixas', () => {
-  const tudo = (q5, q6, e) => calcular(r({ q5_integracao: q5, q6_consistencia: q6, ...e }));
-  assert.equal(tudo('nao', 'quase_nunca', escada('nao', 'nao', 'nao')).nivel, 1);
-  assert.equal(tudo('sim', 'sempre', escada('sim', 'sim', 'sim')).nivel, 4);
-  assert.equal(tudo('sim', 'sempre', escada('sim', 'sim', 'sim')).geral, 100);
+  const tudo = (q5, q6, q12, e) => calcular(r({ q5_integracao: q5, q6_consistencia: q6, q12_cultura: q12, ...e }));
+  assert.equal(tudo('nao', 'quase_nunca', 'nao', escada('nao', 'nao', 'nao')).nivel, 1);
+  assert.equal(tudo('sim', 'sempre', 'semanal', escada('sim', 'sim', 'sim')).nivel, 4);
+  assert.equal(tudo('sim', 'sempre', 'semanal', escada('sim', 'sim', 'sim')).geral, 100);
 });
 
 // ---------- Prontidão para IA (10.1) ----------
@@ -179,12 +186,29 @@ test('serviço: envio completo devolve token e resultado sem categoria', async (
   assert.deepEqual(lido.body.resultado, res.body.resultado);
 });
 
-test('serviço: e-mail gratuito é aceito e marcado', async () => {
+test('serviço: e-mail gratuito é recusado; corporativo é aceito', async () => {
   const { store, tratar } = novo();
-  await tratar({ method: 'POST', rota: 'enviar', body: envio({ contato: { ...contato, email: 'Ana@Gmail.com' } }) });
-  const row = store.linhas.get(SESSAO);
-  assert.equal(row.email, 'ana@gmail.com');
-  assert.equal(row.email_generico, true);
+  for (const email of ['Ana@Gmail.com', 'ana@hotmail.com', 'ana@outlook.com.br', 'ana@yahoo.com.br']) {
+    const res = await tratar({ method: 'POST', rota: 'enviar', body: envio({ contato: { ...contato, email } }) });
+    assert.equal(res.status, 400, email);
+    assert.equal(res.body.erro, 'use um e-mail corporativo');
+  }
+  assert.equal(store.linhas.size, 0);
+  const ok = await tratar({ method: 'POST', rota: 'enviar', body: envio({ contato: { ...contato, email: 'Ana@Distribuidora.com.br' } }) });
+  assert.equal(ok.status, 200);
+  assert.equal(store.linhas.get(SESSAO).email, 'ana@distribuidora.com.br');
+  assert.equal(store.linhas.get(SESSAO).email_generico, false);
+});
+
+test('serviço: Q8 aceita as novas perguntas por área e falta de q12 dá 400', async () => {
+  const { store, tratar } = novo();
+  const { q12_cultura, ...semCultura } = base;
+  assert.equal((await tratar({ method: 'POST', rota: 'enviar', body: envio({ respostas: semCultura }) })).status, 400);
+  const res = await tratar({ method: 'POST', rota: 'enviar', body: envio({ respostas: { ...base, q8_perguntas: ['mkt_retorno', 'estoque_entrega', 'digital_funil'] } }) });
+  assert.equal(res.status, 200);
+  assert.deepEqual(res.body.resultado.perguntas, ['mkt_retorno', 'estoque_entrega', 'digital_funil']);
+  assert.equal(typeof res.body.resultado.scores.cultura, 'number');
+  assert.equal(store.linhas.get(SESSAO).questionnaire_version, 'v3');
 });
 
 test('serviço: sem consentimento, sem resposta obrigatória ou com CNPJ inválido dá 400', async () => {

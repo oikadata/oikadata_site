@@ -27,17 +27,23 @@ const track = (name, props) => {
   } catch {}
 };
 const faixa = (score) => (score <= 25 ? 0 : score <= 50 ? 1 : score <= 75 ? 2 : 3);
+const block = (title, ...children) => h('section', { class: 'rx-r-block' }, h('h2', { class: 'rx-r-title' }, title), ...children);
 
 function falha(msg, retake = true) {
   statusEl.replaceChildren(msg);
   if (retake) statusEl.after(h('p', {}, h('a', { class: 'btn btn--primary', href: data.retakeHref }, ui.retake)));
 }
 
+// Dimensões presentes no resultado (respostas da v2 não têm cultura), da mais fraca para a mais forte.
+const DIMENSOES = ['integracao', 'confiabilidade', 'cultura', 'analitica'];
+const dimensoesDe = (s) => DIMENSOES.filter((d) => typeof s[d] === 'number');
+const maisFracas = (s) => [...dimensoesDe(s)].sort((a, b) => s[a] - s[b]);
+
 // Observações pré-escritas: próximo degrau, primeira pergunta marcada, IA (quando a IA está
 // à frente da base ou parada sobre uma base pronta) e a dimensão mais fraca. Três, sem repetir.
 function observacoes(r) {
   const o = data.observations;
-  const dims = ['integracao', 'confiabilidade', 'analitica'].sort((a, b) => r.scores[a] - r.scores[b]);
+  const dims = maisFracas(r.scores);
   const candidatas = [
     o.steps[r.scores.degrau],
     r.perguntas[0] && o.questions[r.perguntas[0]],
@@ -49,6 +55,22 @@ function observacoes(r) {
   return [...new Set(candidatas)].slice(0, 3);
 }
 
+// Áreas dos casos de uso: as das perguntas marcadas na pergunta 10, na ordem marcada, sem repetir.
+function areasSugeridas(r) {
+  const areas = [...new Set(r.perguntas.map((p) => data.questionAreas[p]).filter(Boolean))];
+  return { areas: areas.length ? areas : data.defaultAreas, marcadas: areas.length > 0 };
+}
+
+// Como a Oika ajuda: as duas dimensões mais fracas e a IA quando ela pede ação.
+function ajuda(r) {
+  const s = r.scores;
+  const itens = maisFracas(s)
+    .slice(0, 2)
+    .map((d) => data.help.dimensions[d]);
+  if (data.help.ai[s.quadrante_ia]) itens.push(data.help.ai[s.quadrante_ia]);
+  return itens;
+}
+
 function render(r) {
   const s = r.scores;
   const level = data.levels[s.nivel];
@@ -56,6 +78,7 @@ function render(r) {
   const degrauIdx = data.ladder.findIndex((l) => l.id === s.degrau); // -1 = antes do descritivo
   const link = location.href;
 
+  // ---------- Cabeçalho ----------
   const header = h(
     'header',
     { class: 'rx-r-head' },
@@ -79,10 +102,29 @@ function render(r) {
   const c = 2 * Math.PI * 52;
   header.querySelector('.rx-r-score__ring').innerHTML = `<svg viewBox="0 0 120 120" aria-hidden="true"><circle cx="60" cy="60" r="52" fill="none" stroke="var(--surface)" stroke-width="10"/><circle cx="60" cy="60" r="52" fill="none" stroke="var(--primary)" stroke-width="10" stroke-linecap="round" stroke-dasharray="${(c * s.geral) / 100} ${c}" transform="rotate(-90 60 60)"/></svg>`;
 
-  const ladder = h(
-    'section',
-    { class: 'rx-r-block' },
-    h('h2', { class: 'rx-r-title' }, ui.ladderTitle),
+  // ---------- Observações ----------
+  track('observations_loaded', { origem: 'fallback' });
+  const observations = block(
+    ui.observationsTitle,
+    h(
+      'div',
+      { class: 'rx-obs' },
+      observacoes(r).map((o) =>
+        h(
+          'article',
+          { class: 'rx-obs__card' },
+          h('h3', {}, o.title),
+          h('p', {}, o.text),
+          h('p', { class: 'rx-obs__why' }, h('strong', {}, `${ui.observationsWhy}: `), o.why),
+          h('p', { class: 'rx-obs__q' }, h('span', {}, ui.observationsQuestion), o.question)
+        )
+      )
+    )
+  );
+
+  // ---------- Escada ----------
+  const ladder = block(
+    ui.ladderTitle,
     h(
       'ol',
       { class: 'rx-ladder-viz' },
@@ -100,14 +142,13 @@ function render(r) {
     h('p', { class: 'rx-r-next' }, step.next)
   );
 
-  const dims = h(
-    'section',
-    { class: 'rx-r-block' },
-    h('h2', { class: 'rx-r-title' }, ui.dimensionsTitle),
+  // ---------- Dimensões ----------
+  const dims = block(
+    ui.dimensionsTitle,
     h(
       'div',
       { class: 'rx-dims' },
-      ['integracao', 'confiabilidade', 'analitica'].map((k) => {
+      dimensoesDe(s).map((k) => {
         const d = data.dimensions[k];
         return h(
           'div',
@@ -121,12 +162,11 @@ function render(r) {
     )
   );
 
+  // ---------- Prontidão para IA ----------
   const quad = data.quadrants[s.quadrante_ia];
   const cell = (id) => h('div', { class: `rx-matrix__cell${id === s.quadrante_ia ? ' is-current' : ''}` }, data.quadrants[id].title);
-  const ai = h(
-    'section',
-    { class: 'rx-r-block rx-ai' },
-    h('h2', { class: 'rx-r-title' }, ui.aiTitle),
+  const ai = block(
+    ui.aiTitle,
     h(
       'div',
       { class: 'rx-ai__grid' },
@@ -149,41 +189,82 @@ function render(r) {
     )
   );
 
-  const obs = observacoes(r);
-  track('observations_loaded', { origem: 'fallback' });
-  const observations = h(
-    'section',
-    { class: 'rx-r-block' },
-    h('h2', { class: 'rx-r-title' }, ui.observationsTitle),
+  // ---------- Casos de uso sugeridos ----------
+  const { areas, marcadas } = areasSugeridas(r);
+  const useCases = block(
+    ui.useCasesTitle,
+    h('p', { class: 'rx-r-sub' }, marcadas ? ui.useCasesSub : ui.useCasesSubDefault),
     h(
       'div',
-      { class: 'rx-obs' },
-      obs.map((o) =>
+      { class: 'rx-uc' },
+      areas.map((a) =>
         h(
           'article',
-          { class: 'rx-obs__card' },
-          h('h3', {}, o.title),
-          h('p', {}, o.text),
-          h('p', { class: 'rx-obs__why' }, h('strong', {}, `${ui.observationsWhy}: `), o.why),
-          h('p', { class: 'rx-obs__q' }, h('span', {}, ui.observationsQuestion), o.question)
+          { class: 'rx-uc__card' },
+          h('h3', {}, data.areaLabels[a]),
+          h('ul', { class: 'bands-list bands-list--compact' }, data.useCases[a].map((u) => h('li', {}, u)))
         )
       )
     )
   );
 
-  const start = h('section', { class: 'rx-r-block' }, h('h2', { class: 'rx-r-title' }, ui.startTitle), h('p', { class: 'rx-r-lead' }, level.start));
+  // ---------- Roteiro: por onde começar ----------
+  const primeiroCaso = data.useCases[areas[0]][0];
+  const roadmap = block(
+    ui.roadmapTitle,
+    h('p', { class: 'rx-r-lead' }, level.start),
+    h(
+      'ol',
+      { class: 'rx-roadmap' },
+      data.roadmap.map((st, i) =>
+        h(
+          'li',
+          { class: `rx-roadmap__step${i === data.roadmap.length - 1 ? ' rx-roadmap__step--cycle' : ''}` },
+          h('span', { class: 'rx-roadmap__n', 'aria-hidden': 'true' }, i === data.roadmap.length - 1 ? '↻' : String(i + 1)),
+          h('p', { class: 'rx-roadmap__when' }, st.when),
+          h('h3', {}, st.title),
+          h('p', {}, fmt(st.text, { caso: primeiroCaso }))
+        )
+      )
+    ),
+    h('p', { class: 'rx-r-next' }, ui.roadmapCycle)
+  );
 
+  // ---------- Como a Oika ajuda ----------
+  const help = block(
+    ui.helpTitle,
+    h('p', { class: 'rx-r-lead' }, data.help.intro),
+    h('ul', { class: 'rx-help' }, ajuda(r).map((t) => h('li', {}, t))),
+    h('p', { class: 'rx-help__closing' }, data.help.closing)
+  );
+
+  // ---------- Chamada final: agendar ----------
   const cta = data.cta[r.cta] || data.cta.explorar;
   const ctaEl = h(
     'section',
     { class: 'rx-r-cta' },
     h('h2', { class: 'cta__title' }, cta.title),
     h('p', {}, cta.text),
-    r.cta === 'agendar'
-      ? h('a', { class: 'btn btn--primary btn--lg', href: data.schedule, target: '_blank', rel: 'noopener', 'data-umami-event': 'agenda', 'data-umami-event-local': 'raio-x-resultado', onclick: () => track('cta_clicked', { cta: r.cta }) }, cta.button)
-      : null,
-    r.cta === 'explorar'
-      ? h('ul', { class: 'rx-r-cta__links' }, cta.links.map((l) => h('li', {}, h('a', { href: l.href, onclick: () => track('cta_clicked', { cta: r.cta }) }, l.label))))
+    h(
+      'a',
+      {
+        class: 'btn btn--primary btn--lg',
+        href: data.schedule,
+        target: '_blank',
+        rel: 'noopener',
+        'data-umami-event': 'agenda',
+        'data-umami-event-local': 'raio-x-resultado',
+        onclick: () => track('cta_clicked', { cta: r.cta }),
+      },
+      data.cta.button
+    ),
+    cta.links
+      ? h(
+          'div',
+          { class: 'rx-r-cta__more' },
+          h('p', {}, cta.linksTitle),
+          h('ul', { class: 'rx-r-cta__links' }, cta.links.map((l) => h('li', {}, h('a', { href: l.href }, l.label))))
+        )
       : null
   );
 
@@ -203,7 +284,7 @@ function render(r) {
   );
   const save = h('p', { class: 'rx-r-save' }, ui.saveLink, ' ', copy);
 
-  root.replaceChildren(h('div', { class: 'container rx-r' }, header, ladder, dims, ai, observations, start, ctaEl, save));
+  root.replaceChildren(h('div', { class: 'container rx-r' }, header, observations, ladder, dims, ai, useCases, roadmap, help, ctaEl, save));
 }
 
 // ---------- Carregamento ----------

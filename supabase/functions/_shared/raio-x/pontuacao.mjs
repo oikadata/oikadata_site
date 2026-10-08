@@ -8,17 +8,20 @@ import { PONTOS } from './questionario.mjs';
 
 const DEGRAUS = ['antes_descritivo', 'descritivo', 'diagnostico', 'preditivo'];
 
-// ---------- 5.1 Dimensões e score geral ----------
+// ---------- 5.1 Dimensões e score geral (v3: quatro dimensões) ----------
 
 export function dimensoes(r) {
   const q5 = PONTOS.q5_integracao[r.q5_integracao];
   const q6 = PONTOS.q6_consistencia[r.q6_consistencia];
+  const q12 = PONTOS.q12_cultura[r.q12_cultura];
   const escada = [r.q7a_descritivo, r.q7b_diagnostico, r.q7c_preditivo].map((v) => PONTOS.q7_analitica[v]);
   const integracao = Math.round(q5 * 33.3);
   const confiabilidade = Math.round(q6 * 33.3);
+  const cultura = Math.round(q12 * 33.3);
   const analitica = Math.round(((escada[0] + escada[1] + escada[2]) / 6) * 100);
-  const geral = Math.round((integracao + confiabilidade + analitica) / 3);
-  return { integracao, confiabilidade, analitica, geral };
+  // v3: a cultura de dados (rotina de análise) entra como quarta dimensão, com o mesmo peso.
+  const geral = Math.round((integracao + confiabilidade + cultura + analitica) / 4);
+  return { integracao, confiabilidade, cultura, analitica, geral };
 }
 
 // ---------- 5.3 Nível ----------

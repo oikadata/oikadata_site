@@ -3,6 +3,7 @@
 // Pontos e regras de qualificação ficam no servidor (supabase/functions/_shared/raio-x/).
 
 import { QUESTOES, VERSAO } from '../../supabase/functions/_shared/raio-x/questionario.mjs';
+import { EMAILS_GRATUITOS } from '../../supabase/functions/_shared/raio-x/servico.mjs';
 import { RAIO_X_API } from '../site.mjs';
 import { asset, esc, sectionHead } from '../lib.mjs';
 
@@ -17,7 +18,8 @@ function telas(p) {
     if (!t) throw new Error(`raio-x: falta o texto de ${q.id}`);
     const options = q.opcoes.map((code) => {
       if (!t.options[code]) throw new Error(`raio-x: falta o texto da opção ${q.id}.${code}`);
-      return { code, label: t.options[code] };
+      const area = t.areas?.[code];
+      return { code, label: t.options[code], area: area ? p.areaLabels[area] : null };
     });
     const tela = { id: q.id, type: q.tipo, title: t.title, help: t.help || null, options };
     if (q.tipo === 'escada') {
@@ -84,6 +86,7 @@ export default {
       version: VERSAO,
       screens: telas(p),
       contact: { ...p.contact, privacyHref: '/privacidade/' },
+      freeEmailDomains: [...EMAILS_GRATUITOS],
       ui: p.ui,
       resultPath: '/raio-x/resultado/',
     })}

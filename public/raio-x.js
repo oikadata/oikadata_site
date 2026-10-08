@@ -25,6 +25,8 @@ const h = (tag, attrs = {}, ...children) => {
   for (const c of children.flat()) if (c != null && c !== false) el.append(c);
   return el;
 };
+// Tecla de atalho de cada opção: 1 a 9 e, na décima, 0.
+const keyLabel = (i) => (i < 9 ? String(i + 1) : i === 9 ? '0' : '');
 const fmt = (s, vars) => s.replace(/\{(\w+)\}/g, (_, k) => vars[k]);
 const track = (name, props) => {
   try {
@@ -52,6 +54,10 @@ function utmAtual() {
   return utm;
 }
 
+// Só e-mails corporativos concluem (o servidor também recusa).
+const dominiosPessoais = new Set(data.freeEmailDomains || []);
+const emailPessoal = (email) => dominiosPessoais.has(email.toLowerCase().split('@')[1]);
+
 function cnpjValido(v) {
   const d = String(v).replace(/\D/g, '');
   if (d.length !== 14 || /^(\d)\1+$/.test(d)) return false;
@@ -71,8 +77,6 @@ function cnpjValido(v) {
 
 // ---------- Estado ----------
 
-let autoAdvance = false;
-app.addEventListener('pointerdown', () => (autoAdvance = true), true);
 
 let state = load();
 const fresh = () => ({ session: novaSessao(), step: 0, answers: {}, utm: utmAtual(), referrer: document.referrer || '' });
@@ -154,8 +158,8 @@ function renderSingle(s) {
     ? h('input', { class: 'rx-input', type: 'text', id: s.open.id, maxlength: 120, placeholder: s.open.placeholder, value: state.answers[s.open.id] || '', 'aria-label': s.open.label })
     : null;
   const openWrap = s.open ? h('div', { class: 'rx-open', hidden: current !== s.open.when }, h('label', { for: s.open.id }, s.open.label), openInput) : null;
-  // "Continuar" aparece quando já há resposta (ao voltar) ou quando a escolha pede o campo aberto.
-  const next = h('button', { class: 'btn btn--primary', type: 'button', hidden: !current, onclick: () => (s.open && state.answers[s.id] === s.open.when ? finishOpen() : answered(s.id)) }, ui.next);
+  // Sem avanço automático: a pessoa escolhe e clica em "Continuar" (fica desativado até haver resposta).
+  const next = h('button', { class: 'btn btn--primary', type: 'button', disabled: !current, onclick: () => (s.open && state.answers[s.id] === s.open.when ? finishOpen() : answered(s.id)) }, ui.next);
 
   function finishOpen() {
     const v = openInput.value.trim();
@@ -175,9 +179,9 @@ function renderSingle(s) {
         checked: current === o.code,
         onchange: () => {
           state.answers[s.id] = o.code;
+          next.disabled = false;
           if (s.open && o.code === s.open.when) {
             openWrap.hidden = false;
-            next.hidden = false;
             save();
             openInput.focus();
             return;
@@ -187,13 +191,9 @@ function renderSingle(s) {
             openWrap.hidden = true;
           }
           save();
-          next.hidden = false;
-          // Avança sozinho com clique, toque ou tecla 1–9; com as setas do teclado, só seleciona.
-          if (autoAdvance) setTimeout(() => answered(s.id), 180);
-          autoAdvance = false;
         },
       }),
-      h('span', { class: 'rx-option__key', 'aria-hidden': 'true' }, String(i + 1)),
+      h('span', { class: 'rx-option__key', 'aria-hidden': 'true' }, keyLabel(i)),
       h('span', { class: 'rx-option__label' }, o.label)
     )
   );
@@ -267,7 +267,13 @@ function renderMulti(s) {
       },
     });
     boxes.push(input);
-    return h('label', { class: 'rx-option rx-option--check' }, input, h('span', { class: 'rx-option__key', 'aria-hidden': 'true' }, String(i + 1)), h('span', { class: 'rx-option__label' }, o.label));
+    return h(
+      'label',
+      { class: 'rx-option rx-option--check' },
+      input,
+      h('span', { class: 'rx-option__key', 'aria-hidden': 'true' }, keyLabel(i)),
+      h('span', { class: 'rx-option__label' }, o.area ? h('span', { class: 'rx-option__area' }, o.area) : null, o.label)
+    );
   });
   const open = h('textarea', { class: 'rx-input', id: s.open.id, rows: 2, maxlength: 400, placeholder: s.open.placeholder }, state.answers[s.open.id] || '');
   sync();
@@ -360,7 +366,7 @@ function renderContact() {
     save();
     const ok = [
       erro('nome', v('nome') ? '' : ui.errorRequired),
-      erro('email', !v('email') ? ui.errorRequired : /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email')) ? '' : ui.errorEmail),
+      erro('email', !v('email') ? ui.errorRequired : !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v('email')) ? ui.errorEmail : emailPessoal(v('email')) ? ui.errorEmailGeneric : ''),
       erro('empresa', v('empresa') ? '' : ui.errorRequired),
       erro('cnpj', !v('cnpj') || cnpjValido(v('cnpj')) ? '' : ui.errorCnpj),
       erro('consent', consent.checked ? '' : ui.errorConsent),
@@ -386,6 +392,13 @@ function renderContact() {
         }),
       });
       const body = await res.json();
+      if (body.erro === 'use um e-mail corporativo') {
+        submit.disabled = false;
+        status.textContent = '';
+        erro('email', ui.errorEmailGeneric);
+        form.elements.email.focus();
+        return;
+      }
       if (!res.ok || !body.token) throw new Error(body.erro || res.status);
       track('contact_submitted');
       try {
@@ -415,11 +428,10 @@ document.addEventListener('keydown', (e) => {
   const tag = document.activeElement?.tagName;
   if (tag === 'INPUT' && document.activeElement.type !== 'radio' && document.activeElement.type !== 'checkbox') return;
   if (tag === 'TEXTAREA') return;
-  if (/^[1-9]$/.test(e.key)) {
-    const input = app.querySelectorAll('.rx-options input')[Number(e.key) - 1];
+  if (/^[0-9]$/.test(e.key)) {
+    const input = app.querySelectorAll('.rx-options input')[e.key === '0' ? 9 : Number(e.key) - 1];
     if (input && !input.disabled) {
       e.preventDefault();
-      autoAdvance = true;
       input.click();
     }
   } else if (e.key === 'Enter') {
