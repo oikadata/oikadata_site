@@ -7,19 +7,27 @@ import { ARROW, ARROW_RIGHT, SYMBOL_LIGHT, esc, scheduleButton, sectionHead, sym
 // o texto ao lado já diz tudo. Os textos de exemplo ficam em `value.pillars[].visual` no conteúdo.
 
 const visuals = {
-  // Áreas da empresa convergindo para um número único.
+  // As áreas entram numa base única, e tudo o que a empresa usa sai dela.
   hub: (v) => `<div class="vis-hub">
-            <ul class="vis-hub__sources">
-              ${v.sources.map((s) => `<li>${esc(s)}</li>`).join('')}
-            </ul>
-            <svg class="vis-hub__lines" viewBox="0 0 60 200" preserveAspectRatio="none" focusable="false">
-              ${[25, 75, 125, 175].map((y) => `<path d="M0 ${y} C 36 ${y}, 24 100, 60 100"/>`).join('')}
+            <div class="vis-hub__col vis-hub__col--in">
+              <p class="vis-hub__cap">${esc(v.sourcesLabel)}</p>
+              <ul class="vis-hub__list">${v.sources.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
+            </div>
+            <svg class="vis-hub__lines" viewBox="0 0 40 200" preserveAspectRatio="none" focusable="false">
+              ${[44, 92, 140, 188].map((y) => `<path d="M0 ${y} C 24 ${y}, 16 116, 40 116"/>`).join('')}
             </svg>
             <div class="vis-hub__core">
               ${symbol(SYMBOL_LIGHT, 'vis-hub__symbol')}
               <p class="vis-hub__label">${esc(v.label)}</p>
               <p class="vis-hub__value">${esc(v.value)}</p>
               <p class="vis-hub__note">${esc(v.note)}</p>
+            </div>
+            <svg class="vis-hub__lines" viewBox="0 0 40 200" preserveAspectRatio="none" focusable="false">
+              ${[44, 92, 140, 188].map((y) => `<path d="M0 116 C 24 116, 16 ${y}, 40 ${y}"/>`).join('')}
+            </svg>
+            <div class="vis-hub__col vis-hub__col--out">
+              <p class="vis-hub__cap">${esc(v.consumersLabel)}</p>
+              <ul class="vis-hub__list">${v.consumers.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
             </div>
           </div>`,
 
@@ -34,7 +42,7 @@ const visuals = {
                   ${v.rows
                     .map(
                       (r) =>
-                        `<li><span>${esc(r.label)}</span><span class="vis-chat__bar"><i style="width:${r.size}%"></i></span><strong>${esc(r.value)}</strong></li>`
+                        `<li><span class="vis-chat__who">${esc(r.label)}${r.reason ? `<small>${esc(r.reason)}</small>` : ''}</span><span class="vis-chat__bar"><i style="width:${r.size}%"></i></span><strong>${esc(r.value)}</strong></li>`
                     )
                     .join('')}
                 </ul>
