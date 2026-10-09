@@ -7,8 +7,7 @@ import { jsonScript } from './raio-x.mjs';
 
 export default {
   id: 'raio-x-resultado',
-  slug: 'raio-x/resultado',
-  langs: ['pt'],
+  slug: { pt: 'raio-x/resultado', en: 'data-x-ray/result' },
   cta: false,
   noindex: true,
   render: (p, c) => `
@@ -20,7 +19,7 @@ export default {
     ${jsonScript('rx-result-data', {
       api: RAIO_X_API,
       schedule: SCHEDULE_URL,
-      retakeHref: '/raio-x/',
+      retakeHref: p.retakeHref,
       ui: p.ui,
       ladder: p.ladder,
       levels: p.levels,

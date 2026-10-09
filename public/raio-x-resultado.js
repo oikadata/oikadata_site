@@ -289,6 +289,10 @@ function render(r) {
 
 // ---------- Carregamento ----------
 
+// O seletor de idioma leva o mesmo resultado para o outro idioma (mantém o ?t=).
+const outroIdioma = document.querySelector('a.lang-switch__item');
+if (outroIdioma && location.search) outroIdioma.href = outroIdioma.getAttribute('href') + location.search;
+
 const token = new URLSearchParams(location.search).get('t');
 if (!token || !data.api) {
   falha(ui.notFound);

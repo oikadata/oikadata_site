@@ -1,6 +1,8 @@
 // English content. Draft translation of pt.mjs: review before publishing.
 // To publish, add 'en' to LANGS in build.mjs.
 
+import raioX from './en-raio-x.mjs';
+
 export default {
   lang: 'en',
   path: '/en/',
@@ -20,6 +22,7 @@ export default {
     { page: 'home', label: 'Solutions' },
     { page: 'planos', label: 'Plans' },
     { page: 'porque', label: 'Why Oika' },
+    { page: 'raio-x', label: 'Data X-Ray' },
   ],
   cta: {
     title: 'Shall we start your first use case?',
@@ -41,6 +44,7 @@ export default {
     slogan: 'where data makes sense',
   },
   pages: {
+    ...raioX,
     home: {
       meta: {
         ogTitle: 'The shortest path from your data to results',

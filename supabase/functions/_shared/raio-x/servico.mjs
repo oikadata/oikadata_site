@@ -12,6 +12,8 @@ import { CTA_POR_CATEGORIA, calcular, categoria, prioridade } from './pontuacao.
 
 export const VALIDADE_TOKEN_DIAS = 180;
 export const CONSENTIMENTO_VERSAO = 'v1-2026-10';
+// Idioma em que a pessoa respondeu, para o contato comercial ser feito na mesma língua.
+const IDIOMAS = ['pt', 'en'];
 
 // Só e-mails corporativos concluem o Raio-X (decisão de 2026-10-08; a spec v0.4 aceitava e marcava).
 export const EMAILS_GRATUITOS = new Set([
@@ -232,6 +234,7 @@ export function criarServico({ store, agora = () => new Date(), gerarToken, limi
       },
       utm_json: objetoSimples(body.utm),
       referrer: texto(body.referrer, 500) || null,
+      idioma: IDIOMAS.includes(body.idioma) ? body.idioma : 'pt',
       ip,
       result_token: novoToken(),
       result_token_expira_em: expira,

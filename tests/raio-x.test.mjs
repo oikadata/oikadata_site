@@ -273,3 +273,12 @@ test('serviço: token inválido, inexistente ou expirado', async () => {
   agora = new Date('2027-04-04T12:00:00Z'); // 181 dias depois
   assert.equal((await tratar({ method: 'GET', rota: 'resultado', query: { t: body.token } })).status, 410);
 });
+
+test('serviço: grava o idioma da resposta (pt por padrão)', async () => {
+  const a = novo();
+  await a.tratar({ method: 'POST', rota: 'enviar', body: envio({ idioma: 'en' }) });
+  assert.equal(a.store.linhas.get(SESSAO).idioma, 'en');
+  const b = novo();
+  await b.tratar({ method: 'POST', rota: 'enviar', body: envio({ idioma: 'xx' }) });
+  assert.equal(b.store.linhas.get(SESSAO).idioma, 'pt');
+});

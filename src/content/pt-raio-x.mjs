@@ -17,6 +17,7 @@ const AREAS = {
 export default {
   'raio-x': {
     areaLabels: AREAS,
+    resultPath: '/raio-x/resultado/',
     meta: {
       title: 'Raio-X de Dados | Oika Data',
       description:
@@ -202,11 +203,13 @@ export default {
       consent:
         'Concordo que a Oika Data use minhas respostas para gerar meu diagnóstico e entre em contato comigo sobre ele. Posso pedir a exclusão dos meus dados a qualquer momento.',
       privacyLabel: 'Política de Privacidade',
+      privacyHref: '/privacidade/',
       newsletter: 'Quero receber conteúdos da Oika Data sobre uso de dados na gestão.',
     },
   },
 
   'raio-x-resultado': {
+    retakeHref: '/raio-x/',
     meta: {
       title: 'Seu Raio-X de Dados | Oika Data',
       description: 'Resultado do Raio-X de Dados.',

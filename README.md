@@ -103,7 +103,7 @@ Abra http://localhost:4321/raio-x/. O terminal da API mostra cada autosave e a c
 
 O site é publicado em português (`/`) e inglês (`/en/`), com o seletor PT | EN no topo. Ao editar um texto em `src/content/pt.mjs`, atualize o mesmo trecho em `src/content/en.mjs`.
 
-Páginas só em português (`langs: ['pt']`, como o Raio-X e a Política de Privacidade) ficam fora do menu em inglês; nelas, o EN leva para a home em inglês.
+O Raio-X também tem versão em inglês (`/en/data-x-ray/`, textos em `src/content/en-raio-x.mjs`); a resposta grava o idioma (`idioma`) para o contato comercial. Páginas só em português (`langs: ['pt']`, como a Política de Privacidade) ficam fora do menu em inglês; nelas, o EN leva para a home em inglês.
 
 ## Deploy (GitHub Pages)
 

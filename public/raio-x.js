@@ -388,6 +388,7 @@ function renderContact() {
           consentimento: { diagnostico: true, newsletter: newsletter.checked },
           utm: state.utm,
           referrer: state.referrer,
+          idioma: data.lang,
           website: form.elements.website.value,
         }),
       });

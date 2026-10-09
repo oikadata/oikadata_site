@@ -36,10 +36,9 @@ function telas(p) {
 
 export default {
   id: 'raio-x',
-  slug: 'raio-x',
-  langs: ['pt'],
+  slug: { pt: 'raio-x', en: 'data-x-ray' },
   cta: false,
-  render: (p) => `
+  render: (p, c) => `
     <section class="page-hero rx-intro" data-rx-intro>
       <div class="container rx-intro__inner">
         <div>
@@ -85,10 +84,11 @@ export default {
       api: RAIO_X_API,
       version: VERSAO,
       screens: telas(p),
-      contact: { ...p.contact, privacyHref: '/privacidade/' },
+      lang: c.lang.slice(0, 2),
+      contact: p.contact,
       freeEmailDomains: [...EMAILS_GRATUITOS],
       ui: p.ui,
-      resultPath: '/raio-x/resultado/',
+      resultPath: p.resultPath,
     })}
     <script type="module" src="${asset('/raio-x.js')}"></script>
 `,
