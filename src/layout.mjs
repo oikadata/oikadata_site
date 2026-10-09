@@ -44,8 +44,19 @@ export function layout({ c, meta, path, alternates, langLink, nav, body, cta }) 
           .map((a) => `<link rel="alternate" hreflang="${a.lang}" href="${SITE_URL}${a.path}">`)
           .join('\n  ') + `\n  <link rel="alternate" hreflang="x-default" href="${SITE_URL}${alternates[0].path}">`
       : '';
+  // Seletor PT | EN: o idioma atual em destaque e o outro como link (português sempre primeiro).
+  const code = (lang) => lang.slice(0, 2).toUpperCase();
   const langTag = langLink
-    ? `<a class="lang" href="${langLink.path}" hreflang="${langLink.lang}" lang="${langLink.lang}" aria-label="${esc(c.ui.langSwitchLabel)}">${esc(c.ui.langSwitch)}</a>`
+    ? `<div class="lang-switch" role="group" aria-label="${esc(c.ui.langGroupLabel)}">${[
+        { lang: c.lang, html: `<span class="lang-switch__item is-current" aria-current="true">${code(c.lang)}</span>` },
+        {
+          lang: langLink.lang,
+          html: `<a class="lang-switch__item" href="${langLink.path}" hreflang="${langLink.lang}" lang="${langLink.lang}" aria-label="${esc(c.ui.langSwitchLabel)}">${code(langLink.lang)}</a>`,
+        },
+      ]
+        .sort((a, b) => (a.lang.startsWith('pt') ? -1 : b.lang.startsWith('pt') ? 1 : 0))
+        .map((x) => x.html)
+        .join('')}</div>`
     : '';
 
   const jsonLd = {

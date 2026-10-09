@@ -14,6 +14,7 @@ export default {
     close: 'Fechar',
     langSwitch: 'EN',
     langSwitchLabel: 'Read in English',
+    langGroupLabel: 'Idioma',
     schedule: 'Agendar uma conversa',
     scheduleShort: 'Agendar',
     whatsappMessage: 'Olá! Vim pelo site da Oika Data e quero entender como vocês podem ajudar com os dados da minha empresa.',

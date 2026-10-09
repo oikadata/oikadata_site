@@ -11,6 +11,7 @@ export default {
     close: 'Close',
     langSwitch: 'PT',
     langSwitchLabel: 'Ler em português',
+    langGroupLabel: 'Language',
     schedule: 'Book a call',
     scheduleShort: 'Book a call',
     whatsappMessage: 'Hi! I found Oika Data on your website and would like to understand how you can help with my company’s data.',
@@ -35,6 +36,7 @@ export default {
     or: 'or write to',
   },
   footer: {
+    privacy: { label: 'Privacy Policy (in Portuguese)', href: '/privacidade/' },
     whatsapp: 'WhatsApp',
     slogan: 'where data makes sense',
   },

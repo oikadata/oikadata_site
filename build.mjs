@@ -20,7 +20,7 @@ import { layout } from './src/layout.mjs';
 import { asset, logo } from './src/lib.mjs';
 
 // Idiomas publicados. O português é o oficial; adicione 'en' quando a tradução for revisada.
-const LANGS = ['pt'];
+const LANGS = ['pt', 'en'];
 
 const ROOT = dirname(fileURLToPath(import.meta.url));
 const DIST = join(ROOT, 'dist');
@@ -82,14 +82,15 @@ for (const pg of pages) {
     const c = ALL[l];
     const p = c.pages[pg.id];
     if (!p) throw new Error(`Falta o conteúdo de "${pg.id}" em src/content/${l}.mjs (pages.${pg.id})`);
-    const other = pgLangs.find((x) => x !== l);
+    // Botão de idioma: leva à mesma página no outro idioma; se ela só existe neste, à home do outro.
+    const other = langs.find((x) => x !== l);
     const path = pathOf(pg, l);
     const html = layout({
       c,
       meta: { ...p.meta, noindex: pg.noindex },
       path,
       alternates,
-      langLink: other ? { lang: ALL[other].lang, path: pathOf(pg, other) } : null,
+      langLink: other ? { lang: ALL[other].lang, path: pgLangs.includes(other) ? pathOf(pg, other) : ALL[other].path } : null,
       nav: navFor(l, pg),
       body: pg.render(p, c),
       cta: pg.cta !== false,

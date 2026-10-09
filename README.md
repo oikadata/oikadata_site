@@ -99,13 +99,11 @@ Abra http://localhost:4321/raio-x/. O terminal da API mostra cada autosave e a c
 
 **Ainda não feito (próxima etapa, n8n):** observações geradas por IA (hoje a página usa as pré-escritas da biblioteca), e-mail com o resultado, contato no HubSpot e fila de revisão. Captcha invisível também fica para depois; hoje a proteção é honeypot, validação no servidor e limite de 10 envios por IP por hora.
 
-## Publicar a versão em inglês
+## Versão em inglês
 
-1. Revise `src/content/en.mjs`.
-2. Em `build.mjs`, troque `const LANGS = ['pt']` por `const LANGS = ['pt', 'en']`.
-3. O site passa a ter `/en/`, o botão PT/EN no topo e as tags `hreflang`.
+O site é publicado em português (`/`) e inglês (`/en/`), com o seletor PT | EN no topo. Ao editar um texto em `src/content/pt.mjs`, atualize o mesmo trecho em `src/content/en.mjs`.
 
-Para revisar o inglês localmente antes de publicar: `node build.mjs --all` e abra http://localhost:4321/en/.
+Páginas só em português (`langs: ['pt']`, como o Raio-X e a Política de Privacidade) ficam fora do menu em inglês; nelas, o EN leva para a home em inglês.
 
 ## Deploy (GitHub Pages)
 
