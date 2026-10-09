@@ -323,39 +323,37 @@ a:hover { color: var(--primary-light); }
   background: var(--white); border-radius: 12px; box-shadow: 0 18px 48px rgba(23, 16, 30, 0.14);
 }
 
-/* Ambiente único: fontes → base única → quem usa. No celular, de cima para baixo. */
-.pillar__art > .vis-hub { max-width: 600px; }
-.vis-hub { display: grid; gap: 10px; justify-items: center; }
-.vis-hub__col { display: grid; gap: 8px; justify-items: center; }
-.vis-hub__cap { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-2); }
-.vis-hub__list { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
-.vis-hub__list li {
-  display: flex; align-items: center; gap: 8px; padding: 8px 12px; border-radius: 999px;
-  background: var(--white); font-weight: 500; font-size: 13px; white-space: nowrap;
+/* Ambiente único: o que a empresa usa (em cima), o ambiente (meio) e as áreas integradas (embaixo). */
+.pillar__art > .vis-hub { max-width: 520px; }
+.vis-hub { display: grid; gap: 0; }
+.vis-hub__uses { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+.vis-hub__uses li {
+  display: grid; place-items: center; padding: 11px 8px; border-radius: 999px;
+  background: var(--ink); color: var(--on-dark); font-weight: 500; font-size: 14px; white-space: nowrap;
 }
-.vis-hub__list li::before { content: ''; width: 12px; height: 5px; border-radius: 3px; background: var(--band-2); flex: none; }
-.vis-hub__list li:nth-child(2)::before { background: var(--band-1); }
-.vis-hub__list li:nth-child(3)::before { background: var(--primary); }
-.vis-hub__list li:nth-child(4)::before { background: var(--band-4); }
-.vis-hub__col--out .vis-hub__list li { background: var(--ink); color: var(--on-dark); }
-.vis-hub__col--out .vis-hub__list li::before { background: var(--primary-light); }
-.vis-hub__col--in::after, .vis-hub__core::after { content: '↓'; color: var(--primary); font-size: 18px; line-height: 1; }
-.vis-hub__core::after { position: absolute; left: 50%; bottom: -24px; transform: translateX(-50%); }
-.vis-hub__lines { display: none; }
-.vis-hub__lines path { fill: none; stroke: var(--band-2); stroke-width: 2; vector-effect: non-scaling-stroke; }
-.vis-hub__core { position: relative; display: grid; gap: 4px; padding: 18px 20px; margin-bottom: 18px; text-align: center; justify-items: center; }
-.vis-hub__symbol { width: 30px; height: auto; margin-bottom: 8px; }
-.vis-hub__label { font-size: 11px; font-weight: 500; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-3); }
-.vis-hub__value { font-size: clamp(22px, 2.6vw, 28px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.1; }
-.vis-hub__note { font-size: 12px; font-weight: 500; color: var(--primary); }
-@media (min-width: 640px) {
-  .vis-hub { grid-template-columns: auto 32px minmax(0, 1fr) 32px auto; align-items: stretch; gap: 0; justify-items: stretch; }
-  .vis-hub__col { justify-items: stretch; align-content: start; }
-  .vis-hub__col--in::after, .vis-hub__core::after { content: none; }
-  .vis-hub__cap { text-align: center; }
-  .vis-hub__list { display: grid; grid-auto-rows: 40px; gap: 8px; }
-  .vis-hub__lines { display: block; width: 100%; height: 100%; }
-  .vis-hub__core { align-self: center; margin: 22px 0 0; padding: 18px 14px; }
+.vis-hub__ticks { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); height: 30px; align-items: center; }
+.vis-hub__ticks i { justify-self: center; width: 2px; height: 14px; border-radius: 1px; background: var(--band-2); }
+.vis-hub__ticks i:nth-child(n + 3) { display: none; }
+.vis-hub__core {
+  display: flex; align-items: center; gap: 16px; padding: 22px 24px; border-radius: 14px;
+}
+.vis-hub__symbol { width: 40px; height: auto; flex: none; }
+.vis-hub__name { font-size: 20px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.2; }
+.vis-hub__note { font-size: 14px; font-weight: 500; color: var(--primary); }
+.vis-hub__areas { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.vis-hub__areas li {
+  padding: 9px 16px; border-radius: 999px; background: var(--white); font-weight: 500; font-size: 14px; white-space: nowrap;
+}
+.vis-hub__areas .vis-hub__more { background: transparent; border: 1.5px dashed var(--band-2); color: var(--ink-2); }
+@media (min-width: 520px) {
+  .vis-hub__uses, .vis-hub__ticks { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .vis-hub__ticks i:nth-child(n + 3) { display: block; }
+  .vis-hub__uses li { font-size: 14px; padding: 13px 6px; }
+  .vis-hub__ticks { height: 40px; }
+  .vis-hub__ticks i { height: 18px; }
+  .vis-hub__core { padding: 26px 28px; gap: 20px; }
+  .vis-hub__name { font-size: 22px; }
+  .vis-hub__areas li { font-size: 15px; padding: 10px 18px; }
 }
 
 /* IA com contexto */

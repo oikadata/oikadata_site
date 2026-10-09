@@ -117,21 +117,21 @@ export default {
       q5_integracao: {
         title: 'Hoje, os dados dos diferentes sistemas e áreas da empresa estão integrados?',
         options: {
-          nao: 'Não: cada sistema ou área tem os seus',
+          nao: 'Não, cada sistema ou área tem os seus',
           manual: 'Juntamos manualmente, em planilhas',
           parcial: 'Parte está integrada, parte não',
-          sim: 'Sim: está tudo integrado numa base central',
+          sim: 'Sim, está tudo integrado numa base central',
         },
       },
       q6_consistencia: {
         title: 'Quando duas áreas trazem o mesmo número (ex.: faturamento do mês), eles batem?',
-        options: { quase_nunca: 'Quase nunca', as_vezes: 'Às vezes', quase_sempre: 'Quase sempre', sempre: 'Sempre: existe uma fonte oficial' },
+        options: { quase_nunca: 'Quase nunca', as_vezes: 'Às vezes', quase_sempre: 'Quase sempre', sempre: 'Sempre, existe uma fonte oficial' },
       },
       q12_cultura: {
         title: 'A empresa tem reuniões recorrentes para analisar os números com as áreas?',
         help: 'Pense em rotinas como reunião de resultados, de vendas ou de indicadores.',
         options: {
-          nao: 'Não: os números aparecem quando alguém pede',
+          nao: 'Não, os números aparecem quando alguém pede',
           irregular: 'Às vezes, sem rotina definida',
           mensal: 'Sim, uma vez por mês',
           semanal: 'Sim, toda semana ou com mais frequência',

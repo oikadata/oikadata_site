@@ -76,17 +76,15 @@ export default {
         pillars: [
           {
             tag: 'One environment',
-            title: 'Your whole company in one place',
-            text: 'Sales, finance, marketing and operations integrated in a single foundation, with your business rules. And everything the company uses runs on it: dashboards, AI, CRM and teams. No more arguing about which number is right.',
+            title: 'Every area. One environment.',
+            text: 'Finance, sales, marketing, operations and logistics integrated in one environment, with your business rules. Dashboards, apps, models and AI all run on it.',
             visual: {
               type: 'hub',
-              sourcesLabel: 'Sources',
-              sources: ['Sales', 'Finance', 'Marketing', 'Operations'],
-              consumersLabel: 'Used by',
-              consumers: ['Dashboards', 'AI', 'CRM', 'Teams'],
-              label: 'September revenue',
-              value: '$1.24M',
-              note: 'The same number everywhere',
+              uses: ['Dashboards', 'Apps', 'Models', 'AI'],
+              name: 'Oika environment',
+              note: 'Integrated, with your business rules',
+              areas: ['Finance', 'Sales', 'Marketing', 'Operations', 'Logistics'],
+              more: '+ others',
             },
           },
           {

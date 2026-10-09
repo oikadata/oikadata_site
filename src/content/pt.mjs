@@ -83,17 +83,15 @@ export default {
         pillars: [
           {
             tag: 'Ambiente único',
-            title: 'Toda a empresa num lugar só',
-            text: 'Vendas, financeiro, marketing e operação integrados numa base só, com as regras do seu negócio. E tudo o que a empresa usa sai dali: dashboards, IA, CRM e as equipes. Acaba a discussão sobre qual número está certo.',
+            title: 'Todas as áreas. Um só ambiente.',
+            text: 'Financeiro, vendas, marketing, operações e logística integrados num só ambiente, com as regras do seu negócio. Dashboards, aplicações, modelos e IA funcionam todos nele.',
             visual: {
               type: 'hub',
-              sourcesLabel: 'Fontes',
-              sources: ['Vendas', 'Financeiro', 'Marketing', 'Operação'],
-              consumersLabel: 'Quem usa',
-              consumers: ['Dashboards', 'IA', 'CRM', 'Equipes'],
-              label: 'Receita de setembro',
-              value: 'R$ 1,24 mi',
-              note: 'O mesmo número em todo lugar',
+              uses: ['Dashboards', 'Aplicações', 'Modelos', 'IA'],
+              name: 'Ambiente Oika',
+              note: 'Integrado, com as regras do seu negócio',
+              areas: ['Financeiro', 'Vendas', 'Marketing', 'Operações', 'Logística'],
+              more: '+ outras',
             },
           },
           {

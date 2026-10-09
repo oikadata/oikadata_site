@@ -7,28 +7,19 @@ import { ARROW, ARROW_RIGHT, SYMBOL_LIGHT, esc, scheduleButton, sectionHead, sym
 // o texto ao lado já diz tudo. Os textos de exemplo ficam em `value.pillars[].visual` no conteúdo.
 
 const visuals = {
-  // As áreas entram numa base única, e tudo o que a empresa usa sai dela.
+  // O que a empresa usa (em cima) roda sobre o ambiente único, que integra as áreas (embaixo).
   hub: (v) => `<div class="vis-hub">
-            <div class="vis-hub__col vis-hub__col--in">
-              <p class="vis-hub__cap">${esc(v.sourcesLabel)}</p>
-              <ul class="vis-hub__list">${v.sources.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
-            </div>
-            <svg class="vis-hub__lines" viewBox="0 0 40 200" preserveAspectRatio="none" focusable="false">
-              ${[44, 92, 140, 188].map((y) => `<path d="M0 ${y} C 24 ${y}, 16 116, 40 116"/>`).join('')}
-            </svg>
+            <ul class="vis-hub__uses">${v.uses.map((u) => `<li>${esc(u)}</li>`).join('')}</ul>
+            <div class="vis-hub__ticks">${v.uses.map(() => '<i></i>').join('')}</div>
             <div class="vis-hub__core">
               ${symbol(SYMBOL_LIGHT, 'vis-hub__symbol')}
-              <p class="vis-hub__label">${esc(v.label)}</p>
-              <p class="vis-hub__value">${esc(v.value)}</p>
-              <p class="vis-hub__note">${esc(v.note)}</p>
+              <div>
+                <p class="vis-hub__name">${esc(v.name)}</p>
+                <p class="vis-hub__note">${esc(v.note)}</p>
+              </div>
             </div>
-            <svg class="vis-hub__lines" viewBox="0 0 40 200" preserveAspectRatio="none" focusable="false">
-              ${[44, 92, 140, 188].map((y) => `<path d="M0 116 C 24 116, 16 ${y}, 40 ${y}"/>`).join('')}
-            </svg>
-            <div class="vis-hub__col vis-hub__col--out">
-              <p class="vis-hub__cap">${esc(v.consumersLabel)}</p>
-              <ul class="vis-hub__list">${v.consumers.map((s) => `<li>${esc(s)}</li>`).join('')}</ul>
-            </div>
+            <div class="vis-hub__ticks">${v.uses.map(() => '<i></i>').join('')}</div>
+            <ul class="vis-hub__areas">${v.areas.map((a) => `<li>${esc(a)}</li>`).join('')}<li class="vis-hub__more">${esc(v.more)}</li></ul>
           </div>`,
 
   // Pergunta em linguagem natural e resposta com os números da empresa.
