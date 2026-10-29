@@ -71,6 +71,8 @@ const visuals = {
           </div>`,
 };
 
+const CLOCK = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></g></svg>`;
+
 export default {
   id: 'home',
   slug: '',
@@ -80,7 +82,7 @@ export default {
         <div class="hero__text">
           <h1 class="hero__title">${esc(p.hero.title)}</h1>
           <p class="hero__sub">${esc(p.hero.subtitle)}</p>
-          <p class="hero__support">${esc(p.hero.support)}</p>
+          <p class="hero__support">${CLOCK}<span>${esc(p.hero.support)}</span></p>
           <div class="hero__ctas">
             ${scheduleButton(p.hero.ctaPrimary, 'hero', 'btn--lg')}
             <a class="btn btn--ghost btn--lg" href="#entrega"><span>${esc(p.hero.ctaSecondary)}</span>${ARROW}</a>
