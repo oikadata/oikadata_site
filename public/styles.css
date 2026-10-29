@@ -229,7 +229,11 @@ a.lang-switch__item:hover { color: var(--primary); background: var(--surface); }
   letter-spacing: -0.01em;
   max-width: 34ch;
 }
-.hero__support { margin-top: 14px; color: var(--ink-2); max-width: 46ch; }
+.hero__support {
+  display: inline-flex; align-items: center; gap: 10px; margin-top: 24px; padding: 8px 16px 8px 12px;
+  border-radius: 999px; background: var(--surface); color: var(--primary); font-size: 17px; font-weight: 500;
+}
+.hero__support .icon { width: 20px; height: 20px; flex: none; }
 .hero__ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
 .hero__art { display: none; }
 
