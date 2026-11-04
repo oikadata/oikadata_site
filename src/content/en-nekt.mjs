@@ -8,7 +8,7 @@ export default {
     },
     hero: {
       partnership: 'Oika and Nekt partnership',
-      tag: 'Nekt Black Friday · By referral',
+      tag: 'Nekt Black Friday · Until Nov 30',
       title: 'Sign up in Nekt’s Black Friday and get 1 month of Oika consulting',
       subtitle: 'We set up your Nekt workspace and deliver the first use case with you. You finish the month with integrated data and a result on the table.',
       facts: [
@@ -16,8 +16,8 @@ export default {
         { value: '1st use', label: 'case delivered' },
         { value: '3 spots', label: 'in this first round' },
       ],
-      cta: 'Book the kickoff call',
-      note: 'Exclusive to companies referred by Nekt.',
+      cta: 'Message Oika on WhatsApp',
+      note: 'Exclusive to companies referred by Nekt, valid until Nov 30.',
     },
     included: {
       label: 'What’s included',
@@ -33,7 +33,7 @@ export default {
       label: 'How it works',
       title: 'Four steps, no red tape',
       steps: [
-        { title: 'Sign up in Nekt’s Black Friday', text: 'The offer is for new customers of the campaign.' },
+        { title: 'Sign up in Nekt’s Black Friday', text: 'The offer is for new customers of the campaign, until Nov 30.' },
         { title: 'Get referred', text: 'Nekt refers the companies that join this round.' },
         { title: 'Kickoff call', text: '30 minutes to understand where you are and pick the use case.' },
         { title: 'First result', text: 'Within 30 days, the workspace is live and the use case delivered.' },
@@ -57,7 +57,7 @@ export default {
     rules: {
       title: 'Terms',
       items: [
-        'Valid for new customers who sign up in Nekt’s Black Friday.',
+        'Valid for new customers who sign up in Nekt’s Black Friday by November 30, 2026.',
         'By Nekt referral only, no open sign-up.',
         'Up to 3 companies in this first round.',
         'One month of Oika consulting, focused on setting up the workspace and delivering one use case.',
@@ -66,8 +66,9 @@ export default {
     },
     final: {
       title: 'Was your company referred? Let’s get started',
-      subtitle: 'Book the kickoff call and leave with your use case chosen.',
-      cta: 'Book the kickoff call',
+      subtitle: 'Message us on WhatsApp to set up the kickoff call and leave with your use case chosen.',
+      cta: 'Message Oika on WhatsApp',
     },
+    whatsappMessage: 'Hi! I signed up in Nekt’s Black Friday and want to start the month of Oika consulting.',
   },
 };
