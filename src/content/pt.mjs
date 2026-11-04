@@ -1,6 +1,7 @@
 // Conteúdo oficial do site (português). Fonte: Deck Comercial/site-conteudo.md.
 // Para editar um texto, altere aqui e rode `node build.mjs`.
 
+import nekt from './pt-nekt.mjs';
 import privacidade from './pt-privacidade.mjs';
 import raioX from './pt-raio-x.mjs';
 
@@ -46,6 +47,7 @@ export default {
   },
   pages: {
     ...raioX,
+    ...nekt,
     ...privacidade,
     home: {
       meta: {
