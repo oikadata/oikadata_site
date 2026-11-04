@@ -5,10 +5,11 @@
 // e noindex: true (fora do Google e do sitemap).
 
 import home from './home.mjs';
+import nekt from './nekt.mjs';
 import planos from './planos.mjs';
 import porque from './porque.mjs';
 import privacidade from './privacidade.mjs';
 import raioX from './raio-x.mjs';
 import raioXResultado from './raio-x-resultado.mjs';
 
-export default [home, planos, porque, raioX, raioXResultado, privacidade];
+export default [home, planos, porque, raioX, raioXResultado, privacidade, nekt];

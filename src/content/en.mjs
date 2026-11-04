@@ -1,6 +1,7 @@
 // English content. Draft translation of pt.mjs: review before publishing.
 // To publish, add 'en' to LANGS in build.mjs.
 
+import nekt from './en-nekt.mjs';
 import raioX from './en-raio-x.mjs';
 
 export default {
@@ -45,6 +46,7 @@ export default {
   },
   pages: {
     ...raioX,
+    ...nekt,
     home: {
       meta: {
         ogTitle: 'The shortest path from your data to results',
