@@ -952,9 +952,6 @@ textarea.rx-input { resize: vertical; min-height: 64px; }
 @media (min-width: 720px) { .bf-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1040px) { .bf-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; } }
 
-.bf-ideas { display: grid; gap: 10px; }
-.bf-ideas li { position: relative; padding-left: 22px; color: var(--ink-2); font-size: 16px; line-height: 1.5; }
-.bf-ideas li::before { content: ''; position: absolute; left: 0; top: 0.6em; width: 10px; height: 4px; border-radius: 2px; background: var(--band-2); }
 
 .bf-rules { display: grid; gap: 20px; padding: 28px; border: 1px solid rgba(23, 16, 30, 0.14); border-radius: var(--radius); }
 .bf-rules__title { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }

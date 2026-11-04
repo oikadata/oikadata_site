@@ -67,23 +67,6 @@ export default {
       </div>
     </section>
 
-    <section class="section">
-      <div class="container">
-        <header class="section__head">
-          <p class="label">${esc(p.segments.label)}</p>
-          <h2 class="section__title">${esc(p.segments.title)}</h2>
-          <p class="section__sub">${esc(p.segments.subtitle)}</p>
-        </header>
-        <div class="cards--2">
-          ${p.segments.items
-            .map(
-              (s) => `<article class="card"><h3 class="card__title">${esc(s.name)}</h3><ul class="bf-ideas">${s.ideas.map((x) => `<li>${esc(x)}</li>`).join('')}</ul></article>`
-            )
-            .join('\n          ')}
-        </div>
-      </div>
-    </section>
-
     <section class="section section--tight">
       <div class="container">
         <div class="bf-rules">

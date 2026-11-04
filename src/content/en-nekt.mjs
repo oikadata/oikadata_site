@@ -39,21 +39,6 @@ export default {
         { title: 'First result', text: 'Within 30 days, the workspace is live and the use case delivered.' },
       ],
     },
-    segments: {
-      label: 'Who it’s for',
-      title: 'Priority for real estate and education',
-      subtitle: 'Sectors where we already have experience. A few first use case ideas:',
-      items: [
-        {
-          name: 'Real estate',
-          ideas: ['Sales funnel, from lead to signed contract', 'Gross sales value, inventory and sales velocity by project', 'Delinquency and receivables flow'],
-        },
-        {
-          name: 'Education',
-          ideas: ['Student acquisition and enrollment by channel and campaign', 'Dropout and student retention', 'Revenue, delinquency and ticket by course'],
-        },
-      ],
-    },
     rules: {
       title: 'Terms',
       items: [

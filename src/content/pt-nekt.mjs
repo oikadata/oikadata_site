@@ -39,21 +39,6 @@ export default {
         { title: 'Primeiro resultado', text: 'Em até 30 dias, workspace no ar e o caso de uso entregue.' },
       ],
     },
-    segments: {
-      label: 'Para quem',
-      title: 'Preferência para mercado imobiliário e educação',
-      subtitle: 'São setores em que já temos experiência. Alguns exemplos de primeiro caso de uso:',
-      items: [
-        {
-          name: 'Mercado imobiliário',
-          ideas: ['Funil de vendas, do lead à assinatura', 'VGV, estoque e velocidade de vendas por empreendimento', 'Inadimplência e fluxo de recebíveis'],
-        },
-        {
-          name: 'Educação',
-          ideas: ['Captação e matrícula por canal e campanha', 'Evasão e retenção de alunos', 'Receita, inadimplência e ticket por curso'],
-        },
-      ],
-    },
     rules: {
       title: 'Condições',
       items: [
