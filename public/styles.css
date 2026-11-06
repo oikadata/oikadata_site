@@ -967,6 +967,8 @@ textarea.rx-input { resize: vertical; min-height: 64px; }
 .bf-why__gains span { color: var(--ink-2); font-size: 16px; line-height: 1.55; }
 @media (min-width: 860px) { .bf-why__gains { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; } }
 .bf-about .base { margin-top: 8px; }
+@media (min-width: 760px) { .bf-about .base { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1040px) { .bf-about .base { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
 
 .bf-price { display: grid; gap: 32px; padding: 32px 28px; background: var(--ink); color: var(--on-dark); border-radius: var(--radius); }
 .bf-price__intro { display: grid; gap: 14px; align-content: start; }

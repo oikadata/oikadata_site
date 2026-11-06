@@ -34,9 +34,10 @@ export default {
       title: 'O time de dados para empresas que querem decidir melhor',
       subtitle: 'Criar valor com dados vai muito além de ter a ferramenta. É saber modelar os dados com as regras do negócio, validar cada número, preparar o dado para ser consultado com qualidade e medir o resultado. É isso que um time de dados sênior traz, muito além da plataforma.',
       points: [
-        { title: 'Modelagem com as regras do negócio', text: 'Os dados organizados do jeito que a sua empresa decide, com uma definição só para cada número.' },
-        { title: 'Dados validados e prontos para consulta', text: 'Cada indicador conferido com as áreas, para dashboards e IA responderem com qualidade.' },
-        { title: 'Resultado medido', text: 'Cada entrega responde a uma pergunta do negócio e tem um resultado que dá para medir.' },
+        { title: 'Dados que viram decisão', text: 'Transformamos os seus dados em informação e insights para o negócio, com os números que cada área usa para decidir.' },
+        { title: 'IA que responde certo', text: 'Validamos se a IA consegue responder corretamente com os seus dados antes de ela chegar ao seu time.' },
+        { title: 'Painéis que o time usa', text: 'Experiência em BI e visualização de dados: dashboards claros, que se atualizam sozinhos.' },
+        { title: 'Casos de uso avançados', text: 'Dados aplicados a problemas reais, como propensão de churn, previsão de vendas e segmentação de clientes.' },
       ],
       link: 'Conhecer a Oika',
       href: '/',
