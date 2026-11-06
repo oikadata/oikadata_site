@@ -17,6 +17,7 @@ export default {
         { value: 'Vagas', label: 'limitadas nesta primeira turma' },
       ],
       cta: 'Falar com a Oika no WhatsApp',
+      commitment: 'Sem compromisso de continuar: depois do primeiro mês, você decide.',
       note: 'Oferta exclusiva para empresas indicadas pela Nekt, válida até 30/11.',
     },
     included: {
@@ -47,9 +48,9 @@ export default {
       title: 'Plataforma e time juntos, desde o primeiro dia',
       subtitle: 'A Nekt é a plataforma onde os dados vivem. A Oika é o time que transforma esses dados em resultado para o negócio.',
       options: [
-        { name: 'Só com a Nekt', text: 'A plataforma está pronta, mas o seu time ainda precisa aprender a usar, modelar e validar os dados e decidir o que construir primeiro.' },
+        { name: 'Só com a Nekt', text: 'A plataforma facilita muito, mas o seu time ainda precisa aprender a usar, conectar os dados, validar os resultados, criar visualizações e otimizar as respostas da IA, entre outras funções.' },
         { name: 'Só com a Oika', text: 'O time sabe o que fazer, mas antes do primeiro resultado ainda é preciso escolher e montar a plataforma.' },
-        { name: 'Nekt + Oika', text: 'A plataforma da Nekt configurada por quem já fez isso antes, com o primeiro caso de uso entregue em 30 dias.' },
+        { name: 'Nekt + Oika', text: 'A plataforma da Nekt configurada por quem já fez isso diversas vezes, com velocidade, boas práticas e gerando valor em menos de 30 dias.' },
       ],
       gains: [
         { title: 'Valor no primeiro mês', text: 'Você não espera o time aprender a ferramenta para ver o primeiro resultado.' },
@@ -73,8 +74,9 @@ export default {
       from: 'Planos a partir de',
       price: 'R$ 6.000',
       per: 'por mês de consultoria',
-      text: 'O valor final depende da complexidade da sua operação: quantas fontes de dados, quantas áreas e quantos casos de uso entram no plano. Fale com o nosso time para montar o plano certo para a sua empresa.',
+      text: 'O valor final depende da complexidade e da velocidade do seu avanço nos dados: quantas áreas vão ser atendidas, qual ferramenta de visualização de dados e quais casos de uso. Fale com o nosso time para montar o plano certo para a sua empresa.',
       cta: 'Consultar o nosso time',
+      commitment: 'Sem compromisso: você só segue com a Oika se fizer sentido.',
     },
     rules: {
       title: 'Condições',
@@ -82,7 +84,7 @@ export default {
         'Válido para novos clientes que fecharem a Black Friday da Nekt até 30 de novembro de 2026.',
         'Participação por indicação da Nekt, sem inscrição aberta.',
         'Vagas limitadas nesta primeira turma.',
-        'Um mês de consultoria da Oika, focado em iniciar o workspace e entregar um caso de uso.',
+        'Um mês de consultoria da Oika, focado em iniciar o workspace, conectar as principais fontes de dados e entregar um caso de uso, com acesso via IA e BI.',
         'Sem compromisso de continuidade com a Oika depois do mês.',
       ],
     },

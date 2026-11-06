@@ -10,6 +10,8 @@ const nektMark = `<img class="bf-nekt" src="${asset('/img/nekt-white.png')}" alt
 
 const WA_ICON = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="currentColor" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.2-.4.2-.4.7-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.7.3-.2.3-.9.9-.9 2.2s1 2.6 1.1 2.7c.1.2 1.9 2.9 4.6 4 1.7.7 2.4.8 3.2.7.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.2-1.2-.1-.1-.3-.2-.5-.3Z"/></svg>`;
 
+const CHECK = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" d="m5 12.5 4.5 4.5L19 7.5"/></svg>`;
+
 // Botão principal: WhatsApp com mensagem pronta, para sabermos que veio da parceria.
 const waButton = (label, message, place) =>
   `<a class="btn btn--primary btn--lg" href="${WHATSAPP}?text=${encodeURIComponent(message)}" target="_blank" rel="noopener" ${track('whatsapp', place)}>${WA_ICON}<span>${esc(label)}</span></a>`;
@@ -33,6 +35,7 @@ export default {
         </ul>
         <div class="bf-hero__actions">
           ${waButton(p.hero.cta, p.whatsappMessage, 'nekt-hero')}
+          <p class="bf-free">${CHECK}<span>${esc(p.hero.commitment)}</span></p>
           <p class="bf-hero__note">${esc(p.hero.note)}</p>
         </div>
       </div>
@@ -114,6 +117,7 @@ export default {
             <p class="bf-price__value">${esc(p.pricing.price)}</p>
             <p class="bf-price__per">${esc(p.pricing.per)}</p>
             ${waButton(p.pricing.cta, p.whatsappMessage, 'nekt-planos')}
+            <p class="bf-free bf-free--box">${CHECK}<span>${esc(p.pricing.commitment)}</span></p>
           </div>
         </div>
       </div>

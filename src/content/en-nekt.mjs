@@ -17,6 +17,7 @@ export default {
         { value: 'Limited', label: 'spots in this first round' },
       ],
       cta: 'Message Oika on WhatsApp',
+      commitment: 'No commitment to continue: after the first month, you decide.',
       note: 'Exclusive to companies referred by Nekt, valid until Nov 30.',
     },
     included: {
@@ -47,9 +48,9 @@ export default {
       title: 'Platform and team together, from day one',
       subtitle: 'Nekt is the platform where your data lives. Oika is the team that turns that data into business results.',
       options: [
-        { name: 'Nekt only', text: 'The platform is ready, but your team still has to learn it, model and validate the data and decide what to build first.' },
+        { name: 'Nekt only', text: 'The platform makes things much easier, but your team still has to learn it, connect the data, validate the results, build visualizations and tune the AI’s answers, among other tasks.' },
         { name: 'Oika only', text: 'The team knows what to do, but before the first result you still have to choose and set up a platform.' },
-        { name: 'Nekt + Oika', text: 'Nekt’s platform set up by people who have done it before, with the first use case delivered in 30 days.' },
+        { name: 'Nekt + Oika', text: 'Nekt’s platform set up by people who have done it many times, with speed, best practices and value in less than 30 days.' },
       ],
       gains: [
         { title: 'Value in the first month', text: 'You don’t wait for your team to learn the tool to see the first result.' },
@@ -73,8 +74,9 @@ export default {
       from: 'Plans from',
       price: 'R$ 6,000',
       per: 'per month of consulting',
-      text: 'The final price depends on how complex your operation is: how many data sources, teams and use cases the plan covers. Talk to our team to build the right plan for your company.',
+      text: 'The final price depends on the complexity and pace of your progress with data: how many teams will be served, which data visualization tool and which use cases. Talk to our team to build the right plan for your company.',
       cta: 'Talk to our team',
+      commitment: 'No commitment: you only continue with Oika if it makes sense.',
     },
     rules: {
       title: 'Terms',
@@ -82,7 +84,7 @@ export default {
         'Valid for new customers who sign up in Nekt’s Black Friday by November 30, 2026.',
         'By Nekt referral only, no open sign-up.',
         'Limited spots in this first round.',
-        'One month of Oika consulting, focused on setting up the workspace and delivering one use case.',
+        'One month of Oika consulting, focused on setting up the workspace, connecting the main data sources and delivering one use case, with access through AI and BI.',
         'No commitment to continue with Oika after the month.',
       ],
     },
