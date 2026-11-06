@@ -980,6 +980,10 @@ textarea.rx-input { resize: vertical; min-height: 64px; }
 .bf-price__per { color: var(--on-dark-2); font-size: 16px; margin-bottom: 20px; }
 @media (min-width: 900px) { .bf-price { grid-template-columns: 1.3fr 1fr; gap: 48px; padding: 48px; } }
 
+.bf-free { display: inline-flex; align-items: center; gap: 10px; padding: 10px 16px; border-radius: 999px; background: rgba(211, 174, 238, 0.14); color: var(--white); font-size: 16px; font-weight: 500; line-height: 1.35; }
+.bf-free .icon { color: var(--band-1); }
+.bf-free--box { margin-top: 16px; border-radius: var(--radius); font-size: 15px; }
+
 .bf-rules { display: grid; gap: 20px; padding: 28px; border: 1px solid rgba(23, 16, 30, 0.14); border-radius: var(--radius); }
 .bf-rules__title { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
 .bf-rules ul { display: grid; gap: 10px; }
