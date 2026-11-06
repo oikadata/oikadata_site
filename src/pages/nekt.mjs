@@ -101,6 +101,24 @@ export default {
       </div>
     </section>
 
+    <section class="section">
+      <div class="container">
+        <div class="bf-price">
+          <div class="bf-price__intro">
+            <p class="label label--dark">${esc(p.pricing.label)}</p>
+            <h2 class="bf-price__title">${esc(p.pricing.title)}</h2>
+            <p class="bf-price__text">${esc(p.pricing.text)}</p>
+          </div>
+          <div class="bf-price__box">
+            <p class="bf-price__from">${esc(p.pricing.from)}</p>
+            <p class="bf-price__value">${esc(p.pricing.price)}</p>
+            <p class="bf-price__per">${esc(p.pricing.per)}</p>
+            ${waButton(p.pricing.cta, p.whatsappMessage, 'nekt-planos')}
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section section--tight">
       <div class="container">
         <div class="bf-rules">

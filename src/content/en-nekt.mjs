@@ -14,7 +14,7 @@ export default {
       facts: [
         { value: '1 month', label: 'of Oika consulting' },
         { value: '1st use', label: 'case delivered' },
-        { value: '3 spots', label: 'in this first round' },
+        { value: 'Limited', label: 'spots in this first round' },
       ],
       cta: 'Message Oika on WhatsApp',
       note: 'Exclusive to companies referred by Nekt, valid until Nov 30.',
@@ -31,12 +31,12 @@ export default {
     },
     about: {
       label: 'Who Oika is',
-      title: 'A data and AI hub for companies that want to make better decisions',
-      subtitle: 'Oika Data integrates and organizes a company’s data and delivers what each team needs to decide: dashboards, models and AI with business context. The first result comes within 30 days.',
+      title: 'The data team for companies that want to make better decisions',
+      subtitle: 'Creating value with data goes far beyond having the tool. It means knowing how to model data around your business rules, validate every number, prepare the data so it can be queried with quality, and measure the result. That is what a senior data team brings, far beyond the platform.',
       points: [
-        { title: 'Senior team', text: 'Engineering, modeling, BI and strategy, without you having to hire.' },
-        { title: 'AI agents', text: 'They work alongside the team and speed up every delivery.' },
-        { title: 'Focused on results', text: 'Every delivery answers a business question and has a measurable result.' },
+        { title: 'Modeling around your business rules', text: 'Data organized the way your company makes decisions, with a single definition for each number.' },
+        { title: 'Validated, query-ready data', text: 'Every metric checked with the teams, so dashboards and AI answer with quality.' },
+        { title: 'Measured results', text: 'Every delivery answers a business question and has a measurable result.' },
       ],
       link: 'Get to know Oika',
       href: '/en/',
@@ -46,8 +46,8 @@ export default {
       title: 'Platform and team together, from day one',
       subtitle: 'Nekt is the platform where your data lives. Oika is the team that turns that data into business results.',
       options: [
-        { name: 'Platform only', text: 'The tool is ready, but your team still has to learn it, model the data and decide what to build first.' },
-        { name: 'Consulting only', text: 'Before the first result, you have to choose, buy and set up a platform. That takes months.' },
+        { name: 'Nekt only', text: 'The platform is ready, but your team still has to learn it, model and validate the data and decide what to build first.' },
+        { name: 'Oika only', text: 'The team knows what to do, but before the first result you still have to choose and set up a platform.' },
         { name: 'Nekt + Oika', text: 'Nekt’s platform set up by people who have done it before, with the first use case delivered in 30 days.' },
       ],
       gains: [
@@ -66,12 +66,21 @@ export default {
         { title: 'First result', text: 'Within 30 days, the workspace is live and the use case delivered.' },
       ],
     },
+    pricing: {
+      label: 'After the first month',
+      title: 'Keep going with Oika from the second month',
+      from: 'Plans from',
+      price: 'R$ 6,000',
+      per: 'per month of consulting',
+      text: 'The final price depends on how complex your operation is: how many data sources, teams and use cases the plan covers. Talk to our team to build the right plan for your company.',
+      cta: 'Talk to our team',
+    },
     rules: {
       title: 'Terms',
       items: [
         'Valid for new customers who sign up in Nekt’s Black Friday by November 30, 2026.',
         'By Nekt referral only, no open sign-up.',
-        'Up to 3 companies in this first round.',
+        'Limited spots in this first round.',
         'One month of Oika consulting, focused on setting up the workspace and delivering one use case.',
         'No commitment to continue with Oika after the month.',
       ],
