@@ -29,6 +29,33 @@ export default {
         { title: 'Senior Oika team', text: 'Engineering, modeling, BI and AI throughout the month, with documentation so the knowledge stays in your company.' },
       ],
     },
+    about: {
+      label: 'Who Oika is',
+      title: 'A data and AI hub for companies that want to make better decisions',
+      subtitle: 'Oika Data integrates and organizes a company’s data and delivers what each team needs to decide: dashboards, models and AI with business context. The first result comes within 30 days.',
+      points: [
+        { title: 'Senior team', text: 'Engineering, modeling, BI and strategy, without you having to hire.' },
+        { title: 'AI agents', text: 'They work alongside the team and speed up every delivery.' },
+        { title: 'Focused on results', text: 'Every delivery answers a business question and has a measurable result.' },
+      ],
+      link: 'Get to know Oika',
+      href: '/en/',
+    },
+    why: {
+      label: 'Why Oika + Nekt',
+      title: 'Platform and team together, from day one',
+      subtitle: 'Nekt is the platform where your data lives. Oika is the team that turns that data into business results.',
+      options: [
+        { name: 'Platform only', text: 'The tool is ready, but your team still has to learn it, model the data and decide what to build first.' },
+        { name: 'Consulting only', text: 'Before the first result, you have to choose, buy and set up a platform. That takes months.' },
+        { name: 'Nekt + Oika', text: 'Nekt’s platform set up by people who have done it before, with the first use case delivered in 30 days.' },
+      ],
+      gains: [
+        { title: 'Value in the first month', text: 'You don’t wait for your team to learn the tool to see the first result.' },
+        { title: 'A solid foundation from the start', text: 'Sources, layers and business rules organized to grow without rework.' },
+        { title: 'Knowledge that stays', text: 'Documentation and handover so your team can carry on alone, or with us.' },
+      ],
+    },
     how: {
       label: 'How it works',
       title: 'Four steps, no red tape',

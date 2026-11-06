@@ -29,6 +29,33 @@ export default {
         { title: 'Time sênior da Oika', text: 'Engenharia, modelagem, BI e IA durante o mês, com documentação para o conhecimento ficar na sua empresa.' },
       ],
     },
+    about: {
+      label: 'Quem é a Oika',
+      title: 'Um hub de dados e IA para empresas que querem decidir melhor',
+      subtitle: 'A Oika Data integra e organiza os dados da empresa e entrega o que cada área precisa para decidir: dashboards, modelos e IA com o contexto do negócio. O primeiro resultado sai em até 30 dias.',
+      points: [
+        { title: 'Time sênior', text: 'Engenharia, modelagem, BI e estratégia, sem você precisar contratar.' },
+        { title: 'Agentes de IA', text: 'Trabalham junto com o time e aceleram cada entrega.' },
+        { title: 'Foco no resultado', text: 'Cada entrega responde a uma pergunta do negócio e tem um resultado que dá para medir.' },
+      ],
+      link: 'Conhecer a Oika',
+      href: '/',
+    },
+    why: {
+      label: 'Por que Oika + Nekt',
+      title: 'Plataforma e time juntos, desde o primeiro dia',
+      subtitle: 'A Nekt é a plataforma onde os dados vivem. A Oika é o time que transforma esses dados em resultado para o negócio.',
+      options: [
+        { name: 'Só a plataforma', text: 'A ferramenta está pronta, mas o seu time ainda precisa aprender a usar, modelar os dados e decidir o que construir primeiro.' },
+        { name: 'Só a consultoria', text: 'Antes do primeiro resultado, é preciso escolher, contratar e montar a plataforma. Isso leva meses.' },
+        { name: 'Nekt + Oika', text: 'A plataforma da Nekt configurada por quem já fez isso antes, com o primeiro caso de uso entregue em 30 dias.' },
+      ],
+      gains: [
+        { title: 'Valor no primeiro mês', text: 'Você não espera o time aprender a ferramenta para ver o primeiro resultado.' },
+        { title: 'Base bem feita desde o início', text: 'Fontes, camadas e regras de negócio organizadas para crescer sem retrabalho.' },
+        { title: 'Conhecimento que fica', text: 'Documentação e repasse para o seu time seguir sozinho, ou com a gente.' },
+      ],
+    },
     how: {
       label: 'Como funciona',
       title: 'Quatro passos, sem burocracia',

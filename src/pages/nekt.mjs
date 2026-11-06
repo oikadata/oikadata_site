@@ -2,7 +2,7 @@
 // Fica fora do menu e do sitemap, com noindex: só chega quem recebe o link.
 // Conteúdo em `pages.nekt` de src/content/xx.mjs.
 
-import { asset, esc, logo, track } from '../lib.mjs';
+import { ARROW_RIGHT, asset, esc, logo, track } from '../lib.mjs';
 import { WHATSAPP } from '../site.mjs';
 
 // Logo da Nekt em versão clara (texto branco, ponto verde) para o fundo escuro.
@@ -52,6 +52,40 @@ export default {
             )
             .join('\n          ')}
         </div>
+      </div>
+    </section>
+
+    <section class="section section--tight">
+      <div class="container bf-about">
+        <header class="section__head">
+          <p class="label">${esc(p.about.label)}</p>
+          <h2 class="section__title">${esc(p.about.title)}</h2>
+          <p class="section__sub">${esc(p.about.subtitle)}</p>
+        </header>
+        <ul class="base">
+          ${p.about.points.map((x) => `<li><strong>${esc(x.title)}</strong><span>${esc(x.text)}</span></li>`).join('\n          ')}
+        </ul>
+        <p class="work__plans"><a class="btn btn--ghost" href="${p.about.href}"><span>${esc(p.about.link)}</span>${ARROW_RIGHT}</a></p>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <header class="section__head">
+          <p class="label">${esc(p.why.label)}</p>
+          <h2 class="section__title">${esc(p.why.title)}</h2>
+          <p class="section__sub">${esc(p.why.subtitle)}</p>
+        </header>
+        <div class="bf-why">
+          ${p.why.options
+            .map(
+              (o, i, all) => `<article class="bf-why__item${i === all.length - 1 ? ' bf-why__item--us' : ''}"><p class="bf-why__name">${esc(o.name)}</p><p>${esc(o.text)}</p></article>`
+            )
+            .join('\n          ')}
+        </div>
+        <ul class="bf-why__gains">
+          ${p.why.gains.map((g) => `<li><strong>${esc(g.title)}</strong><span>${esc(g.text)}</span></li>`).join('\n          ')}
+        </ul>
       </div>
     </section>
 
