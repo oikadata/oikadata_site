@@ -26,7 +26,7 @@ export default {
         { label: 'Time to start', values: ['1 to 2 months to hire, plus months of ramp-up before delivering', 'Starts at the kickoff call'] },
         { label: 'First result', values: ['About 6 months to hire, set up the platform and deliver', 'Within 30 days'] },
         { label: 'If the person leaves', values: ['The knowledge leaves too and you start over', 'Team and documentation: the knowledge stays'] },
-        { label: 'Commitment', values: ['Fixed cost, hard to adjust', 'Monthly plan, sized to your complexity'] },
+        { label: 'Commitment', values: ['Fixed cost, hard to adjust', 'Flexible, different plan options'] },
       ],
       note: 'CLT figures are market estimates for a mid-level data professional; payroll taxes and benefits vary with the company’s tax regime and benefits package, and tools and platform are not included in the math. Time to hire: Ford/Datafolha 2026. Oika’s price depends on how many teams are served, the visualization tool and the use cases.',
     },
