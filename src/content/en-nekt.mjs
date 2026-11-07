@@ -10,13 +10,13 @@ export default {
       partnership: 'Oika and Nekt partnership',
       tag: 'Nekt Black Friday · Until Nov 30',
       title: 'Sign up in Nekt’s Black Friday and get 1 month of Oika consulting',
-      subtitle: 'In 7 days, your Nekt workspace is live with the main data sources connected. Within 30 days, we deliver the first use case with you.',
+      subtitle: 'In 7 days, your data is connected in Nekt and the first insights arrive. Within 30 days, the use case is validated, with the data in BI and AI.',
       facts: [
-        { value: '7 days*', label: 'workspace live, sources connected' },
-        { value: '30 days', label: 'first use case delivered' },
+        { value: '7 days*', label: 'data connected and first insights' },
+        { value: '30 days', label: 'use case validated, data in BI and AI' },
         { value: 'Limited', label: 'spots in this first round' },
       ],
-      disclaimer: '*The 7 days start once access to the data sources is granted and cover the workspace with the main sources connected. Validating the numbers with your team and delivering the use case happen within 30 days.',
+      disclaimer: '*The 7 days start once access to the data sources is granted and cover the main sources connected and the first insights. Validating the use case with your team, with the data in BI and AI, happens within 30 days.',
       cta: 'Message Oika on WhatsApp',
       commitment: 'No commitment to continue: after the first month, you decide.',
       note: 'Exclusive to companies referred by Nekt, valid until Nov 30.',
@@ -65,8 +65,8 @@ export default {
       steps: [
         { title: 'Sign up and get referred', text: 'Sign up in Nekt’s Black Friday by Nov 30 and Nekt refers your company to this round.' },
         { title: 'Kickoff call', text: '30 minutes to understand where you are, pick the use case and arrange access.' },
-        { title: 'In 7 days: workspace live', text: 'Main sources connected and the first data in Nekt, once access is granted.' },
-        { title: 'Within 30 days: use case delivered', text: 'Numbers validated with your team and the result on the table, with access through AI and BI.' },
+        { title: 'In 7 days: data connected', text: 'Main sources connected in Nekt and the first insights, once access is granted.' },
+        { title: 'Within 30 days: use case validated', text: 'Numbers validated with your team and the data in BI and AI.' },
       ],
     },
     pricing: {

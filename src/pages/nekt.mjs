@@ -31,9 +31,8 @@ export default {
         <h1 class="bf-hero__title">${esc(p.hero.title)}</h1>
         <p class="bf-hero__sub">${esc(p.hero.subtitle)}</p>
         <ul class="bf-facts">
-          ${p.hero.facts.map((f) => `<li><strong>${esc(f.value)}</strong><span>${esc(f.label)}</span></li>`).join('\n          ')}
+          ${p.hero.facts.map((f) => `<li><strong>${esc(f.value).replace(/\*$/, '<sup class="bf-star">*</sup>')}</strong><span>${esc(f.label)}</span></li>`).join('\n          ')}
         </ul>
-        <p class="bf-disclaimer">${esc(p.hero.disclaimer)}</p>
         <div class="bf-hero__actions">
           ${waButton(p.hero.cta, p.whatsappMessage, 'nekt-hero')}
           <p class="bf-free">${CHECK}<span>${esc(p.hero.commitment)}</span></p>
@@ -141,6 +140,7 @@ export default {
         <h2 class="cta__title">${esc(p.final.title)}</h2>
         <p class="bf-final__sub">${esc(p.final.subtitle)}</p>
         ${waButton(p.final.cta, p.whatsappMessage, 'nekt-final')}
+        <p class="bf-disclaimer">${esc(p.hero.disclaimer)}</p>
       </div>
     </section>
 `,

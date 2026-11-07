@@ -10,13 +10,13 @@ export default {
       partnership: 'Parceria Oika e Nekt',
       tag: 'Black Friday Nekt · Até 30/11',
       title: 'Feche a Black Friday da Nekt e ganhe 1 mês de consultoria da Oika',
-      subtitle: 'Em 7 dias, o seu workspace na Nekt está no ar, com as principais fontes de dados conectadas. Em até 30 dias, entregamos com você o primeiro caso de uso.',
+      subtitle: 'Em 7 dias, os seus dados estão conectados na Nekt e chegam os primeiros insights. Em até 30 dias, o caso de uso está validado, com os dados no BI e na IA.',
       facts: [
-        { value: '7 dias*', label: 'workspace no ar, com as fontes conectadas' },
-        { value: '30 dias', label: 'primeiro caso de uso entregue' },
+        { value: '7 dias*', label: 'dados conectados e primeiros insights' },
+        { value: '30 dias', label: 'caso de uso validado, dados no BI e na IA' },
         { value: 'Vagas', label: 'limitadas nesta primeira turma' },
       ],
-      disclaimer: '*Os 7 dias contam a partir da liberação dos acessos às fontes de dados e valem para o workspace com as principais fontes conectadas. A validação dos números com o seu time e a entrega do caso de uso acontecem em até 30 dias.',
+      disclaimer: '*Os 7 dias contam a partir da liberação dos acessos às fontes de dados e valem para as principais fontes conectadas e os primeiros insights. A validação do caso de uso com o seu time, com os dados no BI e na IA, acontece em até 30 dias.',
       cta: 'Falar com a Oika no WhatsApp',
       commitment: 'Sem compromisso de continuar: depois do primeiro mês, você decide.',
       note: 'Oferta exclusiva para empresas indicadas pela Nekt, válida até 30/11.',
@@ -65,8 +65,8 @@ export default {
       steps: [
         { title: 'Feche e receba a indicação', text: 'Feche a Black Friday da Nekt até 30/11 e a Nekt indica a sua empresa para esta turma.' },
         { title: 'Conversa de início', text: '30 minutos para entender o seu momento, escolher o caso de uso e combinar os acessos.' },
-        { title: 'Em 7 dias: workspace no ar', text: 'Principais fontes conectadas e os primeiros dados na Nekt, a partir da liberação dos acessos.' },
-        { title: 'Em até 30 dias: caso de uso entregue', text: 'Números validados com o seu time e o resultado na mesa, com acesso via IA e BI.' },
+        { title: 'Em 7 dias: dados conectados', text: 'Principais fontes conectadas na Nekt e os primeiros insights, a partir da liberação dos acessos.' },
+        { title: 'Em até 30 dias: caso de uso validado', text: 'Números validados com o seu time e os dados no BI e na IA.' },
       ],
     },
     pricing: {
