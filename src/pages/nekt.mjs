@@ -33,6 +33,7 @@ export default {
         <ul class="bf-facts">
           ${p.hero.facts.map((f) => `<li><strong>${esc(f.value)}</strong><span>${esc(f.label)}</span></li>`).join('\n          ')}
         </ul>
+        <p class="bf-disclaimer">${esc(p.hero.disclaimer)}</p>
         <div class="bf-hero__actions">
           ${waButton(p.hero.cta, p.whatsappMessage, 'nekt-hero')}
           <p class="bf-free">${CHECK}<span>${esc(p.hero.commitment)}</span></p>

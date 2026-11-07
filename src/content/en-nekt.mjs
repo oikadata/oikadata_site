@@ -10,12 +10,13 @@ export default {
       partnership: 'Oika and Nekt partnership',
       tag: 'Nekt Black Friday · Until Nov 30',
       title: 'Sign up in Nekt’s Black Friday and get 1 month of Oika consulting',
-      subtitle: 'We set up your Nekt workspace and deliver the first use case with you. You finish the month with integrated data and a result on the table.',
+      subtitle: 'In 7 days, your Nekt workspace is live with the main data sources connected. Within 30 days, we deliver the first use case with you.',
       facts: [
-        { value: '1 month', label: 'of Oika consulting' },
-        { value: '1st use', label: 'case delivered' },
+        { value: '7 days*', label: 'workspace live, sources connected' },
+        { value: '30 days', label: 'first use case delivered' },
         { value: 'Limited', label: 'spots in this first round' },
       ],
+      disclaimer: '*The 7 days start once access to the data sources is granted and cover the workspace with the main sources connected. Validating the numbers with your team and delivering the use case happen within 30 days.',
       cta: 'Message Oika on WhatsApp',
       commitment: 'No commitment to continue: after the first month, you decide.',
       note: 'Exclusive to companies referred by Nekt, valid until Nov 30.',
@@ -25,7 +26,7 @@ export default {
       title: 'From an empty workspace to the first result in 30 days',
       subtitle: 'The Oika team works alongside yours so Nekt starts delivering value in the very first month.',
       items: [
-        { title: 'Workspace ready', text: 'We connect your main sources, organize the data layers and leave the environment ready to grow.' },
+        { title: 'Workspace ready in 7 days', text: 'We connect your main sources, organize the data layers and leave the environment ready to grow.' },
         { title: 'First use case', text: 'Together we pick the highest-value case and deliver the result: a dashboard, an analysis or an AI agent that answers questions about your business.' },
         { title: 'Senior Oika team', text: 'Engineering, modeling, BI and AI throughout the month, with documentation so the knowledge stays in your company.' },
       ],
@@ -60,12 +61,12 @@ export default {
     },
     how: {
       label: 'How it works',
-      title: 'Four steps, no red tape',
+      title: 'From sign-up to first result',
       steps: [
-        { title: 'Sign up in Nekt’s Black Friday', text: 'The offer is for new customers of the campaign, until Nov 30.' },
-        { title: 'Get referred', text: 'Nekt refers the companies that join this round.' },
-        { title: 'Kickoff call', text: '30 minutes to understand where you are and pick the use case.' },
-        { title: 'First result', text: 'Within 30 days, the workspace is live and the use case delivered.' },
+        { title: 'Sign up and get referred', text: 'Sign up in Nekt’s Black Friday by Nov 30 and Nekt refers your company to this round.' },
+        { title: 'Kickoff call', text: '30 minutes to understand where you are, pick the use case and arrange access.' },
+        { title: 'In 7 days: workspace live', text: 'Main sources connected and the first data in Nekt, once access is granted.' },
+        { title: 'Within 30 days: use case delivered', text: 'Numbers validated with your team and the result on the table, with access through AI and BI.' },
       ],
     },
     pricing: {
