@@ -26,7 +26,7 @@ export default {
         { label: 'Tempo para começar', values: ['1 a 2 meses para contratar, mais os meses de adaptação até entregar', 'Começa na conversa de início'] },
         { label: 'Primeiro resultado', values: ['Cerca de 6 meses entre contratar, montar a plataforma e entregar', 'Em até 30 dias'] },
         { label: 'Se a pessoa sai', values: ['O conhecimento vai junto e o processo recomeça', 'Time e documentação: o conhecimento fica na empresa'] },
-        { label: 'Compromisso', values: ['Custo fixo, difícil de ajustar', 'Plano mensal, ajustado à complexidade'] },
+        { label: 'Compromisso', values: ['Custo fixo, difícil de ajustar', 'Flexível, diferentes opções de planos'] },
       ],
       note: 'Valores de CLT são estimativas de mercado para um profissional de dados pleno; encargos e benefícios variam conforme o regime tributário e o pacote da empresa, e ferramentas e plataforma não estão incluídas na conta. Tempo para contratar: Ford/Datafolha 2026. O valor da Oika depende de quantas áreas são atendidas, da ferramenta de visualização e dos casos de uso.',
     },
