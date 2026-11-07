@@ -10,12 +10,13 @@ export default {
       partnership: 'Parceria Oika e Nekt',
       tag: 'Black Friday Nekt · Até 30/11',
       title: 'Feche a Black Friday da Nekt e ganhe 1 mês de consultoria da Oika',
-      subtitle: 'A gente inicia o seu workspace na Nekt e entrega com você o primeiro caso de uso. Você sai do mês com dados integrados e um resultado na mesa.',
+      subtitle: 'Em 7 dias, os seus dados estão conectados na Nekt e chegam os primeiros insights. Em até 30 dias, o caso de uso está validado, com os dados no BI e na IA.',
       facts: [
-        { value: '1 mês', label: 'de consultoria Oika' },
-        { value: '1º caso', label: 'de uso entregue' },
+        { value: '7 dias*', label: 'dados conectados e primeiros insights' },
+        { value: '30 dias', label: 'caso de uso validado, dados no BI e na IA' },
         { value: 'Vagas', label: 'limitadas nesta primeira turma' },
       ],
+      disclaimer: '*Os 7 dias contam a partir da liberação dos acessos às fontes de dados e valem para as principais fontes conectadas e os primeiros insights. A validação do caso de uso com o seu time, com os dados no BI e na IA, acontece em até 30 dias.',
       cta: 'Falar com a Oika no WhatsApp',
       commitment: 'Sem compromisso de continuar: depois do primeiro mês, você decide.',
       note: 'Oferta exclusiva para empresas indicadas pela Nekt, válida até 30/11.',
@@ -25,7 +26,7 @@ export default {
       title: 'Do workspace vazio ao primeiro resultado em 30 dias',
       subtitle: 'O time da Oika trabalha junto com a sua equipe para a Nekt começar a gerar valor desde o primeiro mês.',
       items: [
-        { title: 'Workspace pronto', text: 'Conectamos as principais fontes, organizamos as camadas de dados e deixamos o ambiente pronto para crescer.' },
+        { title: 'Workspace pronto em 7 dias', text: 'Conectamos as principais fontes, organizamos as camadas de dados e deixamos o ambiente pronto para crescer.' },
         { title: 'Primeiro caso de uso', text: 'Escolhemos com você o caso de maior valor e entregamos o resultado: um painel, uma análise ou um agente de IA que responde sobre o seu negócio.' },
         { title: 'Time sênior da Oika', text: 'Engenharia, modelagem, BI e IA durante o mês, com documentação para o conhecimento ficar na sua empresa.' },
       ],
@@ -60,12 +61,12 @@ export default {
     },
     how: {
       label: 'Como funciona',
-      title: 'Quatro passos, sem burocracia',
+      title: 'Do fechamento ao primeiro resultado',
       steps: [
-        { title: 'Feche a Black Friday da Nekt', text: 'A oferta vale para novos clientes da campanha, até 30/11.' },
-        { title: 'Receba a indicação', text: 'A Nekt indica as empresas que participam desta turma.' },
-        { title: 'Conversa de início', text: '30 minutos para entender o seu momento e escolher o caso de uso.' },
-        { title: 'Primeiro resultado', text: 'Em até 30 dias, workspace no ar e o caso de uso entregue.' },
+        { title: 'Feche e receba a indicação', text: 'Feche a Black Friday da Nekt até 30/11 e a Nekt indica a sua empresa para esta turma.' },
+        { title: 'Conversa de início', text: '30 minutos para entender o seu momento, escolher o caso de uso e combinar os acessos.' },
+        { title: 'Em 7 dias: dados conectados', text: 'Principais fontes conectadas na Nekt e os primeiros insights, a partir da liberação dos acessos.' },
+        { title: 'Em até 30 dias: caso de uso validado', text: 'Números validados com o seu time e os dados no BI e na IA.' },
       ],
     },
     pricing: {
