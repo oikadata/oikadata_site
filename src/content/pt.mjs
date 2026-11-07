@@ -2,6 +2,7 @@
 // Para editar um texto, altere aqui e rode `node build.mjs`.
 
 import nekt from './pt-nekt.mjs';
+import custo from './pt-custo.mjs';
 import privacidade from './pt-privacidade.mjs';
 import raioX from './pt-raio-x.mjs';
 
@@ -48,6 +49,7 @@ export default {
   pages: {
     ...raioX,
     ...nekt,
+    ...custo,
     ...privacidade,
     home: {
       meta: {

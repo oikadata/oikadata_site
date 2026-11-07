@@ -77,6 +77,8 @@ export default {
       per: 'por mês de consultoria',
       text: 'O valor final depende da complexidade e da velocidade do seu avanço nos dados: quantas áreas vão ser atendidas, qual ferramenta de visualização de dados e quais casos de uso. Fale com o nosso time para montar o plano certo para a sua empresa.',
       cta: 'Consultar o nosso time',
+      compare: 'Compare com o custo de contratar CLT',
+      compareHref: '/custo-time-de-dados/',
       commitment: 'Sem compromisso: você só segue com a Oika se fizer sentido.',
     },
     rules: {

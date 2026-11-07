@@ -118,6 +118,7 @@ export default {
             <p class="bf-price__per">${esc(p.pricing.per)}</p>
             ${waButton(p.pricing.cta, p.whatsappMessage, 'nekt-planos')}
             <p class="bf-free bf-free--box">${CHECK}<span>${esc(p.pricing.commitment)}</span></p>
+            <a class="bf-compare" href="${p.pricing.compareHref}"><span>${esc(p.pricing.compare)}</span>${ARROW_RIGHT}</a>
           </div>
         </div>
       </div>
