@@ -2,6 +2,7 @@
 // To publish, add 'en' to LANGS in build.mjs.
 
 import nekt from './en-nekt.mjs';
+import custo from './en-custo.mjs';
 import raioX from './en-raio-x.mjs';
 
 export default {
@@ -47,6 +48,7 @@ export default {
   pages: {
     ...raioX,
     ...nekt,
+    ...custo,
     home: {
       meta: {
         ogTitle: 'The shortest path from your data to results',

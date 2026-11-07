@@ -77,6 +77,8 @@ export default {
       per: 'per month of consulting',
       text: 'The final price depends on the complexity and pace of your progress with data: how many teams will be served, which data visualization tool and which use cases. Talk to our team to build the right plan for your company.',
       cta: 'Talk to our team',
+      compare: 'Compare with the cost of hiring',
+      compareHref: '/en/data-team-cost/',
       commitment: 'No commitment: you only continue with Oika if it makes sense.',
     },
     rules: {

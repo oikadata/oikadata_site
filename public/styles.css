@@ -996,3 +996,22 @@ textarea.rx-input { resize: vertical; min-height: 64px; }
 .bf-final { margin-top: 56px; }
 .bf-final__inner { display: grid; gap: 20px; justify-items: start; }
 .bf-final__sub { color: var(--on-dark-2); font-size: clamp(18px, 2vw, 21px); max-width: 48ch; margin-bottom: 8px; }
+
+.bf-compare { display: inline-flex; align-items: center; gap: 8px; margin-top: 14px; color: var(--band-1); font-size: 15px; font-weight: 500; }
+.bf-compare:hover { color: var(--white); }
+
+/* ---------- Custo CLT x Oika (oculta) ---------- */
+
+.cost-totals { display: grid; gap: 16px; margin-bottom: 48px; }
+.cost-total { display: grid; gap: 10px; align-content: start; padding: 28px; background: var(--white); border-radius: var(--radius); }
+.cost-total--us { background: var(--ink); color: var(--on-dark); }
+.cost-total__name { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
+.cost-total--us .cost-total__name { color: var(--primary-light); }
+.cost-total__value { font-size: clamp(36px, 5vw, 56px); font-weight: 700; letter-spacing: -0.04em; line-height: 1.05; }
+.cost-total__prefix { display: block; font-size: 15px; font-weight: 500; letter-spacing: 0; color: var(--ink-3); margin-bottom: 4px; }
+.cost-total--us .cost-total__prefix, .cost-total--us .cost-total__per { color: var(--on-dark-2); }
+.cost-total__per { font-size: 18px; font-weight: 500; letter-spacing: 0; color: var(--ink-3); margin-left: 4px; }
+.cost-total__what { color: var(--ink-2); font-size: 16px; line-height: 1.55; }
+.cost-total--us .cost-total__what { color: var(--on-dark-2); }
+@media (min-width: 760px) { .cost-totals { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } }
+.cost-table tbody th { width: 24%; }
