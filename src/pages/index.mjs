@@ -7,10 +7,11 @@
 import home from './home.mjs';
 import nekt from './nekt.mjs';
 import custo from './custo.mjs';
+import hub from './hub.mjs';
 import planos from './planos.mjs';
 import porque from './porque.mjs';
 import privacidade from './privacidade.mjs';
 import raioX from './raio-x.mjs';
 import raioXResultado from './raio-x-resultado.mjs';
 
-export default [home, planos, porque, raioX, raioXResultado, privacidade, nekt, custo];
+export default [home, planos, porque, raioX, raioXResultado, privacidade, nekt, custo, hub];

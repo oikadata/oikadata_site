@@ -3,6 +3,7 @@
 
 import nekt from './pt-nekt.mjs';
 import custo from './pt-custo.mjs';
+import hub from './pt-hub.mjs';
 import privacidade from './pt-privacidade.mjs';
 import raioX from './pt-raio-x.mjs';
 
@@ -50,6 +51,7 @@ export default {
     ...raioX,
     ...nekt,
     ...custo,
+    ...hub,
     ...privacidade,
     home: {
       meta: {
