@@ -16,6 +16,14 @@ const CHECK = `<svg class="icon" viewBox="0 0 24 24" aria-hidden="true" focusabl
 const waButton = (label, message, place) =>
   `<a class="btn btn--primary btn--lg" href="${WHATSAPP}?text=${encodeURIComponent(message)}" target="_blank" rel="noopener" ${track('whatsapp', place)}>${WA_ICON}<span>${esc(label)}</span></a>`;
 
+// Um passo do fluxo Fontes → Nekt → Oika → Seu time. Nekt e Oika aparecem com a marca;
+// os pontos que correm entre os passos são só CSS (e param com prefers-reduced-motion).
+const flowNode = (n, i) => {
+  const mark = n.brand === 'nekt' ? nektMark.replace('bf-nekt', 'bf-nekt bf-flow__mark') : n.brand === 'oika' ? logo('dark') : '';
+  const head = mark ? `<p class="bf-flow__brand" aria-label="${esc(n.name)}">${mark}</p>` : `<p class="bf-flow__name">${esc(n.name)}</p>`;
+  return `<li class="bf-flow__node${n.brand ? ` bf-flow__node--${n.brand}` : ''}" style="--i:${i}">${head}<p class="bf-flow__text">${esc(n.text)}</p><ul class="bf-flow__tags">${n.tags.map((t) => `<li>${esc(t)}</li>`).join('')}</ul></li>`;
+};
+
 const lockup = (p) => `<p class="bf-lockup" aria-label="${esc(p.hero.partnership)}">${logo('dark')}<span class="bf-lockup__plus" aria-hidden="true">+</span>${nektMark}</p>`;
 
 export default {
@@ -37,6 +45,25 @@ export default {
           ${waButton(p.hero.cta, p.whatsappMessage, 'nekt-hero')}
           <p class="bf-free">${CHECK}<span>${esc(p.hero.commitment)}</span></p>
           <p class="bf-hero__note">${esc(p.hero.note)}</p>
+          <p class="bf-hero__star">${esc(p.hero.starNote)}</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section bf-how">
+      <div class="container">
+        <header class="section__head">
+          <p class="label">${esc(p.how.label)}</p>
+          <h2 class="section__title">${esc(p.how.title)}</h2>
+        </header>
+        <ol class="bf-steps">
+          ${p.how.steps.map((s, i) => `<li><span class="bf-steps__n">${String(i + 1).padStart(2, '0')}</span><strong>${esc(s.title)}</strong><span>${esc(s.text)}</span></li>`).join('\n          ')}
+        </ol>
+        <div class="bf-incl">
+          <p class="bf-incl__label">${esc(p.how.includedLabel)}</p>
+          <ul>
+            ${p.how.included.map((x) => `<li>${CHECK}<span>${esc(x)}</span></li>`).join('\n            ')}
+          </ul>
         </div>
       </div>
     </section>
@@ -44,14 +71,17 @@ export default {
     <section class="section">
       <div class="container">
         <header class="section__head">
-          <p class="label">${esc(p.included.label)}</p>
-          <h2 class="section__title">${esc(p.included.title)}</h2>
-          <p class="section__sub">${esc(p.included.subtitle)}</p>
+          <p class="label">${esc(p.why.label)}</p>
+          <h2 class="section__title">${esc(p.why.title)}</h2>
+          <p class="section__sub">${esc(p.why.subtitle)}</p>
         </header>
-        <div class="cards bf-cards">
-          ${p.included.items
+        <ol class="bf-flow">
+          ${p.why.flow.map(flowNode).join('\n          ')}
+        </ol>
+        <div class="bf-why">
+          ${p.why.options
             .map(
-              (it, i) => `<article class="card"><span class="card__band card__band--${i + 1}" aria-hidden="true"></span><h3 class="card__title">${esc(it.title)}</h3><p>${esc(it.text)}</p></article>`
+              (o, i, all) => `<article class="bf-why__item${i === all.length - 1 ? ' bf-why__item--us' : ''}"><p class="bf-why__name">${esc(o.name)}</p><p>${esc(o.text)}</p></article>`
             )
             .join('\n          ')}
         </div>
@@ -69,38 +99,6 @@ export default {
           ${p.about.points.map((x) => `<li><strong>${esc(x.title)}</strong><span>${esc(x.text)}</span></li>`).join('\n          ')}
         </ul>
         <p class="work__plans"><a class="btn btn--ghost" href="${p.about.href}"><span>${esc(p.about.link)}</span>${ARROW_RIGHT}</a></p>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="container">
-        <header class="section__head">
-          <p class="label">${esc(p.why.label)}</p>
-          <h2 class="section__title">${esc(p.why.title)}</h2>
-          <p class="section__sub">${esc(p.why.subtitle)}</p>
-        </header>
-        <div class="bf-why">
-          ${p.why.options
-            .map(
-              (o, i, all) => `<article class="bf-why__item${i === all.length - 1 ? ' bf-why__item--us' : ''}"><p class="bf-why__name">${esc(o.name)}</p><p>${esc(o.text)}</p></article>`
-            )
-            .join('\n          ')}
-        </div>
-        <ul class="bf-why__gains">
-          ${p.why.gains.map((g) => `<li><strong>${esc(g.title)}</strong><span>${esc(g.text)}</span></li>`).join('\n          ')}
-        </ul>
-      </div>
-    </section>
-
-    <section class="section bf-how">
-      <div class="container">
-        <header class="section__head">
-          <p class="label">${esc(p.how.label)}</p>
-          <h2 class="section__title">${esc(p.how.title)}</h2>
-        </header>
-        <ol class="bf-steps">
-          ${p.how.steps.map((s, i) => `<li><span class="bf-steps__n">${String(i + 1).padStart(2, '0')}</span><strong>${esc(s.title)}</strong><span>${esc(s.text)}</span></li>`).join('\n          ')}
-        </ol>
       </div>
     </section>
 
