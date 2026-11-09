@@ -9,18 +9,19 @@ export default {
     hero: {
       partnership: 'Parceria Oika e Nekt',
       tag: 'Black Friday Nekt · Até 30/11',
-      title: 'Feche a Black Friday da Nekt e ganhe 1 mês de consultoria da Oika',
+      title: 'Feche a Black Friday da Nekt e ganhe 1 mês do time de dados da Oika operando com você',
       subtitle: 'Na primeira semana, conectamos suas fontes à Nekt. Em até 30 dias, o caso de uso combinado está rodando no BI e disponível para consulta via IA.',
       facts: [
-        { value: '7 dias*', label: 'fontes conectadas e primeiros insights' },
+        { value: '7 dias', note: 1, label: 'fontes conectadas e primeiros insights' },
         { value: '30 dias', label: 'caso de uso rodando no BI e com consulta via IA' },
-        { value: 'Vagas', label: 'limitadas' },
+        { value: 'Vagas limitadas', note: 2 },
       ],
-      disclaimer: '*Os 7 dias contam a partir da liberação dos acessos às fontes de dados e valem para as principais fontes conectadas e os primeiros insights. O caso de uso combinado fica rodando no BI e disponível para consulta via IA em até 30 dias.',
+      footnotes: [
+        'Os 7 dias contam a partir da liberação dos acessos às fontes de dados e valem para as principais fontes conectadas e os primeiros insights. O caso de uso combinado fica rodando no BI e disponível para consulta via IA em até 30 dias.',
+        'Oferta exclusiva para empresas indicadas pela Nekt, válida até 30/11.',
+      ],
       cta: 'Falar com a Oika no WhatsApp',
       commitment: 'Sem compromisso de continuar: depois do primeiro mês, você decide.',
-      note: 'Oferta exclusiva para empresas indicadas pela Nekt, válida até 30/11.',
-      starNote: '*Prazo contado a partir da liberação dos acessos. Detalhes no fim da página.',
     },
     how: {
       label: 'Como funciona',
@@ -56,18 +57,13 @@ export default {
     },
     why: {
       label: 'Por que Oika + Nekt',
-      title: 'Do dado espalhado à resposta que o seu time usa',
+      title: 'Do dado espalhado à decisão que gera valor',
       subtitle: 'A Nekt junta e mantém os dados atualizados. A Oika coloca as regras do seu negócio em cima deles e entrega o painel e as respostas da IA conferidas.',
       flow: [
         { name: 'Suas fontes', text: 'Onde os dados estão hoje', tags: ['ERP', 'CRM', 'Planilhas'] },
         { name: 'Nekt', text: 'Integra, armazena e atualiza', tags: ['Integração', 'Data lake', 'Atualização'], brand: 'nekt' },
         { name: 'Oika', text: 'Modela, valida e entrega', tags: ['Regras do negócio', 'Validação', 'Painéis'], brand: 'oika' },
         { name: 'Seu time', text: 'Decide com números confiáveis', tags: ['BI', 'Consulta via IA'] },
-      ],
-      options: [
-        { name: 'Só com a Nekt', text: 'Os dados ficam integrados, mas modelar as regras do negócio, montar os painéis e ajustar as respostas da IA fica com o seu time.' },
-        { name: 'Só com a Oika', text: 'O time está pronto, mas antes do primeiro resultado ainda é preciso escolher e montar a plataforma.' },
-        { name: 'Nekt + Oika', text: 'Plataforma pronta e um time que já fez isso diversas vezes: o primeiro caso de uso rodando em até 30 dias.' },
       ],
     },
     pricing: {

@@ -9,18 +9,19 @@ export default {
     hero: {
       partnership: 'Oika and Nekt partnership',
       tag: 'Nekt Black Friday · Until Nov 30',
-      title: 'Sign up in Nekt’s Black Friday and get 1 month of Oika consulting',
+      title: 'Sign up in Nekt’s Black Friday and get Oika’s data team working with you for 1 month',
       subtitle: 'In the first week, we connect your sources to Nekt. Within 30 days, the agreed use case is running in BI and available to query through AI.',
       facts: [
-        { value: '7 days*', label: 'sources connected and first insights' },
+        { value: '7 days', note: 1, label: 'sources connected and first insights' },
         { value: '30 days', label: 'use case running in BI and queryable through AI' },
-        { value: 'Limited', label: 'spots' },
+        { value: 'Limited spots', note: 2 },
       ],
-      disclaimer: '*The 7 days start once access to the data sources is granted and cover the main sources connected and the first insights. The agreed use case is running in BI and available to query through AI within 30 days.',
+      footnotes: [
+        'The 7 days start once access to the data sources is granted and cover the main sources connected and the first insights. The agreed use case is running in BI and available to query through AI within 30 days.',
+        'Exclusive to companies referred by Nekt, valid until Nov 30.',
+      ],
       cta: 'Message Oika on WhatsApp',
       commitment: 'No commitment to continue: after the first month, you decide.',
-      note: 'Exclusive to companies referred by Nekt, valid until Nov 30.',
-      starNote: '*Counted from when access is granted. Details at the end of the page.',
     },
     how: {
       label: 'How it works',
@@ -56,18 +57,13 @@ export default {
     },
     why: {
       label: 'Why Oika + Nekt',
-      title: 'From scattered data to answers your team uses',
+      title: 'From scattered data to decisions that create value',
       subtitle: 'Nekt brings the data together and keeps it up to date. Oika layers your business rules on top and delivers the dashboard and AI answers, checked.',
       flow: [
         { name: 'Your sources', text: 'Where your data lives today', tags: ['ERP', 'CRM', 'Spreadsheets'] },
         { name: 'Nekt', text: 'Integrates, stores and updates', tags: ['Integration', 'Data lake', 'Updates'], brand: 'nekt' },
         { name: 'Oika', text: 'Models, validates and delivers', tags: ['Business rules', 'Validation', 'Dashboards'], brand: 'oika' },
         { name: 'Your team', text: 'Decides with numbers it trusts', tags: ['BI', 'AI queries'] },
-      ],
-      options: [
-        { name: 'Nekt only', text: 'Your data is integrated, but modeling the business rules, building dashboards and tuning the AI’s answers is left to your team.' },
-        { name: 'Oika only', text: 'The team is ready, but before the first result you still have to choose and set up a platform.' },
-        { name: 'Nekt + Oika', text: 'A ready platform and a team that has done this many times: the first use case running within 30 days.' },
       ],
     },
     pricing: {

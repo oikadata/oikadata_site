@@ -938,10 +938,12 @@ textarea.rx-input { resize: vertical; min-height: 64px; }
 .bf-facts strong { font-size: clamp(22px, 3vw, 32px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; color: var(--white); }
 .bf-facts span { font-size: 14px; line-height: 1.4; color: var(--on-dark-2); }
 .bf-star { font-size: 0.45em; font-weight: 500; vertical-align: super; margin-left: 2px; color: var(--on-dark-2); }
-.bf-disclaimer { max-width: 720px; margin-top: 32px; font-size: 13px; line-height: 1.5; color: var(--on-dark-2); }
+.bf-facts__solo { align-content: center; }
+.bf-facts .bf-facts__solo strong { font-size: clamp(18px, 2vw, 22px); letter-spacing: -0.02em; line-height: 1.25; }
+.bf-notes { display: grid; gap: 6px; max-width: 720px; margin-top: 32px; font-size: 13px; line-height: 1.5; color: var(--on-dark-2); }
+.bf-notes sup { margin-right: 3px; font-size: 0.8em; }
 .bf-hero__actions { display: grid; gap: 12px; justify-items: start; margin-top: 8px; }
 .bf-hero__note { font-size: 15px; color: var(--on-dark-2); }
-.bf-hero__star { margin-top: -6px; font-size: 13px; color: var(--on-dark-2); opacity: 0.85; }
 @media (min-width: 920px) { .bf-hero { padding: 80px 0 104px; } }
 
 @media (min-width: 860px) { .bf-cards { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; } }
@@ -956,14 +958,6 @@ textarea.rx-input { resize: vertical; min-height: 64px; }
 @media (min-width: 1040px) { .bf-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; } }
 
 
-.bf-why { display: grid; gap: 16px; }
-.bf-why__item { display: grid; gap: 10px; align-content: start; padding: 28px; background: var(--white); border-radius: var(--radius); }
-.bf-why__item p:last-child { color: var(--ink-2); font-size: 16px; line-height: 1.55; }
-.bf-why__name { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
-.bf-why__item--us { background: var(--ink); color: var(--on-dark); }
-.bf-why__item--us .bf-why__name { color: var(--primary-light); }
-.bf-why__item--us p:last-child { color: var(--on-dark); font-weight: 500; }
-@media (min-width: 860px) { .bf-why { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; } }
 .bf-incl { display: grid; gap: 14px; margin-top: 36px; }
 .bf-incl__label { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
 .bf-incl ul { display: flex; flex-wrap: wrap; gap: 10px; }
@@ -971,7 +965,7 @@ textarea.rx-input { resize: vertical; min-height: 64px; }
 .bf-incl .icon { color: var(--primary); flex: none; }
 
 /* Fluxo Fontes → Nekt → Oika → Seu time, com pontos que correm entre os passos. */
-.bf-flow { --gap: 32px; display: grid; gap: var(--gap); margin-bottom: 40px; }
+.bf-flow { --gap: 32px; display: grid; gap: var(--gap); }
 .bf-flow__node { position: relative; display: grid; gap: 10px; align-content: start; padding: 22px; background: var(--white); border: 1px solid rgba(23, 16, 30, 0.12); border-radius: var(--radius); }
 .bf-flow__name { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); min-height: 22px; display: flex; align-items: center; }
 .bf-flow__brand { min-height: 22px; display: flex; align-items: center; }

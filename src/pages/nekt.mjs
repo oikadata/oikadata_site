@@ -24,6 +24,9 @@ const flowNode = (n, i) => {
   return `<li class="bf-flow__node${n.brand ? ` bf-flow__node--${n.brand}` : ''}" style="--i:${i}">${head}<p class="bf-flow__text">${esc(n.text)}</p><ul class="bf-flow__tags">${n.tags.map((t) => `<li>${esc(t)}</li>`).join('')}</ul></li>`;
 };
 
+// Chamada de nota de rodapé (¹, ²...), com o texto da nota no fim da página.
+const noteRef = (n) => `<sup class="bf-star">${n}</sup>`;
+
 const lockup = (p) => `<p class="bf-lockup" aria-label="${esc(p.hero.partnership)}">${logo('dark')}<span class="bf-lockup__plus" aria-hidden="true">+</span>${nektMark}</p>`;
 
 export default {
@@ -39,13 +42,11 @@ export default {
         <h1 class="bf-hero__title">${esc(p.hero.title)}</h1>
         <p class="bf-hero__sub">${esc(p.hero.subtitle)}</p>
         <ul class="bf-facts">
-          ${p.hero.facts.map((f) => `<li><strong>${esc(f.value).replace(/\*$/, '<sup class="bf-star">*</sup>')}</strong><span>${esc(f.label)}</span></li>`).join('\n          ')}
+          ${p.hero.facts.map((f) => `<li${f.label ? '' : ' class="bf-facts__solo"'}><strong>${esc(f.value)}${f.note ? noteRef(f.note) : ''}</strong>${f.label ? `<span>${esc(f.label)}</span>` : ''}</li>`).join('\n          ')}
         </ul>
         <div class="bf-hero__actions">
           ${waButton(p.hero.cta, p.whatsappMessage, 'nekt-hero')}
           <p class="bf-free">${CHECK}<span>${esc(p.hero.commitment)}</span></p>
-          <p class="bf-hero__note">${esc(p.hero.note)}</p>
-          <p class="bf-hero__star">${esc(p.hero.starNote)}</p>
         </div>
       </div>
     </section>
@@ -78,27 +79,6 @@ export default {
         <ol class="bf-flow">
           ${p.why.flow.map(flowNode).join('\n          ')}
         </ol>
-        <div class="bf-why">
-          ${p.why.options
-            .map(
-              (o, i, all) => `<article class="bf-why__item${i === all.length - 1 ? ' bf-why__item--us' : ''}"><p class="bf-why__name">${esc(o.name)}</p><p>${esc(o.text)}</p></article>`
-            )
-            .join('\n          ')}
-        </div>
-      </div>
-    </section>
-
-    <section class="section section--tight">
-      <div class="container bf-about">
-        <header class="section__head">
-          <p class="label">${esc(p.about.label)}</p>
-          <h2 class="section__title">${esc(p.about.title)}</h2>
-          <p class="section__sub">${esc(p.about.subtitle)}</p>
-        </header>
-        <ul class="base">
-          ${p.about.points.map((x) => `<li><strong>${esc(x.title)}</strong><span>${esc(x.text)}</span></li>`).join('\n          ')}
-        </ul>
-        <p class="work__plans"><a class="btn btn--ghost" href="${p.about.href}"><span>${esc(p.about.link)}</span>${ARROW_RIGHT}</a></p>
       </div>
     </section>
 
@@ -123,6 +103,20 @@ export default {
     </section>
 
     <section class="section section--tight">
+      <div class="container bf-about">
+        <header class="section__head">
+          <p class="label">${esc(p.about.label)}</p>
+          <h2 class="section__title">${esc(p.about.title)}</h2>
+          <p class="section__sub">${esc(p.about.subtitle)}</p>
+        </header>
+        <ul class="base">
+          ${p.about.points.map((x) => `<li><strong>${esc(x.title)}</strong><span>${esc(x.text)}</span></li>`).join('\n          ')}
+        </ul>
+        <p class="work__plans"><a class="btn btn--ghost" href="${p.about.href}"><span>${esc(p.about.link)}</span>${ARROW_RIGHT}</a></p>
+      </div>
+    </section>
+
+    <section class="section section--tight">
       <div class="container">
         <div class="bf-rules">
           <h2 class="bf-rules__title">${esc(p.rules.title)}</h2>
@@ -139,7 +133,9 @@ export default {
         <h2 class="cta__title">${esc(p.final.title)}</h2>
         <p class="bf-final__sub">${esc(p.final.subtitle)}</p>
         ${waButton(p.final.cta, p.whatsappMessage, 'nekt-final')}
-        <p class="bf-disclaimer">${esc(p.hero.disclaimer)}</p>
+        <ol class="bf-notes">
+          ${p.hero.footnotes.map((n, i) => `<li><sup>${i + 1}</sup>${esc(n)}</li>`).join('\n          ')}
+        </ol>
       </div>
     </section>
 `,
