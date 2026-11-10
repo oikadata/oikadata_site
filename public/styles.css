@@ -938,7 +938,10 @@ textarea.rx-input { resize: vertical; min-height: 64px; }
 .bf-facts strong { font-size: clamp(22px, 3vw, 32px); font-weight: 700; letter-spacing: -0.03em; line-height: 1.1; color: var(--white); }
 .bf-facts span { font-size: 14px; line-height: 1.4; color: var(--on-dark-2); }
 .bf-star { font-size: 0.45em; font-weight: 500; vertical-align: super; margin-left: 2px; color: var(--on-dark-2); }
-.bf-disclaimer { max-width: 720px; margin-top: 32px; font-size: 13px; line-height: 1.5; color: var(--on-dark-2); }
+.bf-facts__solo { align-content: center; }
+.bf-facts .bf-facts__solo strong { font-size: clamp(18px, 2vw, 22px); letter-spacing: -0.02em; line-height: 1.25; }
+.bf-notes { display: grid; gap: 6px; max-width: 720px; margin-top: 32px; font-size: 13px; line-height: 1.5; color: var(--on-dark-2); }
+.bf-notes sup { margin-right: 3px; font-size: 0.8em; }
 .bf-hero__actions { display: grid; gap: 12px; justify-items: start; margin-top: 8px; }
 .bf-hero__note { font-size: 15px; color: var(--on-dark-2); }
 @media (min-width: 920px) { .bf-hero { padding: 80px 0 104px; } }
@@ -955,19 +958,44 @@ textarea.rx-input { resize: vertical; min-height: 64px; }
 @media (min-width: 1040px) { .bf-steps { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 20px; } }
 
 
-.bf-why { display: grid; gap: 16px; }
-.bf-why__item { display: grid; gap: 10px; align-content: start; padding: 28px; background: var(--white); border-radius: var(--radius); }
-.bf-why__item p:last-child { color: var(--ink-2); font-size: 16px; line-height: 1.55; }
-.bf-why__name { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
-.bf-why__item--us { background: var(--ink); color: var(--on-dark); }
-.bf-why__item--us .bf-why__name { color: var(--primary-light); }
-.bf-why__item--us p:last-child { color: var(--on-dark); font-weight: 500; }
-@media (min-width: 860px) { .bf-why { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; } }
-.bf-why__gains { display: grid; gap: 24px; margin-top: 40px; }
-.bf-why__gains li { display: grid; gap: 6px; padding-top: 16px; border-top: 2px solid var(--primary); }
-.bf-why__gains strong { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; }
-.bf-why__gains span { color: var(--ink-2); font-size: 16px; line-height: 1.55; }
-@media (min-width: 860px) { .bf-why__gains { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 32px; } }
+.bf-incl { display: grid; gap: 14px; margin-top: 36px; }
+.bf-incl__label { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); }
+.bf-incl ul { display: flex; flex-wrap: wrap; gap: 10px; }
+.bf-incl li { display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 999px; background: var(--white); font-size: 15px; font-weight: 500; line-height: 1.3; }
+.bf-incl .icon { color: var(--primary); flex: none; }
+
+/* Fluxo Fontes → Nekt → Oika → Seu time, com pontos que correm entre os passos. */
+.bf-flow { --gap: 32px; display: grid; gap: var(--gap); }
+.bf-flow__node { position: relative; display: grid; gap: 10px; align-content: start; padding: 22px; background: var(--white); border: 1px solid rgba(23, 16, 30, 0.12); border-radius: var(--radius); }
+.bf-flow__name { font-size: 13px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-3); min-height: 22px; display: flex; align-items: center; }
+.bf-flow__brand { min-height: 22px; display: flex; align-items: center; }
+.bf-flow__mark { height: 20px; }
+.bf-flow__brand .logo { font-size: 15px; }
+.bf-flow__text { font-size: 19px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.3; }
+.bf-flow__tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.bf-flow__tags li { padding: 4px 10px; border-radius: 999px; background: var(--surface); font-size: 13px; color: var(--ink-2); }
+.bf-flow__node--nekt, .bf-flow__node--oika { background: var(--ink); color: var(--on-dark); border-color: var(--ink); }
+.bf-flow__node--nekt .bf-flow__tags li, .bf-flow__node--oika .bf-flow__tags li { background: rgba(237, 231, 242, 0.1); color: var(--on-dark-2); }
+.bf-flow__node--oika { border-color: var(--primary-light); animation: bf-glow 3s ease-in-out infinite; }
+.bf-flow__node:last-child { border-color: var(--primary); }
+/* Linha entre os passos (vertical no celular, horizontal no desktop) e o ponto que corre nela. */
+.bf-flow__node + .bf-flow__node::before { content: ''; position: absolute; left: 50%; top: calc(var(--gap) * -1); width: 2px; height: var(--gap); margin-left: -1px; background: repeating-linear-gradient(to bottom, rgba(126, 10, 203, 0.35) 0 4px, transparent 4px 8px); }
+.bf-flow__node + .bf-flow__node::after { content: ''; position: absolute; left: 50%; top: calc(var(--gap) * -1); width: 10px; height: 10px; margin-left: -5px; border-radius: 50%; background: var(--primary); box-shadow: 0 0 0 4px rgba(126, 10, 203, 0.18); animation: bf-run-y 2.4s ease-in-out infinite; animation-delay: calc(var(--i) * 0.6s); opacity: 0; }
+@keyframes bf-run-y { 0% { transform: translateY(-5px); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateY(calc(var(--gap) - 5px)); opacity: 0; } }
+@keyframes bf-run-x { 0% { transform: translateX(-5px); opacity: 0; } 15% { opacity: 1; } 85% { opacity: 1; } 100% { transform: translateX(calc(var(--gap) - 5px)); opacity: 0; } }
+@keyframes bf-glow { 0%, 100% { box-shadow: 0 0 0 0 rgba(180, 92, 240, 0); } 50% { box-shadow: 0 0 0 8px rgba(180, 92, 240, 0.18); } }
+@media (min-width: 900px) {
+  .bf-flow { --gap: 40px; grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .bf-flow__node + .bf-flow__node::before { left: calc(var(--gap) * -1); top: 50%; width: var(--gap); height: 2px; margin: -1px 0 0; background: repeating-linear-gradient(to right, rgba(126, 10, 203, 0.35) 0 4px, transparent 4px 8px); }
+  .bf-flow__node + .bf-flow__node::after { left: calc(var(--gap) * -1); top: 50%; margin: -5px 0 0; animation-name: bf-run-x; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bf-flow__node--oika { animation: none; }
+  .bf-flow__node + .bf-flow__node::after { animation: none; opacity: 1; transform: none; left: 50%; top: -5px; }
+}
+@media (prefers-reduced-motion: reduce) and (min-width: 900px) {
+  .bf-flow__node + .bf-flow__node::after { left: -5px; top: 50%; }
+}
 .bf-about .base { margin-top: 8px; }
 @media (min-width: 760px) { .bf-about .base { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (min-width: 1040px) { .bf-about .base { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
