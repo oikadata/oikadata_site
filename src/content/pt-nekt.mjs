@@ -9,7 +9,7 @@ export default {
     hero: {
       partnership: 'Parceria Oika e Nekt',
       tag: 'Black Friday Nekt · Até 30/11',
-      title: 'Feche a Black Friday da Nekt e ganhe 1 mês do time de dados da Oika operando com você',
+      title: 'Feche a Black Friday da Nekt e ganhe 1 mês do time de dados da Oika construindo com você',
       subtitle: 'Na primeira semana, conectamos suas fontes à Nekt. Em até 30 dias, o caso de uso combinado está rodando no BI e disponível para consulta via IA.',
       facts: [
         { value: '7 dias', note: 1, label: 'fontes conectadas e primeiros insights' },
@@ -71,7 +71,7 @@ export default {
       title: 'Siga com a Oika a partir do segundo mês',
       from: 'Planos a partir de',
       price: 'R$ 6.000',
-      per: 'por mês de consultoria',
+      per: 'por mês',
       text: 'O valor final depende da complexidade e da velocidade do seu avanço nos dados: quantas áreas vão ser atendidas, qual ferramenta de visualização de dados e quais casos de uso. Fale com o nosso time para montar o plano certo para a sua empresa.',
       cta: 'Consultar o nosso time',
       compare: 'Compare com o custo de contratar CLT',

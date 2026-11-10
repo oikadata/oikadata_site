@@ -9,7 +9,7 @@ export default {
     hero: {
       partnership: 'Oika and Nekt partnership',
       tag: 'Nekt Black Friday · Until Nov 30',
-      title: 'Sign up in Nekt’s Black Friday and get Oika’s data team working with you for 1 month',
+      title: 'Sign up in Nekt’s Black Friday and get Oika’s data team building with you for 1 month',
       subtitle: 'In the first week, we connect your sources to Nekt. Within 30 days, the agreed use case is running in BI and available to query through AI.',
       facts: [
         { value: '7 days', note: 1, label: 'sources connected and first insights' },
@@ -71,7 +71,7 @@ export default {
       title: 'Keep going with Oika from the second month',
       from: 'Plans from',
       price: 'R$ 6,000',
-      per: 'per month of consulting',
+      per: 'per month',
       text: 'The final price depends on the complexity and pace of your progress with data: how many teams will be served, which data visualization tool and which use cases. Talk to our team to build the right plan for your company.',
       cta: 'Talk to our team',
       compare: 'Compare with the cost of hiring',
